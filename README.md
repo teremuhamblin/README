@@ -37,8 +37,8 @@
 
 ---
 
-🟢 PROJETS OPÉRATIONNELS
-
+### 🟢 PROJETS OPÉRATIONNELS
+```md
 <div align="center">
 
 <table align="center">
@@ -47,7 +47,7 @@
 <tr>
 
 <td align="center" width="360" style="padding:10px;">
-<a href="https://github.com/teremuhamblin/MySelf">
+<a href="https://github.com/teremuhamblin/2roam">
 <img src="https://raw.githubusercontent.com/teremuhamblin/2roam/main/assets/preview.png"
 width="320" height="220" style="object-fit:cover;border-radius:12px;">
 </a>
@@ -104,11 +104,12 @@ width="320" height="220" style="object-fit:cover;border-radius:12px;">
 </table>
 
 </div>
+```
 
 ---
 
-🔗 PORTFOLIO VISUEL — CARTES 2026
-
+### 🔗 PORTFOLIO VISUEL — CARTES 2026
+```text
 <div align="center">
 
 <a href="https://github.com/teremuhamblin/PORTFOLIO-CARDS">
@@ -116,43 +117,45 @@ width="320" height="220" style="object-fit:cover;border-radius:12px;">
 </a>
 
 </div>
+```
 
 ---
 
-🧭 DOCTRINE TECHNIQUE
+### 🧭 DOCTRINE TECHNIQUE
 
 <h2 align="center" style="font-size:24px; line-height:1.6;">
-Construire des systèmes robustes, reproductibles et documentés.  
-Transformer l’analyse en architecture.  
-Transformer l’architecture en exécution.
+- Construire des systèmes robustes, reproductibles et documentés.  
+- Transformer l’analyse en architecture.  
+- Transformer l’architecture en exécution.
 </h2>
 
 <h2 align="center" style="font-size:18px; line-height:1.8; font-weight:normal;">
-Profil issu du renseignement opérationnel, spécialisé en analyse, structuration et ingénierie système.  
-Approche méthodique, disciplinée, orientée mission.
+>Profil issu du renseignement opérationnel, spécialisé en analyse, structuration et ingénierie système.  
+>Approche méthodique, disciplinée, orientée mission.
 </h2>
 
 <h2 align="center" style="font-size:18px; line-height:1.8; font-weight:normal;">
-Travail sur Go, Shell, Linux, GitHub, CI/CD, documentation professionnelle et projets cyber‑physiques.
+>Travail sur Go, Shell, Linux, GitHub, CI/CD, documentation professionnelle et projets cyber‑physiques.
 </h2>
 
 ---
 
-🎯 OBJECTIFS 2026
-
+### 🎯 OBJECTIFS 2026
+```md
 - 2roam v1.0 → v2.0 (Navigation + Cyber‑Physique)  
 - MySelf v1.4 → v2.0 (Analyse avancée + ML)  
 - LearnShell v2 (Pédagogie + exercices)  
 - Documentation scientifique open‑source  
-- Structuration avancée de projets solidaires  
+- Structuration avancée de projets solidaires
+```
 
 ---
 
-📫 CONTACT
+### 📫 CONTACT
 
 <div align="center">
-
-Disponible pour :  
+  
+>Disponible pour :  
 - Ingénierie système  
 - Structuration documentaire  
 - Automatisation & pipelines  
