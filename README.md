@@ -1,53 +1,43 @@
-###### README.md >> markdown 
-
----
-
-🚀 VERSION PERSONNALISÉE
-The MadDoG.tmdg
-
-Portfolio Opérationnel & Ingénierie Systèmes — 2026
+###### README.md >> markdown
+# 🚀 The MadDoG.tmdg
+- Portfolio Opérationnel & Ingénierie Système
 
 <div align="center">
-
-<h2>𝗣𝗢𝗥𝗧𝗙𝗢𝗟𝗜𝗢 𝗢𝗣𝗘́𝗥𝗔𝗧𝗜𝗢𝗡𝗡𝗘𝗟 𝟮𝟬𝟮𝟲 — 𝗧𝗛𝗘 𝗠𝗔𝗗𝗗𝗢𝗚.𝗧𝗠𝗗𝗚</h2>
-
+<h2>𝗣𝗢𝗥𝗧𝗙𝗢𝗟𝗜𝗢 𝗢𝗣E𝗥𝗔𝗧𝗜𝗢𝗡𝗡𝗘𝗟</h2>
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0f0f,50:1a1a1a,100:0f3460&height=200&section=header&text=TheMadDoG.tmdg&fontSize=52&fontColor=ffffff&fontAlignY=38&desc=Ingénierie+Systèmes+%7C+Renseignement+%7C+DevOps&descAlignY=58&descColor=a8b2d8&animation=fadeIn" width="100%"/>
-
 </div>
-
 <br>
 
-<div align="center">
+<div align="left">
 
-✉️ teremuhamblin@github.io  
-🔗 <a href="https://github.com/teremuhamblin">𝗚𝗜𝗧𝗛𝗨𝗕</a>  
-📡 <a href="https://github.com/teremuhamblin?tab=repositories">𝗣𝗥𝗢𝗝𝗘𝗧𝗦</a>  
-🧭 <a href="https://github.com/teremuhamblin/2roam">𝟮𝗿𝗼𝗮𝗺 — Navigation Cyber‑Physique</a>  
-📘 <a href="https://github.com/teremuhamblin/MySelf">𝗠𝘆𝗦𝗲𝗹𝗳 — Plateforme d’Analyse</a>
-
+### ✉️ ** teremuhamblin@github.io **
 </div>
+🔗 <a href="https://github.com/teremuhamblin">𝗚𝗜𝗧𝗛𝗨𝗕</a>  
+
+📡 <a href="https://github.com/teremuhamblin?tab=repositories">𝗣𝗥𝗢𝗝𝗘𝗧𝗦
+</a>
 
 ---
 
-🎖️ COMPÉTENCES OPÉRATIONNELLES & TECHNIQUES
+### 🎖️ COMPÉTENCES OPÉRATIONNELLES & TECHNIQUES
 
 <p align="center">
 
-<img src="https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white" />
-<img src="https://img.shields.io/badge/Shell-121011?style=for-the-badge&logo=gnu-bash&logoColor=white" />
+<img src="https://img.shields.io/badge/Go-000000?style=for-the-badge&logo=go&logoColor=white" />
+<img src="https://img.shields.io/badge/Shell-000000?style=for-the-badge&logo=gnu-bash&logoColor=white" />
 <img src="https://img.shields.io/badge/Linux-000000?style=for-the-badge&logo=linux&logoColor=white" />
-<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
-<img src="https://img.shields.io/badge/CI%2FCD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" />
-<img src="https://img.shields.io/badge/Documentation-8A2BE2?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Architecture-FF8C00?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Renseignement-1E90FF?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Analyse-00BFFF?style=for-the-badge" />
+<img src="https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=white" />
+<img src="https://img.shields.io/badge/CI%2FCD-000000?style=for-the-badge&logo=githubactions&logoColor=white" />
+<img src="https://img.shields.io/badge/Documentation-000000?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Architecture-000000?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Renseignement-000000?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Analyse-000000?style=for-the-badge" />
 
 </p>
 
 ---
 
-🟢 PROJETS OPÉRATIONNELS 2026
+🟢 PROJETS OPÉRATIONNELS
 
 <div align="center">
 
@@ -57,7 +47,7 @@ Portfolio Opérationnel & Ingénierie Systèmes — 2026
 <tr>
 
 <td align="center" width="360" style="padding:10px;">
-<a href="https://github.com/teremuhamblin/2roam">
+<a href="https://github.com/teremuhamblin/MySelf">
 <img src="https://raw.githubusercontent.com/teremuhamblin/2roam/main/assets/preview.png"
 width="320" height="220" style="object-fit:cover;border-radius:12px;">
 </a>
