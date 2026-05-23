@@ -125,22 +125,19 @@ width="320" height="220" style="object-fit:cover;border-radius:12px;">
 
 ### 🧭 DOCTRINE TECHNIQUE
 
-<h2 align="center" style="font-size:11px; line-height:1.6;">
-- Construire des systèmes robustes, reproductibles et documentés.  
-
-  - Transformer l’analyse en architecture.  
-
-- Transformer l’architecture en exécution.
+<h2 align="right" style="font-size:11px; line-height:1.6;">
+Construire des systèmes robustes, reproductibles et documentés.  
+Transformer l’analyse en architecture.  
+Transformer l’architecture en exécution.
 </h2>
 
 <h2 align="center" style="font-size:9px; line-height:1.8; font-weight:normal;">
-> Profil issu du renseignement opérationnel, spécialisé en analyse, structuration et ingénierie système.  
-
-  > Approche méthodique, disciplinée, orientée mission.
+Profil issu du renseignement opérationnel, spécialisé en analyse, structuration et ingénierie système.  
+Approche méthodique, disciplinée, orientée mission.
 </h2>
 
-<h2 align="center" style="font-size:9px; line-height:1.8; font-weight:normal;">
->Travail sur Go, Shell, Linux, GitHub, CI/CD, documentation professionnelle et projets cyber‑physiques.
+<h2 align="left" style="font-size:9px; line-height:1.8; font-weight:normal;">
+Travail sur Go, Shell, Linux, GitHub, CI/CD, documentation professionnelle et projets cyber‑physiques.
 </h2>
 
 ---
