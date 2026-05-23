@@ -39,13 +39,13 @@
 ---
 
 ### 🟢 PROJETS OPÉRATIONNELS
-Tu as déjà une vraie “galerie” de projets — on va faire l’équivalent en Rust, propre, opérationnel, et prêt à pousser sur GitHub.
-
-### 🎯 OBJECTIFS 2026
+- 🎯 OBJECTIFS 2026
 ```md
->> 2roam v1.0 → v2.0 (Navigation + Cyber‑Physique)  
->> MySelf v1.4 → v2.0 (Analyse avancée + ML)  
-  - LearnShell v2 (Pédagogie + exercices)  
+>> 2roam v1.0 → v2.0
+  - Navigation + Cyber‑Physique
+>> MySelf v1.4 → v2.0
+  - Analyse avancée + ML
+  - LearnShell v2 (Pédagogie + exercices)
   - Documentation scientifique open‑source  
 >> Structuration avancée de projets solidaires
 ```
