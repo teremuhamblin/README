@@ -41,9 +41,9 @@
 ### 🟢 PROJETS OPÉRATIONNELS
 - 🎯 OBJECTIFS 2026
 ```md
->> 2roam v1.0 → v2.0
+>> 2roam
   - Navigation + Cyber‑Physique
->> MySelf v1.4 → v2.0
+>> MySelf
   - Analyse avancée + ML
   - LearnShell v2 (Pédagogie + exercices)
   - Documentation scientifique open‑source  
