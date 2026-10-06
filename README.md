@@ -18,14 +18,14 @@ Portfolio Opérationnel & Ingénierie Système
 🧬 IDENTITÉ TECHNIQUE
 > Ingénierie Systèmes • Cyber‑Physique • DevOps • Renseignement Technique • Architecture Logicielle
 
-`
+```schema
 ███████╗██╗  ██╗███████╗    ███╗   ███╗ █████╗ ██████╗ ██████╗  ██████╗ 
 ██╔════╝██║  ██║██╔════╝    ████╗ ████║██╔══██╗██╔══██╗██╔══██╗██╔═══██╗
 █████╗  ███████║█████╗      ██╔████╔██║███████║██████╔╝██████╔╝██║   ██║
 ██╔══╝  ██╔══██║██╔══╝      ██║╚██╔╝██║██╔══██║██╔══██╗██╔══██╗██║   ██║
 ███████╗██║  ██║███████╗    ██║ ╚═╝ ██║██║  ██║██║  ██║██║  ██║╚██████╔╝
 ╚══════╝╚═╝  ╚═╝╚══════╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ 
-`
+```
 
 ---
 
@@ -38,11 +38,11 @@ Portfolio Opérationnel & Ingénierie Système
 
 🛡️ COMPÉTENCES — OPÉRATIONNELLES & TECHNIQUES
 
-`
+```text
 [ GO ]            [ SHELL ]         [ LINUX ]  
 [ GITHUB ]        [ CI/CD ]         [ DOC ]  
 [ ARCHITECTURE ]  [ RENSEIGNEMENT ] [ ANALYSE ]
-`
+```
 
 Style badges ASCII minimalistes, lisibles, sobres, militaires.
 
@@ -50,7 +50,7 @@ Style badges ASCII minimalistes, lisibles, sobres, militaires.
 
 🧭 VISION OPÉRATIONNELLE — 2026
 
-`
+```md
 >> 2roam
    - Navigation + Cyber‑Physique
    - Systèmes autonomes
@@ -63,7 +63,7 @@ Style badges ASCII minimalistes, lisibles, sobres, militaires.
 >> Structuration avancée de projets solidaires
    - Architecture technique
    - Automatisation & pipelines
-`
+```
 
 ---
 
@@ -82,20 +82,20 @@ Style badges ASCII minimalistes, lisibles, sobres, militaires.
 
 🛰️ TECH‑MAP — Cartographie de Compétences
 
-`
+```schema
 GoLang        ████████████░░  85%
 Shell/Bash    ██████████████  95%
 Linux Ops     ████████████░░  90%
 DevOps        ███████████░░░  80%
 Renseignement ████████████░░  88%
 Architecture  █████████████░  92%
-`
+```
 
 ---
 
 ⚙️ STACK TECHNIQUE
 
-`
+```schema
 ┌──────────────────────────────────────────┐
 │  OS      : Linux / Arch / Debian         │
 │  Cloud   : GitHub / Self‑Hosted          │
@@ -103,17 +103,17 @@ Architecture  █████████████░  92%
 │  Lang    : Go, Bash, Python, C           │
 │  Tools   : tmux, neovim, htop, nmap      │
 └──────────────────────────────────────────┘
-`
+```
 
 ---
 
 🔥 SIGNATURE — THE MAD DOG
 
-`
+```text
 "Rigueur. Efficacité. Silence.  
 Le travail parle pour moi."
-`
+```
 
 ---
 
-🐺 README.md
+**🐺 README.md**
