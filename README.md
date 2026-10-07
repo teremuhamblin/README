@@ -1,13 +1,9 @@
-🚀 THE MadDoG.tmdg
-- QUANTUM‑ERA EDITION
-
-Portfolio Opérationnel & Ingénierie Système
-
----
+## 🚀 THE MadDoG.tmdg
+- QUANTUMEDITION
 
 <div align="center">
-
-⚡ PORTFOLIO OPÉRATIONNEL — INGÉNIERIE SYSTÈME
+⚡ PORTFOLIO OPÉRATIONNEL
+INGÉNIERIE SYSTEME
 
 🛰️ Cyber‑Défense • Renseignement • DevOps • Architecture Technique
 
@@ -15,7 +11,7 @@ Portfolio Opérationnel & Ingénierie Système
 
 ---
 
-🧬 IDENTITÉ TECHNIQUE
+l🧬 IDENTITÉ TECHNIQUE
 > Ingénierie Systèmes • Cyber‑Physique • DevOps • Renseignement Technique • Architecture Logicielle
 
 ```schema
