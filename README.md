@@ -2,12 +2,12 @@
 - — Cyber Operations Engineer
 <p align="left">
   <img src="https://img.shields.io/badge/Status-Supreme%20Operator-black?style=for-the-badge&logo=linux&logoColor=white">
-  <img src="https://img.shields.io/badge/Red%20Hat-Advanced-critical?style=for-the-badge&logo=redhat">
-  <img src="https://img.shields.io/badge/Black%20Hat-Offensive-darkred?style=for-the-badge&logo=ghost">
-  <img src="https://img.shields.io/badge/White%20Hat-Ethical-green?style=for-the-badge&logo=github">
-  <img src="https://img.shields.io/badge/Blue%20Hat-Defensive-blue?style=for-the-badge&logo=microsoft">
-  <img src="https://img.shields.io/badge/Grey%20Hat-Hybrid-gray?style=for-the-badge&logo=hackthebox">
-  <img src="https://img.shields.io/badge/Platforms-Linux%20%7C%20Windows%20%7C%20Cloud%20%7C%20Mobile%20%7C%20IoT-black?style=for-the-badge&logo=raspberrypi">
+  <img src="https://img.shields.io/badge/Red%20Hat-Advanced-critical?style=for-the-badge&logo=red">
+  <img src="https://img.shields.io/badge/Black%20Hat-Offensive-red?style=for-the-badge&logo=ghost">
+  <img src="https://img.shields.io/badge/White%20Hat-Ethical-red?style=for-the-badge&logo=github">
+  <img src="https://img.shields.io/badge/Blue%20Hat-Defensive-red?style=for-the-badge&logo=microsoft">
+  <img src="https://img.shields.io/badge/Grey%20Hat-Hybrid-red?style=for-the-badge&logo=hackthebox">
+  <img src="https://img.shields.io/badge/Platforms-Linux%20%7C%20Windows%20%7C%20Cloud%20%7C%20Mobile%20%7C%20IoT-red?style=for-the-badge&logo=raspberrypi">
   <img src="https://komarev.com/ghpvc/?username=teremuhamblin&color=red">
 </p>
 
@@ -51,6 +51,7 @@ Je conçois des environnements tactiques, des pipelines CI/CD sécurisés, des s
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=FF0000&center=true&vCenter=true&width=800&lines=Python+%E2%96%B2+C+%E2%96%B2+C%2B%2B+%E2%96%B2+C%23+%E2%96%B2+Java+%E2%96%B2+JavaScript+%E2%96%B2+Bash+%E2%96%B2+Go+%E2%96%B2+Rust+%E2%96%B2+PowerShell+%E2%96%B2+Ruby+%E2%96%B2+Perl+%E2%96%B2+PHP+%E2%96%B2+Assembly+%E2%96%B2+TypeScript+%E2%96%B2+Swift+%E2%96%B2+Kotlin+%E2%96%B2+SQL+%E2%96%B2+HTML+%E2%96%B2+CSS+%E2%96%B2+Lua+%E2%96%B2+Elixir+%E2%96%B2+Haskell+%E2%96%B2+F%23+%E2%96%B2+Clojure" />
 </p>
 
+```markdown
 >Platforms:  
 Linux, Windows, Mac, Cloud, Android/iOS, IoT, Embedded, Containers, Virtualization
 
@@ -59,6 +60,7 @@ Metasploit, Burp Suite, Cobalt Strike (simulation), Empire, ELK, Splunk, Suricat
 
 >Domains:  
 Web, Network, Wireless, Cloud, Mobile, ICS/SCADA, Blockchain, Embedded, AI/ML
+```
 
 ---
 
@@ -86,20 +88,20 @@ Web, Network, Wireless, Cloud, Mobile, ICS/SCADA, Blockchain, Embedded, AI/ML
 ---
 
 ### 📊 GitHub Stats
-<p align="center">
+<p align="left">
   <img src="https://github-readme-stats.vercel.app/api?username=teremuhamblin&show_icons=true&theme=dark" />
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=teremuhamblin&theme=dark" />
-  <img src="https://github-profile-trophy.vercel.app/?username=teremuhamblin&theme=darkhub&no-frame=true&margin-w=15" />
+  <img src="https://github-profile-trophy.vercel.app/?username=teremuhamblin&theme=dark&no-frame=true&margin-w=15" />
 </p>
 
 ---
 
 ### 🔗 Contact
-<p align="center">
-  <a href="#"><img src="https://img.shields.io/badge/Twitter-Connect-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white"></a>
-  <a href="#"><img src="https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin&logoColor=white"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Website-Visit-24292F?style=for-the-badge&logo=firefox&logoColor=white"></a>
-  <a href="mailto:"><img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white"></a>
+<p align="left">
+  <a href="#"><img src="https://img.shields.io/badge/Twitter-Connect-black?style=for-the-badge&logo=twitter&logoColor=white"></a>
+  <a href="#"><img src="https://img.shields.io/badge/LinkedIn-Connect-black?style=for-the-badge&logo=linkedin&logoColor=white"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Website-Visit-black?style=for-the-badge&logo=firefox&logoColor=white"></a>
+  <a href="mailto:"><img src="https://img.shields.io/badge/Email-Contact-black?style=for-the-badge&logo=gmail&logoColor=white"></a>
 </p>
 
 ---
