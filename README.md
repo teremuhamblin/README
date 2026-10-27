@@ -1,6 +1,9 @@
-<div align="center">
+###### README.md >> markdown
 
-# 🛡️ CYBER OPS — FULL HACKER THEME  
+<div align="left">
+
+# 🛡️ TheMadDoG
+- ***tmdg***
 ### Offensive Security • Red Team • Threat Intelligence • Advanced Cyber Defense
 
 <img src="https://img.shields.io/badge/Mode-Full_Hacker_Theme-black?style=for-the-badge&logo=linux&logoColor=red">
@@ -18,7 +21,7 @@
 Expert en cybersécurité spécialisé dans les menaces avancées, la sécurité offensive et les opérations Red Team.  
 Maîtrise complète des environnements **Windows, Linux, macOS, Android, Xiaomi**, ainsi que des infrastructures **Cloud & IoT**.
 
-Compétences éprouvées en :
+### Compétences éprouvées en :
 ```text
 - Simulation d’adversaires (Adversary Emulation)  
 - Développement d’exploits & rétro‑ingénierie  
