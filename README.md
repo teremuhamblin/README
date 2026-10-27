@@ -1,113 +1,101 @@
-🟥 The MadDoG.tmdg
-- — Cyber Operations Engineer
-<p align="left">
-  <img src="https://img.shields.io/badge/Status-Supreme%20Operator-black?style=for-the-badge&logo=linux&logoColor=white">
-  <img src="https://img.shields.io/badge/Red%20Hat-Advanced-critical?style=for-the-badge&logo=red">
-  <img src="https://img.shields.io/badge/Black%20Hat-Offensive-red?style=for-the-badge&logo=ghost">
-  <img src="https://img.shields.io/badge/White%20Hat-Ethical-red?style=for-the-badge&logo=github">
-  <img src="https://img.shields.io/badge/Blue%20Hat-Defensive-red?style=for-the-badge&logo=microsoft">
-  <img src="https://img.shields.io/badge/Grey%20Hat-Hybrid-red?style=for-the-badge&logo=hackthebox">
-  <img src="https://img.shields.io/badge/Platforms-Linux%20%7C%20Windows%20%7C%20Cloud%20%7C%20Mobile%20%7C%20IoT-red?style=for-the-badge&logo=raspberrypi">
-  <img src="https://komarev.com/ghpvc/?username=teremuhamblin&color=red">
-</p>
+<div align="center">
+
+# 🛡️ CYBER OPS — FULL HACKER THEME  
+### Offensive Security • Red Team • Threat Intelligence • Advanced Cyber Defense
+
+<img src="https://img.shields.io/badge/Mode-Full_Hacker_Theme-black?style=for-the-badge&logo=linux&logoColor=red">
+<img src="https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Android%20%7C%20Xiaomi-grey?style=for-the-badge&logo=ghost">
+<img src="https://img.shields.io/badge/Security-Offensive-grey?style=for-the-badge&logo=redhat">
+<img src="https://img.shields.io/badge/Red_Team-Active-grey?style=for-the-badge&logo=hackthebox">
+<img src="https://img.shields.io/badge/Threat_Intel-Advanced-grey?style=for-the-badge&logo=microsoft">
+
+</div>
 
 ---
 
-### 🛰️ About Me
+### 🛰️ À propos
+
+Expert en cybersécurité spécialisé dans les menaces avancées, la sécurité offensive et les opérations Red Team.  
+Maîtrise complète des environnements **Windows, Linux, macOS, Android, Xiaomi**, ainsi que des infrastructures **Cloud & IoT**.
+
+Compétences éprouvées en :
 ```text
-Ingénieur cyber multi‑plateformes, spécialisé en sécurité offensive, architecture défensive, simulation d’adversaires, et ingénierie logicielle avancée.  
-Je conçois des environnements tactiques, des pipelines CI/CD sécurisés, des systèmes modulaires, et des outils d’automatisation pour environnements critiques.
+- Simulation d’adversaires (Adversary Emulation)  
+- Développement d’exploits & rétro‑ingénierie  
+- Architecture défensive avancée  
+- Recherche de vulnérabilités & analyse de malware  
+- Sécurisation d’environnements embarqués et systèmes critiques  
 ```
 
->>Expertise opérationnelle sur :
+---
+
+### ⚔️ Compétences clés
 ```text
-- Linux, Windows, Android, Cloud, IoT, Embedded  
-- Offensive Security & Red Team Ops  
-- Reverse Engineering & Exploit Dev  
-- Defensive Architecture & Threat Hunting  
-- Cyber Intelligence & Adversary Simulation  
-- DevSecOps, GitHub Actions, CI/CD hardened
+- Tests d’intrusion avancés : Web, Réseau, Cloud, Mobile, IoT, ICS/SCADA  
+- Opérations Red Team & campagnes d’émulation d’adversaires  
+- Reverse engineering, exploit dev, fuzzing  
+- Threat hunting & forensic numérique  
+- Cyber Threat Intelligence & architecture défensive  
+- Automatisation de la sécurité : DevSecOps, CI/CD, SOAR  
+- Sécurité Blockchain, Smart Contracts, IA/ML, systèmes embarqués  
 ```
 
 ---
 
-### ⚔️ Core Competencies
+## 🔧 Arsenal technique
+
+### 🖥️ Plateformes maîtrisées
+```md
+Windows • Linux • macOS • Android • Xiaomi • Cloud • IoT • Virtualisation • Conteneurs
+```
+
+### 🧰 Outils principaux  
+```md
+Metasploit • Cobalt Strike • Burp Suite • Empire • ELK • Splunk • Suricata  
+IDA Pro • Ghidra • Binary Ninja • Nmap • Amass • Masscan • Scripts custom
+```
+
+### 🌐 Domaines d’expertise  
+```md
+Web • Réseau • Sans‑fil • Cloud • Mobile • ICS/SCADA • Blockchain • Embarqué • IA/ML
+```
+
+---
+
+## 📦 Projets
+
+| Projet | Description | Statut |
+|--------|-------------|--------|
+| **ShadowStrike** | Framework d’opérations Red Team | 🟢 Actif |
+| **ZeroDay-Lab** | Recherche & exploitation de vulnérabilités | 🧪 Research |
+| **CTF-Mastermind** | Défis CTF personnalisés | 🔄 En cours |
+| **ReconX** | Plateforme de reconnaissance automatisée | 🟡 Bêta |
+| **SmartContract-Sentinel** | Sécurité Blockchain & Smart Contracts | 🔵 Stable |
+
+---
+
+## 🏆 Réalisations
 ```text
-- Penetration Testing (Web, Network, Cloud, Mobile, IoT, ICS/SCADA)  
-- Red Team Operations & Adversary Emulation  
-- Exploit Development & Reverse Engineering  
-- Malware Analysis & Threat Hunting  
-- Incident Response & Digital Forensics  
-- Cyber Threat Intelligence & Defensive Architecture  
-- Security Automation, DevSecOps, SOAR Integration  
-- Blockchain, Smart Contract, Embedded & AI Security  
+- Intervenant & lauréat à **Black Hat**, **DEFCON**, **Red Hat**, **Blue Hat**  
+- Vainqueur de compétitions **CTF**  
+- Publication d’exploits **zero‑day**  
+- Présence dans le **Hall of Fame** : Apple • Google • Microsoft • Meta  
+- Concepteur d’outils de sécurité avancés & architectures cyber robustes
 ```
 
 ---
 
-### 🔧 Technical Arsenal
+## 📡 Contact
 
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=FF0000&center=true&vCenter=true&width=800&lines=Python+%E2%96%B2+C+%E2%96%B2+C%2B%2B+%E2%96%B2+C%23+%E2%96%B2+Java+%E2%96%B2+JavaScript+%E2%96%B2+Bash+%E2%96%B2+Go+%E2%96%B2+Rust+%E2%96%B2+PowerShell+%E2%96%B2+Ruby+%E2%96%B2+Perl+%E2%96%B2+PHP+%E2%96%B2+Assembly+%E2%96%B2+TypeScript+%E2%96%B2+Swift+%E2%96%B2+Kotlin+%E2%96%B2+SQL+%E2%96%B2+HTML+%E2%96%B2+CSS+%E2%96%B2+Lua+%E2%96%B2+Elixir+%E2%96%B2+Haskell+%E2%96%B2+F%23+%E2%96%B2+Clojure" />
-</p>
-
-```markdown
->Platforms:  
-Linux, Windows, Mac, Cloud, Android/iOS, IoT, Embedded, Containers, Virtualization
-
->Tools:  
-Metasploit, Burp Suite, Cobalt Strike (simulation), Empire, ELK, Splunk, Suricata, IDA Pro, Ghidra, Binary Ninja, Nmap, Amass, Masscan, custom frameworks
-
->Domains:  
-Web, Network, Wireless, Cloud, Mobile, ICS/SCADA, Blockchain, Embedded, AI/ML
-```
+- CREER UN *PR-Template*
 
 ---
 
-### 📦 Highlighted Projects
+<div align="center">
 
-| Project                   | Description                               | Status    |
-|---------------------------|-------------------------------------------|-----------|
-| StarterProjectTemplate | Template GitHub ultra‑sécurisé (CI/CD)    | Active    |
-| ShadowStrike          | Red Team operation framework               | Active    |
-| ZeroDay‑Lab           | Exploit & vuln research                    | Research  |
-| ReconX                | Reconnaissance automatisée                 | Beta      |
-| SmartContract‑Sentinel| Blockchain security toolkit                | Stable    |
+## 🔻 Phrase finale
 
----
+**Opérationnel dans les ombres numériques.**  
+###### ⚡ Hack the planet. ⚡
 
-### 🏆 Achievements
-```text
-- Interventions techniques & workshops (Red Hat, Blue Hat, DEFCON‑style events)  
-- Concepteur de frameworks cyber et pipelines CI/CD sécurisés  
-- Reverse engineering avancé & exploit dev  
-- Contributions open‑source en sécurité et automatisation  
-- Reconnu pour la qualité de mes environnements tactiques et mes architectures modulaires
-```
-
----
-
-### 📊 GitHub Stats
-<p align="left">
-  <img src="https://github-readme-stats.vercel.app/api?username=teremuhamblin&show_icons=true&theme=dark" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=teremuhamblin&theme=dark" />
-  <img src="https://github-profile-trophy.vercel.app/?username=teremuhamblin&theme=dark&no-frame=true&margin-w=15" />
-</p>
-
----
-
-### 🔗 Contact
-<p align="left">
-  <a href="#"><img src="https://img.shields.io/badge/Twitter-Connect-black?style=for-the-badge&logo=twitter&logoColor=white"></a>
-  <a href="#"><img src="https://img.shields.io/badge/LinkedIn-Connect-black?style=for-the-badge&logo=linkedin&logoColor=white"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Website-Visit-black?style=for-the-badge&logo=firefox&logoColor=white"></a>
-  <a href="mailto:"><img src="https://img.shields.io/badge/Email-Contact-black?style=for-the-badge&logo=gmail&logoColor=white"></a>
-</p>
-
----
-
-<p align="center" style="color:#ff0000;">
-Opérationnel dans les ombres numériques. Multi‑plateformes. Architecture tactique. Présence silencieuse.  
-</p>
-
----
+</div>
