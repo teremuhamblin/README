@@ -1,283 +1,1962 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberOps — Full Hacker Theme</title>
+    <meta
+        name="description"
+        content="TheMadDoG.tmdg - Sécurité offensive, Red Team, Threat Intelligence et architecture défensive."
+    >
+    <meta name="theme-color" content="#050505">
+
+    <title>TheMadDoG.tmdg // Offensive Security</title>
 
     <style>
-        /* ------------------------------
-           THEME & VARIABLES
-        --------------------------------*/
+        /* =========================================================
+           0x00 - VARIABLES
+        ========================================================= */
+
         :root {
-            --bg: #0a0a0a;
-            --bg-alt: #111;
-            --text: #e0e0e0;
-            --accent: #ff0000;
-            --card: #151515;
-            --border: #222;
+            color-scheme: dark;
+
+            --bg: #050505;
+            --bg-grid: rgba(157, 0, 255, 0.055);
+            --surface: #0b0b0d;
+            --surface-alt: #111114;
+            --surface-hover: #17131c;
+
+            --text: #f5f5f5;
+            --text-soft: #c9c9c9;
+            --text-muted: #8d8992;
+
+            --accent: #9d00ff;
+            --accent-light: #d1a3ff;
+            --accent-dark: #3a0a57;
+            --accent-rgb: 157, 0, 255;
+
+            --success: #62ffb0;
+            --warning: #ffd166;
+            --info: #58c7ff;
+
+            --border: #29252e;
+            --border-strong: #4c2266;
+
+            --shadow:
+                0 0 0 1px rgba(var(--accent-rgb), 0.08),
+                0 20px 60px rgba(0, 0, 0, 0.42);
+
+            --radius: 10px;
+            --radius-small: 6px;
+            --content-width: 1180px;
+            --header-height: 76px;
         }
 
-        [data-theme="light"] {
-            --bg: #f5f5f5;
-            --bg-alt: #ffffff;
-            --text: #111;
-            --accent: #d00000;
-            --card: #e9e9e9;
-            --border: #ccc;
+        html[data-theme="light"] {
+            color-scheme: light;
+
+            --bg: #f4f1f7;
+            --bg-grid: rgba(92, 0, 150, 0.05);
+            --surface: #ffffff;
+            --surface-alt: #f8f5fa;
+            --surface-hover: #f2eafa;
+
+            --text: #17131a;
+            --text-soft: #413b47;
+            --text-muted: #716b77;
+
+            --accent: #7900c7;
+            --accent-light: #5c008f;
+            --accent-dark: #dfc4ef;
+            --accent-rgb: 121, 0, 199;
+
+            --border: #d9d0de;
+            --border-strong: #a86aca;
+
+            --shadow:
+                0 0 0 1px rgba(var(--accent-rgb), 0.05),
+                0 20px 50px rgba(42, 20, 56, 0.12);
+        }
+
+        /* =========================================================
+           0x01 - RESET ET BASE
+        ========================================================= */
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--header-height) + 24px);
         }
 
         body {
             margin: 0;
-            font-family: Consolas, "Fira Code", monospace;
-            background: var(--bg);
+            min-width: 320px;
+            overflow-x: hidden;
+            font-family:
+                "Fira Code",
+                "JetBrains Mono",
+                "Cascadia Code",
+                Consolas,
+                monospace;
             color: var(--text);
-            transition: background 0.3s, color 0.3s;
+            background-color: var(--bg);
+            background-image:
+                linear-gradient(var(--bg-grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+            background-size: 42px 42px;
+            transition:
+                color 0.25s ease,
+                background-color 0.25s ease;
         }
 
-        /* ------------------------------
-           HEADER ANIMÉ
-        --------------------------------*/
-        header {
-            background: var(--bg-alt);
-            padding: 20px;
-            border-bottom: 2px solid var(--accent);
+        body::before {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            content: "";
+            background:
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(var(--accent-rgb), 0.13),
+                    transparent 31%
+                ),
+                radial-gradient(
+                    circle at 85% 42%,
+                    rgba(var(--accent-rgb), 0.08),
+                    transparent 28%
+                );
+        }
+
+        ::selection {
+            color: #050505;
+            background: var(--accent-light);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        img,
+        svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        code {
+            color: var(--accent-light);
+            font-family: inherit;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--accent-light);
+            outline-offset: 4px;
+        }
+
+        .skip-link {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 3000;
+            padding: 10px 14px;
+            color: #050505;
+            background: var(--accent-light);
+            border-radius: var(--radius-small);
+            transform: translateY(-150%);
+            transition: transform 0.2s ease;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        .container {
+            width: min(calc(100% - 36px), var(--content-width));
+            margin-inline: auto;
+        }
+
+        /* =========================================================
+           0x02 - EN-TETE ET NAVIGATION
+        ========================================================= */
+
+        .site-header {
             position: sticky;
             top: 0;
             z-index: 1000;
-            animation: headerGlow 3s infinite alternate;
+            min-height: var(--header-height);
+            background: rgba(5, 5, 5, 0.86);
+            border-bottom: 1px solid var(--border-strong);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.28);
+            backdrop-filter: blur(16px);
         }
 
-        @keyframes headerGlow {
-            from { box-shadow: 0 0 10px var(--accent); }
-            to { box-shadow: 0 0 25px var(--accent); }
+        html[data-theme="light"] .site-header {
+            background: rgba(244, 241, 247, 0.88);
         }
 
-        header h1 {
-            margin: 0;
-            text-align: center;
-            color: var(--accent);
-            font-size: 32px;
-            letter-spacing: 4px;
+        .header-inner {
+            min-height: var(--header-height);
+            display: flex;
+            align-items: center;
+            gap: 24px;
         }
 
-        /* ------------------------------
-           MENU
-        --------------------------------*/
-        nav {
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        nav a {
+        .brand {
+            flex: 0 0 auto;
             color: var(--text);
             text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
-            transition: color 0.2s;
+            font-size: 0.98rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
         }
 
-        nav a:hover {
+        .brand-mark {
+            margin-right: 7px;
             color: var(--accent);
+            text-shadow: 0 0 14px rgba(var(--accent-rgb), 0.8);
         }
 
-        /* ------------------------------
-           SECTIONS
-        --------------------------------*/
-        section {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-            background: var(--card);
+        .navigation {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-left: auto;
+        }
+
+        .navigation a {
+            padding: 9px 10px;
+            color: var(--text-soft);
+            border-radius: var(--radius-small);
+            text-decoration: none;
+            font-size: 0.77rem;
+            transition:
+                color 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .navigation a:hover,
+        .navigation a[aria-current="true"] {
+            color: var(--accent-light);
+            background: rgba(var(--accent-rgb), 0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .icon-button,
+        .menu-button {
+            width: 42px;
+            height: 42px;
+            display: inline-grid;
+            place-items: center;
+            color: var(--text);
+            background: var(--surface-alt);
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: var(--radius-small);
+            cursor: pointer;
+            transition:
+                color 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
         }
 
-        h2 {
+        .icon-button:hover,
+        .menu-button:hover {
+            color: var(--accent-light);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .menu-button {
+            display: none;
+        }
+
+        /* =========================================================
+           0x03 - HERO
+        ========================================================= */
+
+        .hero {
+            min-height: calc(100vh - var(--header-height));
+            min-height: calc(100svh - var(--header-height));
+            display: grid;
+            place-items: center;
+            padding: 72px 0;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+            align-items: center;
+            gap: 56px;
+        }
+
+        .eyebrow {
+            margin: 0 0 18px;
+            color: var(--accent-light);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            max-width: 900px;
+            margin: 0;
+            font-size: clamp(2.7rem, 7vw, 6.6rem);
+            line-height: 0.94;
+            letter-spacing: -0.065em;
+        }
+
+        .hero h1 span {
+            display: block;
             color: var(--accent);
-            border-left: 4px solid var(--accent);
-            padding-left: 10px;
+            text-shadow:
+                0 0 12px rgba(var(--accent-rgb), 0.55),
+                0 0 40px rgba(var(--accent-rgb), 0.22);
         }
 
-        ul {
+        .hero-role {
+            margin: 28px 0 0;
+            color: var(--text-soft);
+            font-size: clamp(1rem, 2vw, 1.24rem);
+            line-height: 1.75;
+        }
+
+        .hero-role strong {
+            color: var(--text);
+        }
+
+        .hero-description {
+            max-width: 780px;
+            margin: 20px 0 0;
+            color: var(--text-muted);
             line-height: 1.8;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin: 30px 0 0;
+            padding: 0;
+            list-style: none;
         }
 
-        table th, table td {
+        .badge {
+            padding: 8px 11px;
+            color: var(--text-soft);
+            background: var(--surface-alt);
             border: 1px solid var(--border);
-            padding: 10px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            letter-spacing: 0.04em;
         }
 
-        table th {
-            background: var(--bg-alt);
+        .badge.accent {
+            color: var(--accent-light);
+            border-color: var(--border-strong);
+            background: rgba(var(--accent-rgb), 0.1);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .button {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 11px 17px;
+            color: var(--text);
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-small);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 700;
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .button:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            color: #050505;
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 28px rgba(var(--accent-rgb), 0.3);
+        }
+
+        html[data-theme="light"] .button-primary {
+            color: #fff;
+        }
+
+        .clearance-card {
+            position: relative;
+            overflow: hidden;
+            padding: 28px;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(var(--accent-rgb), 0.12),
+                    transparent 48%
+                ),
+                var(--surface);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .clearance-card::after {
+            position: absolute;
+            right: -45px;
+            bottom: -62px;
+            width: 170px;
+            height: 170px;
+            content: "";
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            opacity: 0.14;
+            box-shadow:
+                0 0 0 22px rgba(var(--accent-rgb), 0.05),
+                0 0 0 46px rgba(var(--accent-rgb), 0.03);
+        }
+
+        .card-label {
+            margin: 0 0 24px;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.17em;
+            text-transform: uppercase;
+        }
+
+        .clearance-level {
+            margin: 0;
+            color: var(--accent-light);
+            font-size: clamp(2rem, 5vw, 4.2rem);
+            line-height: 1;
+            text-shadow: 0 0 22px rgba(var(--accent-rgb), 0.44);
+        }
+
+        .status-list {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            gap: 15px;
+            margin: 26px 0 0;
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding-bottom: 12px;
+            color: var(--text-muted);
+            border-bottom: 1px dashed var(--border);
+            font-size: 0.78rem;
+        }
+
+        .status-row strong {
+            color: var(--text);
+        }
+
+        .live {
+            color: var(--success) !important;
+        }
+
+        .live::before {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            margin-right: 7px;
+            content: "";
+            background: currentColor;
+            border-radius: 50%;
+            box-shadow: 0 0 10px currentColor;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* =========================================================
+           0x04 - MODULES GENERIQUES
+        ========================================================= */
+
+        main > section:not(.hero) {
+            padding: 96px 0;
+        }
+
+        main > section:nth-of-type(even):not(.hero) {
+            background: rgba(var(--accent-rgb), 0.018);
+            border-block: 1px solid rgba(var(--accent-rgb), 0.07);
+        }
+
+        .section-heading {
+            max-width: 860px;
+            margin-bottom: 38px;
+        }
+
+        .module-number {
+            display: inline-block;
+            margin-bottom: 12px;
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: clamp(1.8rem, 4vw, 3.25rem);
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+        }
+
+        .section-heading p {
+            max-width: 780px;
+            margin: 18px 0 0;
+            color: var(--text-muted);
+            line-height: 1.75;
+        }
+
+        .section-heading p strong {
+            color: var(--text-soft);
+        }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .terminal-bar {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 14px;
+            background: var(--surface-alt);
+            border-bottom: 1px solid var(--border);
+            border-radius: var(--radius) var(--radius) 0 0;
+        }
+
+        .terminal-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--border-strong);
+        }
+
+        .terminal-dot:nth-child(1) {
+            background: #ff5f57;
+        }
+
+        .terminal-dot:nth-child(2) {
+            background: #febc2e;
+        }
+
+        .terminal-dot:nth-child(3) {
+            background: #28c840;
+        }
+
+        .terminal-title {
+            margin-left: 6px;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+        }
+
+        /* =========================================================
+           0x05 - SYNTHESE ET IDENTITE
+        ========================================================= */
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .domain-card {
+            min-height: 210px;
+            padding: 22px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .domain-card:hover {
+            background: var(--surface-hover);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .domain-icon {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .domain-card h3 {
+            margin: 28px 0 10px;
+            font-size: 0.93rem;
+        }
+
+        .domain-card p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            line-height: 1.7;
+        }
+
+        .identity-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 24px;
+        }
+
+        .terminal-content {
+            padding: 24px;
+            color: var(--text-soft);
+            font-size: 0.86rem;
+            line-height: 2;
+        }
+
+        .terminal-content p {
+            margin: 0;
+        }
+
+        .terminal-prompt {
             color: var(--accent);
         }
 
-        /* ------------------------------
-           FOOTER
-        --------------------------------*/
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            background: var(--bg-alt);
-            border-top: 2px solid var(--accent);
+        .terminal-value {
+            color: var(--text);
+            font-weight: 700;
         }
 
-        /* ------------------------------
-           MODE CLAIR / SOMBRE
-        --------------------------------*/
-        .theme-toggle {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
+        .platform-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            gap: 12px;
+            min-height: 100%;
+            padding: 26px;
+        }
+
+        .platform-cloud span {
+            padding: 9px 13px;
+            color: var(--text-soft);
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-small);
+            font-size: 0.76rem;
+        }
+
+        .platform-cloud span:nth-child(3n + 1) {
+            color: var(--accent-light);
+            border-color: var(--border-strong);
+        }
+
+        /* =========================================================
+           0x06 - CYCLE D'ATTAQUE
+        ========================================================= */
+
+        .attack-cycle {
+            display: grid;
+            grid-template-columns:
+                minmax(130px, 1fr) auto
+                minmax(130px, 1fr) auto
+                minmax(130px, 1fr) auto
+                minmax(130px, 1fr) auto
+                minmax(130px, 1fr);
+            align-items: center;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 34px;
+        }
+
+        .cycle-node {
+            min-width: 130px;
+            min-height: 116px;
+            display: grid;
+            place-items: center;
+            padding: 18px;
+            color: var(--text);
+            background: var(--bg);
+            border: 2px solid var(--accent);
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        .cycle-node strong {
+            display: block;
+            font-size: 0.76rem;
+            line-height: 1.5;
+        }
+
+        .cycle-node small {
+            display: block;
+            margin-top: 8px;
+            color: var(--text-muted);
+            font-size: 0.65rem;
+        }
+
+        .cycle-node.gate {
+            color: #050505;
             background: var(--accent);
-            color: #fff;
-            padding: 12px 18px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 0 10px var(--accent);
+            border-color: var(--accent-light);
+            transform: rotate(2deg);
+        }
+
+        .cycle-node.gate small {
+            color: #1a1a1b;
+        }
+
+        .cycle-node.final {
+            border-color: var(--accent-light);
+            box-shadow: 0 0 28px rgba(var(--accent-rgb), 0.16);
+        }
+
+        .cycle-arrow {
+            color: var(--accent-light);
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        /* =========================================================
+           0x07 - ARSENAL
+        ========================================================= */
+
+        .arsenal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .arsenal-column {
+            overflow: hidden;
+        }
+
+        .arsenal-column h3 {
+            margin: 0;
+            padding: 18px 20px;
+            color: var(--accent-light);
+            background: rgba(var(--accent-rgb), 0.08);
+            border-bottom: 1px solid var(--border);
+            font-size: 0.92rem;
+        }
+
+        .arsenal-column ul {
+            display: grid;
+            gap: 0;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .arsenal-column li {
+            padding: 15px 20px;
+            color: var(--text-soft);
+            border-bottom: 1px solid var(--border);
+            font-size: 0.78rem;
+            line-height: 1.55;
+        }
+
+        .arsenal-column li:last-child {
+            border-bottom: 0;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 22px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .skills li {
+            position: relative;
+            padding: 16px 18px 16px 42px;
+            color: var(--text-soft);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-small);
+            font-size: 0.78rem;
+            line-height: 1.55;
+        }
+
+        .skills li::before {
+            position: absolute;
+            top: 17px;
+            left: 18px;
+            color: var(--accent);
+            content: ">";
+            font-weight: 900;
+        }
+
+        /* =========================================================
+           0x08 - OPERATIONS
+        ========================================================= */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .operations-table {
+            width: 100%;
+            min-width: 760px;
+            border-collapse: collapse;
+        }
+
+        .operations-table th,
+        .operations-table td {
+            padding: 17px 18px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .operations-table th {
+            color: var(--accent-light);
+            background: var(--surface-alt);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .operations-table td {
+            color: var(--text-soft);
+            font-size: 0.78rem;
+        }
+
+        .operations-table tbody tr {
+            transition: background 0.2s ease;
+        }
+
+        .operations-table tbody tr:hover {
+            background: rgba(var(--accent-rgb), 0.06);
+        }
+
+        .operations-table tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .operations-table strong {
+            color: var(--text);
+        }
+
+        .classification {
+            color: var(--accent-light);
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 9px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        .status-pill::before {
+            width: 7px;
+            height: 7px;
+            content: "";
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.7);
+        }
+
+        .status-pill.research::before {
+            background: var(--warning);
+        }
+
+        .status-pill.progress::before {
+            background: var(--info);
+        }
+
+        .status-pill.stable::before {
+            background: var(--success);
+        }
+
+        /* =========================================================
+           0x09 - VALIDATION
+        ========================================================= */
+
+        .validation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 0;
+            padding: 28px;
+            list-style: none;
+        }
+
+        .timeline::before {
+            position: absolute;
+            top: 32px;
+            bottom: 32px;
+            left: 42px;
+            width: 1px;
+            content: "";
+            background: var(--border-strong);
+        }
+
+        .timeline li {
+            position: relative;
+            padding: 0 0 25px 48px;
+        }
+
+        .timeline li:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline li::before {
+            position: absolute;
+            top: 3px;
+            left: 10px;
+            z-index: 1;
+            width: 10px;
+            height: 10px;
+            content: "";
+            background: var(--accent);
+            border: 4px solid var(--surface);
+            border-radius: 50%;
+            box-shadow: 0 0 0 1px var(--accent);
+        }
+
+        .timeline strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text);
+            font-size: 0.82rem;
+        }
+
+        .timeline span {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .achievement-list {
+            display: grid;
+            gap: 12px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .achievement-list li {
+            padding: 17px;
+            color: var(--text-soft);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius-small) var(--radius-small) 0;
+            font-size: 0.78rem;
+            line-height: 1.6;
+        }
+
+        .achievement-list strong {
+            color: var(--text);
+        }
+
+        /* =========================================================
+           0x0A - COMMUNICATIONS
+        ========================================================= */
+
+        .communications-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 24px;
+        }
+
+        .handshake {
+            padding: 26px;
+        }
+
+        .handshake p {
+            margin: 0 0 12px;
+            color: var(--text-soft);
+            font-size: 0.8rem;
+            line-height: 1.7;
+        }
+
+        .ok {
+            color: var(--success);
+        }
+
+        .pull-request {
+            padding: 26px;
+        }
+
+        .pull-request h3 {
+            margin: 0 0 16px;
+            color: var(--accent-light);
+            font-size: 0.92rem;
+        }
+
+        .checklist {
+            display: grid;
+            gap: 11px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .checklist li {
+            color: var(--text-soft);
+            font-size: 0.77rem;
+            line-height: 1.5;
+        }
+
+        .checklist li::before {
+            margin-right: 10px;
+            color: var(--success);
+            content: "[x]";
+        }
+
+        /* =========================================================
+           0x0B - PIED DE PAGE
+        ========================================================= */
+
+        .site-footer {
+            padding: 60px 0 34px;
+            text-align: center;
+            border-top: 1px solid var(--border-strong);
+        }
+
+        .footer-signature {
+            margin: 0;
+            color: var(--text);
+            font-size: clamp(1.1rem, 3vw, 1.8rem);
+            font-weight: 800;
+        }
+
+        .footer-system {
+            margin: 18px 0 0;
+            color: var(--accent-light);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+        }
+
+        .footer-mark {
+            margin: 22px 0 0;
+            color: var(--accent);
+            text-shadow: 0 0 14px rgba(var(--accent-rgb), 0.8);
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 28px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.72rem;
+        }
+
+        .back-to-top:hover {
+            color: var(--accent-light);
+        }
+
+        /* =========================================================
+           0x0C - ANIMATIONS
+        ========================================================= */
+
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.35;
+            }
+        }
+
+        @keyframes caret {
+            0%,
+            49% {
+                opacity: 1;
+            }
+
+            50%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .caret::after {
+            margin-left: 5px;
+            color: var(--accent);
+            content: "_";
+            animation: caret 1s steps(1) infinite;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition:
+                opacity 0.65s ease,
+                transform 0.65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================================
+           0x0D - RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1080px) {
+            .navigation {
+                position: fixed;
+                top: var(--header-height);
+                right: 18px;
+                left: 18px;
+                display: none;
+                padding: 12px;
+                background: var(--surface);
+                border: 1px solid var(--border-strong);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+            }
+
+            .navigation.open {
+                display: grid;
+            }
+
+            .navigation a {
+                padding: 12px;
+            }
+
+            .menu-button {
+                display: inline-grid;
+            }
+
+            .summary-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 880px) {
+            .hero-grid,
+            .identity-grid,
+            .validation-grid,
+            .communications-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: auto;
+            }
+
+            .clearance-card {
+                max-width: 560px;
+            }
+
+            .attack-cycle {
+                grid-template-columns: 1fr;
+            }
+
+            .cycle-arrow {
+                transform: rotate(90deg);
+            }
+
+            .arsenal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 680px) {
+            :root {
+                --header-height: 66px;
+            }
+
+            .container {
+                width: min(calc(100% - 24px), var(--content-width));
+            }
+
+            .brand {
+                font-size: 0.82rem;
+            }
+
+            .hero {
+                padding: 56px 0;
+            }
+
+            .hero-grid {
+                gap: 36px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.5rem, 15vw, 4.5rem);
+            }
+
+            main > section:not(.hero) {
+                padding: 70px 0;
+            }
+
+            .summary-grid,
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            .domain-card {
+                min-height: auto;
+            }
+
+            .domain-card h3 {
+                margin-top: 18px;
+            }
+
+            .attack-cycle {
+                padding: 20px;
+            }
+
+            .header-actions {
+                margin-left: auto;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
         }
     </style>
 </head>
 
-<body>
+<body id="top">
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
 
-    <!-- HEADER -->
-    <header>
-        <h1>CYBER OPS // FULL HACKER THEME</h1>
-        <nav>
-            <a href="#about">À propos</a>
-            <a href="#skills">Compétences</a>
-            <a href="#arsenal">Arsenal</a>
-            <a href="#projects">Projets</a>
-            <a href="#achievements">Réalisations</a>
-            <a href="#contact">Contact</a>
-        </nav>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="#top" aria-label="Retour à l'accueil">
+                <span class="brand-mark">⟢</span>TheMadDoG.tmdg
+            </a>
+
+            <nav class="navigation" id="main-navigation" aria-label="Navigation principale">
+                <a href="#synthese">0x00 Synthèse</a>
+                <a href="#identite">0x01 Identité</a>
+                <a href="#cycle">0x02 Cycle</a>
+                <a href="#arsenal">0x03 Arsenal</a>
+                <a href="#operations">0x04 Opérations</a>
+                <a href="#validation">0x05 Validation</a>
+                <a href="#communications">0x06 Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <button
+                    class="icon-button"
+                    id="theme-toggle"
+                    type="button"
+                    aria-label="Activer le thème clair"
+                    title="Changer de thème"
+                >
+                    <span aria-hidden="true">◐</span>
+                </button>
+
+                <button
+                    class="menu-button"
+                    id="menu-toggle"
+                    type="button"
+                    aria-controls="main-navigation"
+                    aria-expanded="false"
+                    aria-label="Ouvrir le menu"
+                >
+                    <span aria-hidden="true">☰</span>
+                </button>
+            </div>
+        </div>
     </header>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <h2>À propos</h2>
-        <p>
-            Expert en cybersécurité et spécialiste des menaces avancées, avec une maîtrise opérationnelle couvrant
-            Windows, Linux, macOS, Android, Xiaomi et environnements cloud. Spécialisé en sécurité offensive,
-            simulation d’adversaires, recherche de vulnérabilités et architectures défensives de haut niveau.
-            Expérience confirmée en engagements Red Team réels, développement d’exploits et conception de systèmes
-            sécurisés pour l’entreprise, le cloud et les environnements embarqués.
-        </p>
-    </section>
+    <main id="main-content">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container hero-grid">
+                <div>
+                    <p class="eyebrow">Présentation // Sécurité offensive & défense avancée</p>
 
-    <!-- SKILLS -->
-    <section id="skills">
-        <h2>Compétences clés</h2>
-        <ul>
-            <li>Tests d’intrusion avancés : Web, Réseau, Cloud, Mobile, IoT, ICS/SCADA</li>
-            <li>Opérations Red Team & émulation d’adversaires</li>
-            <li>Développement d’exploits & rétro‑ingénierie</li>
-            <li>Analyse de malware & threat hunting</li>
-            <li>Réponse aux incidents & forensic numérique</li>
-            <li>Cyber Threat Intelligence & architecture défensive</li>
-            <li>Automatisation de la sécurité, DevSecOps, pipelines SOAR</li>
-            <li>Sécurité Blockchain, Smart Contracts, systèmes embarqués & IA</li>
-        </ul>
-    </section>
+                    <h1 id="hero-title">
+                        TheMadDoG
+                        <span>.tmdg</span>
+                    </h1>
 
-    <!-- ARSENAL -->
-    <section id="arsenal">
-        <h2>Arsenal technique</h2>
+                    <p class="hero-role">
+                        <strong>Opérateur offensif</strong> · Red Team · Threat Intelligence
+                    </p>
 
-        <h3>Plateformes maîtrisées</h3>
-        <p>Windows, Linux, macOS, Android, Xiaomi, Cloud, IoT, systèmes embarqués, conteneurs, virtualisation.</p>
+                    <p class="hero-description">
+                        Architecte d'entropie numérique spécialisé dans les paysages de
+                        menaces avancées, l'émulation d'adversaires, la recherche de
+                        vulnérabilités et les architectures défensives.
+                    </p>
 
-        <h3>Outils principaux</h3>
-        <p>Metasploit, Cobalt Strike, Burp Suite, Empire, RATs, ELK Stack, Splunk, Suricata, IDA Pro, Ghidra,
-            Binary Ninja, Nmap, Amass, Masscan, scripts personnalisés.</p>
+                    <ul class="badge-list" aria-label="Statuts opérationnels">
+                        <li class="badge accent">IDENTITÉ · VÉRIFIÉE</li>
+                        <li class="badge accent">STATUT · OPÉRATIONNEL</li>
+                        <li class="badge">CLEARANCE · L7 ADVERSAIRE</li>
+                        <li class="badge">THREAT FEED · LIVE</li>
+                    </ul>
 
-        <h3>Domaines d’expertise</h3>
-        <p>Web, Réseau, Sans‑fil, Cloud, Mobile, ICS/SCADA, Blockchain, Embarqué, IA/ML.</p>
-    </section>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#operations">
+                            Voir les opérations
+                        </a>
+                        <a class="button" href="#communications">
+                            Initier un handshake
+                        </a>
+                    </div>
+                </div>
 
-    <!-- PROJECTS -->
-    <section id="projects">
-        <h2>Projets</h2>
+                <aside class="clearance-card" aria-label="Habilitation opérationnelle">
+                    <p class="card-label">Cyber-physical clearance</p>
+                    <p class="clearance-level">L7</p>
 
-        <table>
-            <tr>
-                <th>Projet</th>
-                <th>Description</th>
-                <th>Statut</th>
-            </tr>
-            <tr>
-                <td>ShadowStrike</td>
-                <td>Framework d’opérations Red Team</td>
-                <td>Actif</td>
-            </tr>
-            <tr>
-                <td>ZeroDay-Lab</td>
-                <td>Recherche & exploitation de vulnérabilités</td>
-                <td>Recherche</td>
-            </tr>
-            <tr>
-                <td>CTF-Mastermind</td>
-                <td>Défis CTF personnalisés</td>
-                <td>En cours</td>
-            </tr>
-            <tr>
-                <td>ReconX</td>
-                <td>Plateforme de reconnaissance automatisée</td>
-                <td>Bêta</td>
-            </tr>
-            <tr>
-                <td>SmartContract-Sentinel</td>
-                <td>Sécurité Blockchain & Smart Contracts</td>
-                <td>Stable</td>
-            </tr>
-        </table>
-    </section>
+                    <div class="status-list">
+                        <div class="status-row">
+                            <span>DOMAINE</span>
+                            <strong>ADVERSARY</strong>
+                        </div>
 
-    <!-- ACHIEVEMENTS -->
-    <section id="achievements">
-        <h2>Réalisations</h2>
-        <p>
-            Interventions et distinctions à Black Hat, DEFCON, Red Hat, Blue Hat.  
-            Vainqueur de compétitions CTF.  
-            Publication d’exploits zero‑day.  
-            Présence dans le Hall of Fame d’Apple, Google, Microsoft, Meta.  
-            Concepteur d’outils de sécurité avancés et d’architectures cyber robustes.
-        </p>
-    </section>
+                        <div class="status-row">
+                            <span>STATUS</span>
+                            <strong class="live">OPERATIONAL</strong>
+                        </div>
 
-    <!-- CONTACT -->
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Twitter — LinkedIn — Site Web — Email.</p>
-    </section>
+                        <div class="status-row">
+                            <span>THREAT FEED</span>
+                            <strong class="live">LIVE</strong>
+                        </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>Opérationnel dans les ombres numériques — Hack the planet.</p>
+                        <div class="status-row">
+                            <span>MODE</span>
+                            <strong>FULL HACKER THEME</strong>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="synthese">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <span class="module-number">0x00</span>
+                    <h2>Synthèse opérationnelle</h2>
+                    <p>
+                        Chaque module documente une capacité vérifiable, de la
+                        reconnaissance initiale jusqu'à la restitution d'un rapport de
+                        renseignement. <strong>Discipline centrale :</strong> traduire une
+                        vulnérabilité complexe en avantage stratégique.
+                    </p>
+                </div>
+
+                <div class="summary-grid">
+                    <article class="domain-card reveal">
+                        <span class="domain-icon" aria-hidden="true">🜏</span>
+                        <h3>Adversary Emulation</h3>
+                        <p>Scénarios Red Team structurés et alignés sur MITRE ATT&CK.</p>
+                    </article>
+
+                    <article class="domain-card reveal">
+                        <span class="domain-icon" aria-hidden="true">🧬</span>
+                        <h3>Exploit Dev & Reverse</h3>
+                        <p>Analyse binaire, fuzzing et développement d'exploits.</p>
+                    </article>
+
+                    <article class="domain-card reveal">
+                        <span class="domain-icon" aria-hidden="true">🛡️</span>
+                        <h3>Architecture défensive</h3>
+                        <p>Durcissement, segmentation et modèles zero trust.</p>
+                    </article>
+
+                    <article class="domain-card reveal">
+                        <span class="domain-icon" aria-hidden="true">🕸️</span>
+                        <h3>Vulnerability Research</h3>
+                        <p>Recherche de vulnérabilités et analyse de malware.</p>
+                    </article>
+
+                    <article class="domain-card reveal">
+                        <span class="domain-icon" aria-hidden="true">⚙️</span>
+                        <h3>Systèmes critiques</h3>
+                        <p>Embarqué, IoT, ICS/SCADA et environnements durcis.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="identite">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <span class="module-number">0x01</span>
+                    <h2>Identité & habilitations</h2>
+                    <p>
+                        Les indicateurs agrègent le statut d'habilitation, le niveau
+                        d'accréditation et le domaine opérationnel.
+                    </p>
+                </div>
+
+                <div class="identity-grid">
+                    <div class="panel reveal">
+                        <div class="terminal-bar">
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-title">clearance-status.sh</span>
+                        </div>
+
+                        <div class="terminal-content">
+                            <p>
+                                <span class="terminal-prompt">◈ CLEARANCE :</span>
+                                <span class="terminal-value">L7 · ADVERSARY</span>
+                            </p>
+                            <p>
+                                <span class="terminal-prompt">◈ STATUS :</span>
+                                <span class="terminal-value">OPERATIONAL</span>
+                            </p>
+                            <p>
+                                <span class="terminal-prompt">◈ THREAT :</span>
+                                <span class="terminal-value caret">FEED LIVE</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="panel platform-cloud reveal" aria-label="Plateformes">
+                        <span>Windows</span>
+                        <span>Linux</span>
+                        <span>macOS</span>
+                        <span>Android</span>
+                        <span>Xiaomi</span>
+                        <span>Cloud</span>
+                        <span>IoT</span>
+                        <span>Virtualisation</span>
+                        <span>Conteneurs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cycle">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <span class="module-number">0x02</span>
+                    <h2>Cycle d'attaque</h2>
+                    <p>
+                        Chaque phase produit une preuve exploitable : la reconnaissance
+                        alimente l'exploitation, la persistance sécurise l'accès et les
+                        résultats nourrissent le rapport final.
+                    </p>
+                </div>
+
+                <div class="panel attack-cycle reveal" aria-label="Cycle d'attaque">
+                    <div class="cycle-node">
+                        <div>
+                            <strong>RECONNAISSANCE</strong>
+                            <small>Amass · Nmap</small>
+                        </div>
+                    </div>
+
+                    <div class="cycle-arrow" aria-hidden="true">→</div>
+
+                    <div class="cycle-node">
+                        <div>
+                            <strong>EXPLOITATION</strong>
+                            <small>Cobalt Strike</small>
+                        </div>
+                    </div>
+
+                    <div class="cycle-arrow" aria-hidden="true">→</div>
+
+                    <div class="cycle-node gate">
+                        <div>
+                            <strong>PERSISTENCE</strong>
+                            <small>Kernels custom</small>
+                        </div>
+                    </div>
+
+                    <div class="cycle-arrow" aria-hidden="true">→</div>
+
+                    <div class="cycle-node">
+                        <div>
+                            <strong>EXFILTRATION</strong>
+                            <small>ELK · Splunk</small>
+                        </div>
+                    </div>
+
+                    <div class="cycle-arrow" aria-hidden="true">→</div>
+
+                    <div class="cycle-node final">
+                        <div>
+                            <strong>RAPPORT INTEL</strong>
+                            <small>Preuves · Remédiation</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="arsenal">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <span class="module-number">0x03</span>
+                    <h2>Arsenal technique</h2>
+                    <p>
+                        Cartographie des plateformes, outils et domaines d'intervention
+                        mobilisés au cours des engagements.
+                    </p>
+                </div>
+
+                <div class="arsenal-grid">
+                    <article class="panel arsenal-column reveal">
+                        <h3>Plateformes</h3>
+                        <ul>
+                            <li>Windows · Linux · macOS</li>
+                            <li>Android · Xiaomi · IoT</li>
+                            <li>Cloud · Virtualisation · Conteneurs</li>
+                            <li>Systèmes embarqués</li>
+                        </ul>
+                    </article>
+
+                    <article class="panel arsenal-column reveal">
+                        <h3>Outils</h3>
+                        <ul>
+                            <li>Cobalt Strike · Metasploit · Empire</li>
+                            <li>Burp Suite · IDA Pro · Ghidra</li>
+                            <li>Binary Ninja · Nmap · Amass · Masscan</li>
+                            <li>ELK · Splunk · Suricata · Scripts custom</li>
+                        </ul>
+                    </article>
+
+                    <article class="panel arsenal-column reveal">
+                        <h3>Domaines</h3>
+                        <ul>
+                            <li>Web · Réseau · Sans-fil</li>
+                            <li>Cloud · Mobile · IoT</li>
+                            <li>ICS/SCADA · Embarqué</li>
+                            <li>Blockchain · Smart Contracts · IA/ML</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <ul class="skills">
+                    <li class="reveal">
+                        Tests d'intrusion Web, réseau, cloud, mobile, IoT et ICS/SCADA
+                    </li>
+                    <li class="reveal">
+                        Opérations Red Team et campagnes d'émulation d'adversaires
+                    </li>
+                    <li class="reveal">
+                        Reverse engineering, développement d'exploits et fuzzing
+                    </li>
+                    <li class="reveal">
+                        Threat hunting, réponse aux incidents et forensic numérique
+                    </li>
+                    <li class="reveal">
+                        Cyber Threat Intelligence et architecture défensive
+                    </li>
+                    <li class="reveal">
+                        Automatisation, DevSecOps, CI/CD et pipelines SOAR
+                    </li>
+                    <li class="reveal">
+                        Sécurité Blockchain et audit de Smart Contracts
+                    </li>
+                    <li class="reveal">
+                        Sécurité des systèmes embarqués et des environnements IA/ML
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="operations">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <span class="module-number">0x04</span>
+                    <h2>Registre des opérations</h2>
+                    <p>
+                        Le statut indique la phase de vie de chaque projet. La
+                        classification précise la nature du livrable.
+                    </p>
+                </div>
+
+                <div class="panel table-wrapper reveal">
+                    <table class="operations-table">
+                        <thead>
+                            <tr>
+                                <th>Identifiant</th>
+                                <th>Classification</th>
+                                <th>Objectif de mission</th>
+                                <th>Statut</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td><strong>ShadowStrike</strong></td>
+                                <td><code class="classification">FRAMEWORK</code></td>
+                                <td>Framework d'opérations Red Team</td>
+                                <td><span class="status-pill">Actif</span></td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>ZeroDay-Lab</strong></td>
+                                <td><code class="classification">RESEARCH</code></td>
+                                <td>Recherche et exploitation de vulnérabilités</td>
+                                <td>
+                                    <span class="status-pill research">Research</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>CTF-Mastermind</strong></td>
+                                <td><code class="classification">TRAINING</code></td>
+                                <td>Défis CTF personnalisés</td>
+                                <td>
+                                    <span class="status-pill progress">En cours</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>ReconX</strong></td>
+                                <td><code class="classification">AUTOMATION</code></td>
+                                <td>Plateforme de reconnaissance automatisée</td>
+                                <td>
+                                    <span class="status-pill research">Bêta</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>SmartContract-Sentinel</strong></td>
+                                <td><code class="classification">AUDIT</code></td>
+                                <td>Sécurité Blockchain et Smart Contracts</td>
+                                <td>
+                                    <span class="status-pill stable">Stable</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="validation">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <span class="module-number">0x05</span>
+                    <h2>Validation & logs</h2>
+                    <p>
+                        Chronologie d'un engagement contrôlé et registre des validations
+                        externes associées aux activités de recherche.
+                    </p>
+                </div>
+
+                <div class="validation-grid">
+                    <ol class="panel timeline reveal">
+                        <li>
+                            <strong>01 // Cadrage</strong>
+                            <span>Règles d'engagement et périmètre validés.</span>
+                        </li>
+                        <li>
+                            <strong>02 // Reconnaissance passive</strong>
+                            <span>Cartographie de la surface d'attaque.</span>
+                        </li>
+                        <li>
+                            <strong>03 // Exploitation contrôlée</strong>
+                            <span>Validation technique des scénarios retenus.</span>
+                        </li>
+                        <li>
+                            <strong>04 // Preuves & journaux</strong>
+                            <span>Collecte des éléments de preuve reproductibles.</span>
+                        </li>
+                        <li>
+                            <strong>05 // Restitution</strong>
+                            <span>Rapport de renseignement et plan de remédiation.</span>
+                        </li>
+                    </ol>
+
+                    <ul class="achievement-list">
+                        <li class="reveal">
+                            <strong>Black Hat / DEFCON</strong><br>
+                            Intervenant et chercheur en sécurité.
+                        </li>
+                        <li class="reveal">
+                            <strong>Zero-day archive</strong><br>
+                            Publication d'exploits et de CVE.
+                        </li>
+                        <li class="reveal">
+                            <strong>Hall of Fame</strong><br>
+                            Apple · Google · Microsoft · Meta.
+                        </li>
+                        <li class="reveal">
+                            <strong>CTF</strong><br>
+                            Compétitions et défis offensifs personnalisés.
+                        </li>
+                        <li class="reveal">
+                            <strong>Tooling</strong><br>
+                            Conception d'outils de sécurité avancés.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="communications">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <span class="module-number">0x06</span>
+                    <h2>Communications sécurisées</h2>
+                    <p>
+                        Toute demande opérationnelle passe par un canal tracé, un
+                        périmètre explicite et des règles d'engagement validées.
+                    </p>
+                </div>
+
+                <div class="communications-grid">
+                    <div class="panel reveal">
+                        <div class="terminal-bar">
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-title">secure-handshake</span>
+                        </div>
+
+                        <div class="handshake">
+                            <p>
+                                <span class="terminal-prompt">❯</span>
+                                tmdg --initiate-handshake
+                            </p>
+                            <p>
+                                <span class="ok">[ OK ]</span>
+                                clé publique échangée
+                            </p>
+                            <p>
+                                <span class="ok">[ OK ]</span>
+                                canal chiffré établi
+                            </p>
+                            <p>
+                                <span class="terminal-prompt">❯ objectif:</span>
+                                collaboration / audit / red team
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="panel pull-request reveal">
+                        <h3>Pull request // Règles d'engagement</h3>
+
+                        <ul class="checklist">
+                            <li>Cible ou dépôt concerné identifié</li>
+                            <li>Règles d'engagement définies</li>
+                            <li>Fenêtre temporelle validée</li>
+                            <li>Aucune donnée sensible exposée</li>
+                            <li>Divulgation responsable respectée</li>
+                        </ul>
+
+                        <div class="hero-actions">
+                            <!-- Remplacer cette URL par celle du dépôt GitHub. -->
+                            <a
+                                class="button button-primary"
+                                href="[github.com](https://github.com/)"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Ouvrir le dépôt
+                            </a>
+
+                            <a class="button" href="#operations">
+                                Consulter le registre
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p class="footer-signature">Opérationnel dans les ombres numériques.</p>
+            <p class="footer-system">
+                SYSTEM_MESSAGE :: HACK THE PLANET // 2026
+            </p>
+            <p class="footer-mark" aria-hidden="true">⟢ ⚡ ⟢</p>
+            <a class="back-to-top" href="#top">↑ Retour au sommet</a>
+        </div>
     </footer>
 
-    <!-- MODE CLAIR / SOMBRE -->
-    <div class="theme-toggle" onclick="toggleTheme()">Mode clair / sombre</div>
-
     <script>
-        function toggleTheme() {
-            const current = document.documentElement.getAttribute("data-theme");
-            document.documentElement.setAttribute(
-                "data-theme",
-                current === "light" ? "dark" : "light"
-            );
-        }
-    </script>
+        (() => {
+            "use strict";
 
+            const root = document.documentElement;
+            const themeToggle = document.getElementById("theme-toggle");
+            const menuToggle = document.getElementById("menu-toggle");
+            const navigation = document.getElementById("main-navigation");
+            const navLinks = [...navigation.querySelectorAll("a")];
+
+            const storedTheme = localStorage.getItem("tmdg-theme");
+            const preferredTheme = window.matchMedia("(prefers-color-scheme: light)")
+                .matches
+                ? "light"
+                : "dark";
+
+            function applyTheme(theme) {
+                root.dataset.theme = theme;
+                localStorage.setItem("tmdg-theme", theme);
+
+                const nextTheme = theme === "dark" ? "clair" : "sombre";
+                themeToggle.setAttribute(
+                    "aria-label",
+                    `Activer le thème ${nextTheme}`
+                );
+            }
+
+            applyTheme(storedTheme || preferredTheme);
+
+            themeToggle.addEventListener("click", () => {
+                const nextTheme =
+                    root.dataset.theme === "dark" ? "light" : "dark";
+
+                applyTheme(nextTheme);
+            });
+
+            menuToggle.addEventListener("click", () => {
+                const isOpen = navigation.classList.toggle("open");
+
+                menuToggle.setAttribute("aria-expanded", String(isOpen));
+                menuToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Fermer le menu" : "Ouvrir le menu"
+                );
+            });
+
+            navLinks.forEach((link) => {
+                link.addEventListener("click", () => {
+                    navigation.classList.remove("open");
+                    menuToggle.setAttribute("aria-expanded", "false");
+                    menuToggle.setAttribute("aria-label", "Ouvrir le menu");
+                });
+            });
+
+            document.addEventListener("click", (event) => {
+                const clickedInsideNavigation = navigation.contains(event.target);
+                const clickedMenuButton = menuToggle.contains(event.target);
+
+                if (!clickedInsideNavigation && !clickedMenuButton) {
+                    navigation.classList.remove("open");
+                    menuToggle.setAttribute("aria-expanded", "false");
+                }
+            });
+
+            const reducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+            const revealElements = document.querySelectorAll(".reveal");
+
+            if (reducedMotion || !("IntersectionObserver" in window)) {
+                revealElements.forEach((element) => {
+                    element.classList.add("visible");
+                });
+            } else {
+                const revealObserver = new IntersectionObserver(
+                    (entries, observer) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add("visible");
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    },
+                    {
+                        rootMargin: "0px 0px -8% 0px",
+                        threshold: 0.08
+                    }
+                );
+
+                revealElements.forEach((element) => {
+                    revealObserver.observe(element);
+                });
+            }
+
+            const observedSections = document.querySelectorAll(
+                "main section[id]"
+            );
+
+            const sectionObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) {
+                            return;
+                        }
+
+                        navLinks.forEach((link) => {
+                            const isCurrent =
+                                link.getAttribute("href") === `#${entry.target.id}`;
+
+                            if (isCurrent) {
+                                link.setAttribute("aria-current", "true");
+                            } else {
+                                link.removeAttribute("aria-current");
+                            }
+                        });
+                    });
+                },
+                {
+                    rootMargin: "-35% 0px -55% 0px",
+                    threshold: 0
+                }
+            );
+
+            observedSections.forEach((section) => {
+                sectionObserver.observe(section);
+            });
+        })();
+    </script>
 </body>
 </html>
