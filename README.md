@@ -1,230 +1,188 @@
 <div align="center">
 
-# "TheMadDoG.tmdg"
+# ⟢ TheMadDoG.tmdg
+### Portfolio sécurité · Red Team autorisée · Threat Intelligence
 
-### — Opérateur offensif · Red Team · Threat Intelligence
+**Comprendre les systèmes. Réduire les risques. Rendre chaque résultat vérifiable.**
 
-![Identité](https://img.shields.io/badge/IDENTITÉ-VÉRIFIÉE-9D00FF?style=for-the-badge&logo=icloud&logoColor=white)
-![Statut](https://img.shields.io/badge/STATUT-OPÉRATIONNEL-9D00FF?style=for-the-badge&logo=target&logoColor=white)
-![Clearance](https://img.shields.io/badge/CLEARANCE-L7_ADVERSAIRE-1A1A1B?style=for-the-badge&logo=databricks&logoColor=9D00FF)
-![Mode](https://img.shields.io/badge/MODE-FULL_HACKER_THEME-1A1A1B?style=for-the-badge&logo=linux&logoColor=9D00FF)
-![Plateformes](https://img.shields.io/badge/PLATEFORMES-WINDOWS_|_LINUX_|_MACOS_|_ANDROID_|_XIAOMI-1A1A1B?style=for-the-badge&logo=ghost&logoColor=9D00FF)
+[![Périmètre](https://img.shields.io/badge/PÉRIMÈTRE-autorisé-7C3AED?style=for-the-badge)](#-principes-opérationnels)
+[![Approche](https://img.shields.io/badge/APPROCHE-validate--first-06B6D4?style=for-the-badge)](#-méthode--du-mandat-à-la-remédiation)
+[![Documentation](https://img.shields.io/badge/DOCUMENTATION-v1.0-111827?style=for-the-badge)](docs/README.md)
+[![Langue](https://img.shields.io/badge/LANGUE-FR--FR-334155?style=for-the-badge)](#-navigation)
 
-> ⟢ **** · Présentation · Sécurité offensive & défense avancée
+*Un portfolio est une interface : il doit rendre les compétences lisibles, les limites explicites et les preuves faciles à vérifier.*
+
+[Explorer les domaines](#-domaines) · [Voir la méthode](#-méthode--du-mandat-à-la-remédiation) · [Parcourir les projets](#-registre-des-projets) · [Lire la documentation](docs/README.md)
 
 </div>
 
 ---
 
-## Sommaire
+## ◈ Navigation
 
-| ◈ | Module | Sujet |
-|:--|:-------|:------|
-| **0x00** | [Synthèse opérationnelle](#0x00-synthèse-opérationnelle) | Positionnement, discipline, périmètre |
-| **0x01** | [Identité & habilitations](#0x01-identité--habilitations) | Badges cyber-physiques, clearance |
-| **0x02** | [Cycle d'attaque](#0x02-cycle-dattaque) | Schéma Mermaid des phases offensives |
-| **0x03** | [Arsenal technique](#0x03-arsenal-technique) | Plateformes, outils, domaines |
-| **0x04** | [Registre des opérations](#0x04-registre-des-opérations) | Projets et statuts |
-| **0x05** | [Validation & logs](#0x05-validation--logs) | Réalisations, CVE, hall of fame |
-| **0x06** | [Communications sécurisées](#0x06-communications-sécurisées) | Contact & template de PR |
-| **0x07** | [Signature](#0x07-signature) | Phrase finale |
+| ID | Section | Repère |
+|:--:|:--|:--|
+| `00` | [Manifeste](#-manifeste) | Positionnement et intention |
+| `01` | [Principes opérationnels](#-principes-opérationnels) | Autorisation, limites et protection des données |
+| `02` | [Méthode](#-méthode--du-mandat-à-la-remédiation) | Cycle de travail contrôlé |
+| `03` | [Domaines](#-domaines) | Axes de pratique et environnements |
+| `04` | [Boîte à outils](#-boîte-à-outils) | Outils classés par usage |
+| `05` | [Registre des projets](#-registre-des-projets) | Projets et statut indicatif |
+| `06` | [Preuves & références](#-preuves--références) | Comment évaluer le travail |
+| `07` | [Collaboration](#-collaboration) | Demandes, périmètre et divulgation |
+| `08` | [Documentation](#-documentation-du-dépôt) | Organisation du dépôt |
+
+> **Légende — lecture rapide :** `◈` identifie une section de référence ; les statuts sont indicatifs et doivent être corroborés par les dépôts, démonstrations ou publications liés. Aucun badge ne constitue une accréditation officielle.
 
 ---
 
-## 0x00 Synthèse opérationnelle
+## ◈ Manifeste
 
-> **Légende** — Chaque module de ce dossier documente une capacité vérifiable, de la reconnaissance initiale jusqu'à la restitution d'un rapport de renseignement.
+J’explore la sécurité des systèmes avec une approche qui relie **recherche**, **émulation d’adversaire** et **amélioration défensive**. L’objectif n’est pas l’intrusion pour elle-même : c’est de transformer une question de sécurité en constat reproductible, compréhensible et utile à la remédiation.
 
-*Architecte d'entropie numérique*.
-- Expertise dans les paysages de menaces avancées, les manœuvres de sécurité offensive et les opérations Red Team. Le travail relie la vulnérabilité matérielle à l'exploitation logicielle sur **Windows, Linux, macOS, Android et Xiaomi**, ainsi que sur les infrastructures **Cloud & IoT**.
+> **Principe directeur :** travailler uniquement avec une autorisation explicite, sur un périmètre défini, et produire des résultats proportionnés et vérifiables.
 
-> ❯ **Discipline centrale :** *traduire une vulnérabilité complexe en avantage stratégique.*
+Ce portfolio présente des axes de travail et des projets. Les affirmations de résultats, de classement ou de reconnaissance externe doivent être accompagnées d’une référence publique consultable avant d’être considérées comme vérifiées.
 
-| Domaine | Périmètre |
+---
+
+## ◈ Principes opérationnels
+
+| Principe | Application |
 |:--|:--|
-| 🜏 **Adversary Emulation** | Scénarios Red Team alignés MITRE ATT&CK |
-| 🧬 **Exploit Dev & Reverse** | Analyse binaire, fuzzing, développement d'exploits |
-| 🛡️ **Architecture défensive** | Durcissement, segmentation, zero trust |
-| 🕸️ **Vulnerability Research** | Chasse aux zero-day & analyse de malware |
-| ⚙️ **Systèmes critiques** | Embarqué, IoT, ICS/SCADA, environnements durcis |
+| **Autorisation d’abord** | Accord explicite et règles d’engagement définis avant toute activité. |
+| **Périmètre borné** | Cibles, comptes, environnements, calendrier et exclusions consignés. |
+| **Impact minimal** | Approche non destructive ; arrêt immédiat en cas d’effet inattendu ou de risque pour un tiers. |
+| **Données protégées** | Collecte minimale, stockage contrôlé, absence de secrets et de données personnelles dans les livrables publics. |
+| **Divulgation responsable** | Coordination avec les responsables concernés et publication seulement lorsque cela est approprié. |
+| **Résultats vérifiables** | Constats documentés, limites indiquées et recommandations exploitables. |
+
+> **Légende — garde-fou :** la présence d’un outil ou d’une technique dans ce portfolio n’autorise pas son utilisation contre un système tiers. Les travaux se limitent aux environnements détenus, aux laboratoires ou aux périmètres explicitement autorisés.
 
 ---
 
-## 0x01 Identité & habilitations
+## ◈ Méthode — du mandat à la remédiation
 
-> **Légende** — Badges cyber-physiques : chaque pastille agrège un statut d'habilitation. Le bouclier encode le niveau d'accréditation (**L7**) et le domaine d'opération (**adversaire**).
-
-```text
-┌───────────────────────────────┐
-│  ◈ CLEARANCE : L7 · ADVERSARY │
-│  ◈ STATUS    : OPERATIONAL    │
-│  ◈ THREAT    : FEED LIVE      │
-└───────────────────────────────┘
-```
-
-**Windows** · **Linux** · **macOS** · **Android** · **Xiaomi** · **Cloud** · **IoT** · **Virtualisation** · **Conteneurs**
-
----
-
-## 0x02 Cycle d'attaque
-
-> **Légende** — Les nœuds sombres sont des phases de collecte, le nœud mauve plein marque le point de bascule (persistance), le nœud clair la restitution. Les étiquettes de liaison indiquent l'outillage employé.
+Le schéma ci-dessous décrit un processus de validation contrôlée. Le point de décision est volontairement placé avant toute vérification active : sans autorisation et périmètre validés, le travail s’arrête.
 
 ```mermaid
-graph LR
-    A["◈ RECONNAISSANCE"] -->|"Amass · Nmap"| B["◈ EXPLOITATION"]
-    B -->|"Cobalt Strike"| C{"◈ PERSISTENCE"}
-    C -->|"Kernels custom"| D["◈ EXFILTRATION"]
-    D -->|"ELK · Splunk"| E(["◈ RAPPORT INTEL"])
+flowchart LR
+    A[Demande et objectif] --> B{Autorisation écrite<br/>et périmètre clair ?}
+    B -- Non --> X[Stop · clarifier ou refuser]
+    B -- Oui --> C[Cadrage<br/>règles et exclusions]
+    C --> D[Observation proportionnée]
+    D --> E{Validation permise<br/>dans le périmètre ?}
+    E -- Non --> X
+    E -- Oui --> F[Vérification contrôlée<br/>en environnement autorisé]
+    F --> G[Analyse et preuves minimales]
+    G --> H[Rapport privé<br/>constats · limites · remédiations]
+    H --> I[Restitution et suivi]
+    I --> J[Clôture<br/>suppression des données temporaires]
 
-    classDef node fill:#050505,stroke:#9D00FF,stroke-width:2px,color:#F5F5F5
-    classDef gate fill:#9D00FF,stroke:#D1A3FF,stroke-width:2px,color:#050505
-    classDef final fill:#1A1A1B,stroke:#D1A3FF,stroke-width:2px,color:#F5F5F5
-
-    class A,B,D node
-    class C gate
-    class E final
+    classDef gate fill:#7C3AED,stroke:#C4B5FD,color:#fff,stroke-width:2px
+    classDef stop fill:#3F1D2E,stroke:#FB7185,color:#fff
+    classDef work fill:#111827,stroke:#475569,color:#F8FAFC
+    class B,E gate
+    class X stop
+    class A,C,D,F,G,H,I,J work
 ```
 
-> **Lecture** — Chaque phase produit une preuve exploitable : la reconnaissance alimente l'exploitation, la persistance sécurise l'accès, l'exfiltration nourrit le rapport.
+> **Légende — cycle :** les losanges sont des contrôles d’autorisation ; le chemin `Stop` signifie qu’aucun test ne doit continuer tant que le mandat, le périmètre ou les règles ne sont pas clairs. Les livrables privilégient la remédiation et ne publient pas de données sensibles.
 
 ---
 
-## 0x03 Arsenal technique
+## ◈ Domaines
 
-> **Légende** — Le diagramme se lit de la racine (arsenal) vers les feuilles (compétences concrètes) : plateformes à gauche, outillage au centre, domaines d'intervention à droite.
+| Domaine | Sujets explorés |
+|:--|:--|
+| **Émulation d’adversaire** | Scénarios de validation défensive, cartographie des comportements et exercices cadrés. |
+| **Recherche de vulnérabilités** | Analyse de surface, revue de code, tests en laboratoire et documentation responsable. |
+| **Rétro-ingénierie** | Analyse de binaires, compréhension de formats et étude de comportements suspects. |
+| **Sécurité applicative** | Web, API, mobile et vérification de contrôles dans des environnements autorisés. |
+| **Architecture & défense** | Durcissement, segmentation, journalisation, détection et recommandations de réduction du risque. |
+| **Systèmes spécialisés** | IoT, embarqué, cloud et environnements industriels — uniquement dans un cadre explicitement autorisé et adapté. |
+| **Renseignement sur les menaces** | Analyse de sources, contextualisation et synthèse orientée décision. |
 
-```mermaid
-flowchart TD
-    ROOT["⟢ ARSENAL TECHNIQUE"] --> K["Plateformes"]
-    ROOT --> O["Outils"]
-    ROOT --> D["Domaines"]
+> **Légende — niveau de preuve :** cette liste décrit des axes d’intérêt, pas une certification ni une déclaration de maîtrise universelle. Les exemples concrets et leur périmètre sont à documenter dans chaque projet.
 
-    K --> K1["Windows · Linux · macOS"]
-    K --> K2["Android · Xiaomi · IoT"]
-    K --> K3["Cloud · Virtualisation · Conteneurs"]
+### Environnements
 
-    O --> O1["Cobalt Strike · Metasploit · Empire"]
-    O --> O2["Burp Suite · IDA Pro · Ghidra · Binary Ninja"]
-    O --> O3["Nmap · Amass · Masscan · ELK · Splunk · Suricata"]
-
-    D --> D1["Web · Réseau · Sans-fil"]
-    D --> D2["Mobile · ICS/SCADA · Embarqué"]
-    D --> D3["Blockchain · IA/ML"]
-
-    classDef root fill:#9D00FF,stroke:#D1A3FF,stroke-width:2px,color:#050505
-    classDef branch fill:#1A1A1B,stroke:#9D00FF,stroke-width:2px,color:#F5F5F5
-    classDef leaf fill:#050505,stroke:#3A0A57,stroke-width:1px,color:#C9C9C9
-
-    class ROOT root
-    class K,O,D branch
-    class K1,K2,K3,O1,O2,O3,D1,D2,D3 leaf
-```
-
-### 🖥️ Plateformes maîtrisées
-
-`Windows` · `Linux` · `macOS` · `Android` · `Xiaomi` · `Cloud` · `IoT` · `Virtualisation` · `Conteneurs`
-
-### 🧰 Outils principaux
-
-`Metasploit` · `Cobalt Strike` · `Burp Suite` · `Empire` · `ELK` · `Splunk` · `Suricata`
-`IDA Pro` · `Ghidra` · `Binary Ninja` · `Nmap` · `Amass` · `Masscan` · `Scripts custom`
-
-### 🌐 Domaines d'expertise
-
-`Web` · `Réseau` · `Sans-fil` · `Cloud` · `Mobile` · `ICS/SCADA` · `Blockchain` · `Embarqué` · `IA/ML`
-
-### 🎯 Compétences clés
-```markdown
-- Tests d'intrusion avancés : Web, Réseau, Cloud, Mobile, IoT, ICS/SCADA
-- Opérations Red Team & campagnes d'émulation d'adversaires
-- Reverse engineering, exploit dev, fuzzing
-- Threat hunting & forensic numérique
-- Cyber Threat Intelligence & architecture défensive
-- Automatisation : DevSecOps, CI/CD, SOAR
-- Sécurité Blockchain, Smart Contracts, IA/ML, systèmes embarqués
-```
+`Windows` · `Linux` · `macOS` · `Android` · `Cloud` · `Conteneurs` · `Virtualisation` · `IoT / embarqué`
 
 ---
 
-## 0x04 Registre des opérations
+## ◈ Boîte à outils
 
-> **Légende** — `Statut` indique la phase de vie du projet ; l'identifiant de classification précise la nature du livrable (framework, recherche, automatisation, audit).
+Les outils sont présentés par famille, sans supposer qu’un outil particulier convient à chaque mandat. Le choix dépend du périmètre, du risque et de la méthode de validation.
 
-| ◈ Identifiant | Classification | Objectif de mission | Statut |
+| Famille | Exemples |
+|:--|:--|
+| **Analyse réseau & inventaire autorisé** | Nmap, Amass |
+| **Tests applicatifs** | Burp Suite |
+| **Analyse binaire & rétro-ingénierie** | Ghidra, IDA Pro, Binary Ninja |
+| **Télémétrie & détection** | ELK, Splunk, Suricata |
+| **Environnements de formation** | Laboratoires isolés, CTF et applications volontairement vulnérables |
+| **Automatisation** | Scripts ciblés, pipelines de validation et outillage documentaire |
+
+> **Légende — usage :** les noms d’outils indiquent un écosystème de travail, pas une procédure d’exploitation. Toute utilisation active nécessite un mandat adapté et un environnement autorisé.
+
+---
+
+## ◈ Registre des projets
+
+| Projet | Catégorie | Objectif | Statut indicatif |
 |:--|:--|:--|:--|
-| **ShadowStrike** | `FRAMEWORK` | Framework d'opérations Red Team (C2, payloads, post-exploitation) | 🟣 **Actif** |
-| **ZeroDay-Lab** | `RESEARCH` | Recherche & exploitation de vulnérabilités | 🧪 **Research** |
-| **CTF-Mastermind** | `TRAINING` | Défis CTF personnalisés | 🔄 **En cours** |
-| **ReconX** | `AUTOMATION` | Plateforme de reconnaissance automatisée | 🟡 **Bêta** |
-| **SmartContract-Sentinel** | `AUDIT` | Sécurité Blockchain & Smart Contracts | 🔵 **Stable** |
+| **ShadowStrike** | Framework de laboratoire | Étudier l’organisation et la validation de scénarios Red Team dans un environnement isolé. | 🟣 En développement — laboratoire uniquement |
+| **ZeroDay-Lab** | Recherche | Documenter des exercices de recherche de vulnérabilités sur des cibles prévues à cet effet. | 🧪 Recherche / expérimentation |
+| **CTF-Mastermind** | Formation | Concevoir des défis et supports d’apprentissage en environnement de compétition. | 🔄 En cours |
+| **ReconX** | Automatisation | Organiser des contrôles d’inventaire explicitement autorisés et leur restitution. | 🟡 Prototype |
+| **SmartContract-Sentinel** | Audit | Structurer des vérifications et des recommandations pour des contrats intelligents. | 🔵 En évolution |
+
+> **Légende — statut :** les libellés sont des états de projet déclaratifs, pas une validation indépendante. Ajoutez un lien vers le dépôt, une démonstration sûre ou une documentation avant de présenter un projet comme livré. N’incluez jamais de secrets, de données de cible ou de détails qui faciliteraient un abus.
 
 ---
 
-## 0x05 Validation & logs
+## ◈ Preuves & références
 
-> **Légende** — Chronologie de crédibilité : chaque entrée correspond à une validation externe (conférence, CVE, programme de bug bounty, compétition).
+La crédibilité se construit à partir de références vérifiables, pas de badges auto-attribués. Pour chaque réalisation publiée, préciser :
 
-```mermaid
-sequenceDiagram
-    autonumber
-    participant C as ◈ Client
-    participant R as ◈ Red Team
-    participant T as ◈ Cible
+- **Contexte autorisé** et périmètre de l’exercice, sans divulguer d’informations sensibles.
+- **Contribution personnelle** et limites de ce qui a été fait.
+- **Résultat vérifiable** : dépôt, article, rapport expurgé, conférence ou page de programme public.
+- **Impact défensif** et statut de divulgation, si applicable.
 
-    C->>R: Cadrage & règles d'engagement
-    R->>T: Reconnaissance passive
-    R->>T: Exploitation contrôlée
-    T-->>R: Preuves & journaux
-    R->>C: Rapport + plan de remédiation
-```
-
-- 🏆 **Black Hat / DEFCON** — Intervenant & chercheur sécurité
-- 🧨 **Zero-day archive** — Publication d'exploits et de CVE
-- 🜏 **Hall of Fame** — Apple · Google · Microsoft · Meta
-- ⚔️ **CTF** — Vainqueur de compétitions offensives
-- 🛠️ **Tooling** — Concepteur d'outils de sécurité avancés
+**Références publiques :** ajouter ici des liens confirmés vers des publications, contributions, programmes ou réalisations. Ne pas publier de noms de clients, de CVE, de prix ou d’interventions sans référence vérifiable et autorisation de divulgation.
 
 ---
 
-## 0x06 Communications sécurisées
+## ◈ Collaboration
 
-> **Légende** — Aucun canal public n'est exposé : toute demande passe par une pull request tracée, ce qui garantit un historique et une validation.
+Pour proposer une collaboration, un audit ou un exercice Red Team, merci de préciser le besoin et le cadre d’autorisation. Une pull request peut servir à corriger ce dépôt ou à proposer une amélioration documentaire ; elle ne remplace pas un canal privé sécurisé pour échanger des éléments sensibles.
 
-```text
-❯ tmdg --initiate-handshake
-[ OK ] clé publique échangée
-[ OK ] canal chiffré établi
-❯ objectif: collaboration / audit / red team
-```
+### Liste de cadrage
 
-**Template de PR** — à placer dans `.github/PULL_REQUEST_TEMPLATE.md` :
+- [ ] Organisation et responsable autorisant l’activité identifiés.
+- [ ] Cibles, comptes et environnements inclus explicitement listés.
+- [ ] Exclusions, limites de test et règles d’arrêt définies.
+- [ ] Fenêtre de travail et contact d’urgence convenus.
+- [ ] Gestion, conservation et suppression des données documentées.
+- [ ] Modalités de restitution et de divulgation convenues.
 
-## ⟢ Contexte
-* *Décris la demande : audit, collaboration, recherche, outillage*
-
-## ◈ Périmètre
-- [x] Cible / dépôt concerné
-- [x] Règles d'engagement définies
-- [x] Fenêtre temporelle validée
-
-## 🛡️ Sécurité
-- [x] Aucune donnée sensible dans cette PR
-- [x] Divulgation responsable respectée
-
-## ❯ Notes
-* *Contexte additionnel, références, CVE liées*
+> **Sécurité :** ne transmettez pas de clés, mots de passe, données personnelles, journaux non expurgés ou détails de cible dans une issue ou une pull request publique. Aucun canal chiffré n’est fourni par ce dépôt : utilisez un moyen convenu séparément avec votre organisation.
 
 ---
 
-## 0x07 Signature
+## ◈ Documentation du dépôt
+
+- [Guide de documentation](docs/README.md) — conventions, sécurité et contribution.
+- [Structure initiale v1.0](structure.md) — arborescence et évolution prévue.
+
+---
 
 <div align="center">
 
-**Opérationnel dans les ombres numériques.**
+**Penser comme un adversaire. Travailler avec autorisation. Livrer pour mieux défendre.**
 
-`SYSTEM_MESSAGE :: HACK THE PLANET // 2026`
-
-⟢ ⚡ ⟢
+`THEMADDOG.TMDG` · `PORTFOLIO / SÉCURITÉ RESPONSABLE` · `v1.0`
 
 </div>
