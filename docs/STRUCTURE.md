@@ -68,3 +68,35 @@
 | `1.1` | Ajout des fiches projets et de la politique de sécurité. |
 | `1.2` | Ajout des illustrations de marque, charte visuelle, contribution et feuille de route. |
 | `1.3` | Documentation alignée avec `index.html`, ajout de l’architecture et du déploiement, README refondu comme page d’entrée du site. |
+
+### Construire une structure `.github`
+
+Complète adaptée à ce README, avec templates d’issues/PR, workflows, configuration de communauté, sécurité, dépendabot et publication GitHub Pages. 
+
+Je commencerais par vérifier les fichiers déjà présents pour éviter les conflits.Je vais créer une configuration cohérente avec le périmètre autorisé du README :
+- Modèles d’issues/PR, contribution, politique sécurité, codeowners, dépendabot, labels et validation automatisée légère.
+- D’abord je vérifie l’arborescence existante pour éviter d’écraser les réglages déjà présents.Je vais ajouter une structure `.github` légère et cohérente pour un portfolio HTML statique, sans automatiser des tests de sécurité sur du contenu non exécutable.
+- érifie d’abord les conventions existantes, notamment `CONTRIBUTING.md` et les docs.Je vais construire une configuration `.github` adaptée au dépôt, en français, avec sécurité, contribution, traçabilité des PR et automatisations compatibles GitHub Pages.
+
+Proposition du dossier :
+
+```text
+.github/
+├── CODEOWNERS
+├── FUNDING.yml
+├── dependabot.yml
+├── ISSUE_TEMPLATE/
+│   ├── bug_report.yml
+│   ├── documentation.yml
+│   ├── feature_request.yml
+│   ├── security.yml
+│   └── config.yml
+├── PULL_REQUEST_TEMPLATE/
+│   └── pull_request_template.md
+├── workflows/
+│   ├── pages.yml
+│   ├── quality.yml
+│   └── dependency-review.yml
+├── labeler.yml
+└── labels.yml
+```
