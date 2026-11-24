@@ -1,0 +1,39 @@
+name: "Amélioration de la documentation"
+description: "Corriger ou améliorer README, guides ou fiches projets"
+title: "[Documentation] "
+labels:
+  - documentation
+body:
+  - type: textarea
+    id: current
+    attributes:
+      label: Contenu actuel
+      description: Indiquez la partie à modifier.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposition
+      description: Décrivez la modification souhaitée.
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: Vérification
+      description: Liens, sources ou preuves utilisées pour confirmer l'information.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: security
+    attributes:
+      label: Sécurité
+      options:
+        - label: Les références sont publiques et autorisées.
+          required: true
+        - label: Aucun secret ou détail opérationnel sensible n'est inclus.
+          required: true
