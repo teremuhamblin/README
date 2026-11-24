@@ -1,37 +1,48 @@
 # Déploiement du portfolio
 
-> Le dépôt contient une page statique à la racine : `index.html`.
+> **Version :** 1.3  
+> **Page publiée :** [https://teremuhamblin.github.io/TheMadDoG.tmdg/](https://teremuhamblin.github.io/TheMadDoG.tmdg/)  
+> **Page principale :** [`../index.html`](../index.html)
 
 ## GitHub Pages
 
-Le site public du projet est : [https://teremuhamblin.github.io/README/](https://teremuhamblin.github.io/README/).
-
-Pour vérifier ou configurer sa publication dans GitHub :
+Le dépôt utilise une page statique à la racine. Pour vérifier ou configurer sa publication :
 
 1. Ouvrir **Settings → Pages** dans le dépôt.
-2. Vérifier la source de publication configurée par les administrateurs du dépôt.
-3. Si la publication depuis une branche est utilisée, choisir `main` et le dossier `/ (root)`.
-4. Enregistrer et attendre la fin du déploiement Pages.
-5. Ouvrir l’URL publique et contrôler les liens, l’affichage mobile et les deux thèmes.
+2. Sélectionner **GitHub Actions** comme source de déploiement.
+3. Vérifier que `.github/workflows/pages.yml` est présent sur la branche `main`.
+4. Conserver `main` comme branche contenant le contenu publié.
+5. Attendre la fin du workflow **Deploy portfolio to GitHub Pages**.
+6. Ouvrir l’URL publique et contrôler les liens, le rendu mobile et les thèmes.
+7. Activer HTTPS lorsque GitHub Pages le propose.
 
-Les noms exacts des options disponibles peuvent varier selon la configuration de publication du dépôt. Ne pas ajouter de workflow de déploiement tant qu’un besoin spécifique n’est pas établi.
+En cas d’utilisation d’un domaine personnalisé, remplacer l’URL publique dans le README, `index.html`, les documents et les annonces du dépôt sans conserver d’ancienne destination.
+
+## Déploiement automatique
+
+Le workflow prévu upload l’intégralité du dépôt comme contenu statique puis publie l’artefact via GitHub Pages. Il ne contient aucune étape de compilation : `index.html` doit donc rester à la racine.
+
+Toute modification effectuée sur `main` peut déclencher un nouveau déploiement. Les changements importants doivent passer par une pull request afin de conserver une revue vérifiable.
 
 ## Vérifications avant publication
 
-- La page d’accueil servie correspond bien au fichier `index.html` à la racine.
-- Les liens de navigation vers les identifiants `synthese`, `identite`, `cycle`, `arsenal`, `operations`, `validation` et `communications` fonctionnent.
-- Les liens vers le dépôt et les ressources documentaires ne contiennent pas de valeurs de remplacement.
-- La navigation est utilisable au clavier et sur écran étroit.
-- Le thème clair, le thème sombre et la préférence de réduction des animations sont testés.
-- Aucune information confidentielle, donnée personnelle ou clé n’est publiée.
-- Le contenu de `README.md` reste cohérent avec le site.
+- `index.html` est présent à la racine.
+- Les liens vers les sections `synthese`, `identite`, `cycle`, `arsenal`, `operations`, `validation` et `communications` fonctionnent.
+- Les ancres du README correspondent aux identifiants HTML réels.
+- Les URLs publiques utilisent la même adresse GitHub Pages.
+- Les boutons, liens externes et ressources ont une destination réelle.
+- Le navigation clavier fonctionne sur écran étroit et écran large.
+- Les thèmes clair/sombre et la réduction des animations sont testés.
+- Aucun secret, jeton, mot de passe, donnée personnelle ou contenu confidentiel n’est publié.
+- Le README, `index.html` et les fiches projets restent cohérents.
 
 ## Dépannage
 
 | Symptôme | Vérification |
 |:--|:--|
-| Page non publiée | Vérifier les paramètres Pages, la branche source et l’état du dernier déploiement. |
-| Ancien rendu | Recharger sans cache et vérifier le commit servi par Pages. |
-| Lien d’ancre inactif | Comparer le `href` du lien avec l’`id` de la section correspondante. |
+| Page non publiée | Vérifier les paramètres Pages, le workflow et l’état du dernier déploiement. |
+| Ancienne version visible | Attendre la fin du workflow, vider le cache et vérifier le commit publié. |
+| Erreur 404 | Vérifier que `index.html` existe à la racine et que Pages pointe vers la bonne source. |
+| Lien d’ancre inactif | Comparer le `href` avec l’`id` exact de la section HTML. |
 | Apparence différente | Tester les préférences système, le thème mémorisé et la largeur d’écran. |
-| Un contrôle ne fonctionne pas | Vérifier la console du navigateur et prévoir un comportement de repli sans JavaScript. |
+| Problème JavaScript | Vérifier la console et conserver un contenu essentiel utilisable sans JavaScript. |
