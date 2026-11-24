@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Politique de sécurité et confidentialité
+    url: https://github.com/teremuhamblin/TheMadDoG.tmdg/blob/main/docs/SECURITE.md
+    about: Consignes obligatoires avant tout signalement ou publication sensible.
+  - name: Guide de contribution
+    url: https://github.com/teremuhamblin/TheMadDoG.tmdg/blob/main/CONTRIBUTING.md
+    about: Règles pour proposer une modification vérifiable.
