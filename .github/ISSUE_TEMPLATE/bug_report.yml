@@ -1,0 +1,64 @@
+name: "Signaler un problème"
+description: "Signaler un problème sur le portfolio ou sa documentation"
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de décrire précisément le problème constaté.
+        Ne publiez jamais de secret, donnée personnelle ou information sensible.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Zone concernée
+      options:
+        - Portfolio web
+        - Navigation
+        - Responsive/mobile
+        - Accessibilité
+        - Documentation
+        - Liens ou ancres
+        - Projet ou fiche projet
+        - Autre
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Décrivez le comportement attendu et celui observé.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Étapes de reproduction
+      placeholder: |
+        1. Ouvrir ...
+        2. Cliquer sur ...
+        3. Constater ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environnement
+      placeholder: Navigateur, version, système, résolution ou appareil.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Vérifications
+      options:
+        - label: Aucun secret ou donnée sensible n'est inclus.
+          required: true
+        - label: Cette publication est autorisée pour le domaine public.
+          required: true
