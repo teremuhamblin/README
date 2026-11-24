@@ -1,6 +1,6 @@
 # Documentation du dépôt
 
-> **Version :** 1.1  
+> **Version :** 1.2  
 > **Rôle :** guide de contribution et de publication pour le portfolio TheMadDoG.tmdg.
 
 ## Objectif
@@ -12,6 +12,9 @@ Ce dépôt présente un portfolio professionnel de sécurité informatique. La d
 - [`../README.md`](../README.md) — page d’accueil et portfolio.
 - [`PROJETS.md`](PROJETS.md) — fiches détaillées des projets.
 - [`SECURITE.md`](SECURITE.md) — confidentialité, contribution responsable et divulgation.
+- [`CHARTE_VISUELLE.md`](CHARTE_VISUELLE.md) — direction artistique et illustrations.
+- [`ROADMAP.md`](ROADMAP.md) — pistes d’évolution du portfolio.
+- [`../CONTRIBUTING.md`](../CONTRIBUTING.md) — guide de contribution.
 - [`../structure.md`](../structure.md) — arborescence du dépôt.
 
 ## Principes de publication
@@ -30,7 +33,7 @@ Ce dépôt présente un portfolio professionnel de sécurité informatique. La d
 - Ajouter une référence ou une démonstration non sensible lorsque disponible.
 - Vérifier les liens et le rendu des diagrammes Mermaid avant publication.
 - Utiliser des exemples synthétiques ; ne pas embarquer de données réelles de client ou de cible.
-- Mettre à jour [`structure.md`](../structure.md) lors de l’ajout d’un fichier ou dossier fonctionnel.
+- Mettre à jour [`../structure.md`](../structure.md) lors de l’ajout d’un fichier ou dossier fonctionnel.
 
 ## Contribuer
 
@@ -44,3 +47,4 @@ Les corrections de forme et les améliorations documentaires peuvent être propo
 - [ ] Le périmètre et les limites sont décrits sans divulguer de détails sensibles.
 - [ ] Le Markdown et les blocs Mermaid sont correctement formés.
 - [ ] Les informations sensibles ont été expurgées conformément à [`SECURITE.md`](SECURITE.md).
+- [ ] Les illustrations suivent la [charte visuelle](CHARTE_VISUELLE.md) et disposent d’un texte alternatif si nécessaire.

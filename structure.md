@@ -1,67 +1,64 @@
-# Structure du dépôt — v1.1
+# Structure du dépôt — v1.2
 
-> **État :** structure documentaire initiale enrichie.  
+> **État :** portfolio et documentation enrichis.  
 > **Date :** 2026-11-24.
 
 ## Arborescence
 
 ```text
 .
-├── README.md          # Portfolio principal : présentation, domaines, méthode et projets
-├── structure.md       # Structure du dépôt et évolution prévue
+├── README.md
+├── CONTRIBUTING.md
+├── structure.md
+├── assets/
+│   └── brand/
+│       ├── README.md
+│       ├── banner.svg
+│       └── mark.svg
 └── docs/
-    ├── README.md      # Guide de documentation et contribution
-    ├── PROJETS.md     # Fiches détaillées des projets du portfolio
-    └── SECURITE.md    # Règles de confidentialité et de divulgation responsable
+    ├── README.md
+    ├── CHARTE_VISUELLE.md
+    ├── PROJETS.md
+    ├── ROADMAP.md
+    └── SECURITE.md
 ```
 
 ## Rôle des fichiers
 
 | Chemin | Responsabilité |
 |:--|:--|
-| [`README.md`](README.md) | Page d’accueil du portfolio. |
-| [`structure.md`](structure.md) | Référence de l’arborescence et historique documentaire. |
-| [`docs/README.md`](docs/README.md) | Conventions de publication, de contribution et de vérification. |
-| [`docs/PROJETS.md`](docs/PROJETS.md) | Fiches de projet, objectifs, périmètres, livrables et limites. |
-| [`docs/SECURITE.md`](docs/SECURITE.md) | Principes de sécurité, confidentialité et divulgation responsable. |
+| `README.md` | Page d’accueil et présentation du portfolio. |
+| `CONTRIBUTING.md` | Règles de contribution documentaire et vérifications pré-publication. |
+| `structure.md` | Arborescence et historique des versions documentaires. |
+| `assets/brand/` | Illustrations vectorielles décoratives originales. |
+| `docs/README.md` | Guide de documentation et de publication. |
+| `docs/CHARTE_VISUELLE.md` | Direction artistique, palette et usages des visuels. |
+| `docs/PROJETS.md` | Fiches descriptives des projets déclarés. |
+| `docs/ROADMAP.md` | Pistes d’évolution du portfolio, sans engagement de livraison. |
+| `docs/SECURITE.md` | Confidentialité, publication responsable et signalement. |
 
 ## Conventions
 
 - Rédiger en français avec des titres explicites et un vocabulaire technique cohérent.
-- Garder le README lisible grâce à un sommaire, des tableaux et des légendes.
-- Présenter les travaux avec leur périmètre autorisé et leurs limites.
-- Utiliser Mermaid pour expliquer une méthode ou une décision, jamais pour fournir une procédure abusive.
-- Vérifier les liens et les affirmations avant chaque publication.
-- Ne jamais committer de secrets, d’identifiants, de données personnelles ou de contenus confidentiels.
-- Distinguer clairement les projets proposés, en cours et achevés.
+- Préférer des références vérifiables aux affirmations non étayées.
+- Décrire le périmètre autorisé et les limites des projets.
+- Utiliser des exemples synthétiques ; exclure les données sensibles et secrets.
+- Garder les visuels accessibles, légers, autonomes et autorisés à la publication.
+- Mettre à jour cette structure lorsque l’arborescence évolue.
 
-## Liens de navigation
+## Navigation documentaire
 
-- [Documentation principale](docs/README.md)
-- [Index des projets](docs/PROJETS.md)
+- [Guide de documentation](docs/README.md)
+- [Charte visuelle](docs/CHARTE_VISUELLE.md)
+- [Fiches projets](docs/PROJETS.md)
+- [Feuille de route](docs/ROADMAP.md)
 - [Politique de sécurité](docs/SECURITE.md)
-
-## Évolution envisagée
-
-Une extension future peut ajouter des contenus réellement maintenus uniquement lorsque ceux-ci apportent une valeur vérifiable.
-
-```text
-.
-├── README.md
-├── structure.md
-├── docs/
-│   ├── README.md
-│   ├── PROJETS.md
-│   └── SECURITE.md
-└── assets/
-    └── images/             # Illustrations publiques, anonymisées et autorisées
-```
-
-Le dossier `assets/` n’est pas encore créé.
+- [Contribution](CONTRIBUTING.md)
 
 ## Historique
 
 | Version | Changement |
 |:--|:--|
-| `1.0` | Création du portfolio principal, du guide documentaire et de la structure initiale. |
-| `1.1` | Ajout de l’index détaillé des projets et de la politique de sécurité. |
+| `1.0` | Portfolio principal, guide documentaire et structure initiale. |
+| `1.1` | Ajout des fiches projets et de la politique de sécurité. |
+| `1.2` | Ajout de la contribution, de la charte visuelle, de la feuille de route et des illustrations de marque. |

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">TheMadDoG.tmdg — portfolio sécurité responsable</title>
+  <desc id="desc">Bannière abstraite sombre avec une forme géométrique violette et des lignes cyan évoquant l’analyse de systèmes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#080A12"/>
+      <stop offset="1" stop-color="#15102A"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#67E8F9"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#94A3B8" stroke-opacity=".12" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="halo">
+      <stop offset="0" stop-color="#7C3AED" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="360" rx="28" fill="url(#bg)"/>
+  <rect width="1200" height="360" rx="28" fill="url(#grid)"/>
+  <ellipse cx="920" cy="180" rx="310" ry="250" fill="url(#halo)"/>
+  <g fill="none" stroke="url(#glow)" stroke-width="2">
+    <path d="M760 80h100l40 40v120l-40 40H760l-40-40V120z" opacity=".8"/>
+    <path d="M800 120h60l20 20v80l-20 20h-60l-20-20v-80z" opacity=".55"/>
+    <path d="M760 180h120M820 120v120" opacity=".38"/>
+    <circle cx="820" cy="180" r="18" fill="#A78BFA" fill-opacity=".2"/>
+  </g>
+  <g fill="#67E8F9">
+    <circle cx="720" cy="120" r="4"/><circle cx="940" cy="100" r="4"/>
+    <circle cx="960" cy="240" r="4"/><circle cx="700" cy="240" r="4"/>
+  </g>
+  <g stroke="#67E8F9" stroke-opacity=".5" stroke-width="1.5">
+    <path d="M720 120h40M920 100h20M900 240h60M700 240h40"/>
+  </g>
+  <text x="72" y="145" fill="#A78BFA" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" letter-spacing="4">PORTFOLIO / SÉCURITÉ RESPONSABLE</text>
+  <text x="68" y="205" fill="#F8FAFC" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="48" font-weight="700">TheMadDoG.tmdg</text>
+  <text x="72" y="250" fill="#CBD5E1" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="19">Comprendre les systèmes. Réduire les risques.</text>
+  <rect x="72" y="282" width="132" height="3" rx="2" fill="url(#glow)"/>
+</svg>

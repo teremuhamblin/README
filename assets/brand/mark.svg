@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Marque géométrique TheMadDoG.tmdg</title>
+  <defs>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#67E8F9"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="#080A12"/>
+  <path d="M64 18 105 42v44l-41 24L23 86V42z" fill="none" stroke="url(#accent)" stroke-width="4"/>
+  <path d="M64 38 86 51v26L64 90 42 77V51z" fill="#A78BFA" fill-opacity=".18" stroke="#A78BFA" stroke-width="2"/>
+  <circle cx="64" cy="64" r="7" fill="#67E8F9"/>
+</svg>
