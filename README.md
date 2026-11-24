@@ -114,6 +114,6 @@ Le site inclut des éléments d’accessibilité tels qu’un lien d’accès di
 
 **Penser comme un adversaire. Travailler avec autorisation. Livrer pour mieux défendre.**
 
-[Ouvrir le portfolio web](https://teremuhamblin.github.io/README/)
+[Ouvrir le portfolio web](https://teremuhamblin.github.io/TheMadDoG.tmdg/)
 
 </div>
