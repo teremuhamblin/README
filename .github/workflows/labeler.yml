@@ -1,0 +1,18 @@
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "README.md"
+          - "CONTRIBUTING.md"
+          - "structure.md"
+          - "docs/**"
+
+accessibility:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "index.html"
+
+mobile:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "index.html"
+          - "assets/**"
