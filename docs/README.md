@@ -1,19 +1,22 @@
 # Documentation du dépôt
 
-> **Version :** 1.2  
-> **Rôle :** guide de contribution et de publication pour le portfolio TheMadDoG.tmdg.
+> **Version :** 1.3  
+> **Rôle :** guide de contribution et de publication du portfolio TheMadDoG.tmdg.
 
 ## Objectif
 
-Ce dépôt présente un portfolio professionnel de sécurité informatique. La documentation doit rendre les projets, leurs limites et leurs références compréhensibles, sans exposer de secrets ni fournir d’instructions destinées à compromettre des systèmes tiers.
+Le dépôt contient une page web statique (`index.html`), un README de présentation, des illustrations et une documentation de projet. Le site constitue la présentation visuelle ; le README en donne une synthèse navigable et documentée.
 
 ## Navigation
 
-- [`../README.md`](../README.md) — page d’accueil et portfolio.
+- [`../index.html`](../index.html) — page web principale.
+- [`../README.md`](../README.md) — présentation et navigation textuelle.
+- [`ARCHITECTURE.md`](ARCHITECTURE.md) — structure et fonctionnalités du site.
+- [`DEPLOIEMENT.md`](DEPLOIEMENT.md) — publication GitHub Pages.
 - [`PROJETS.md`](PROJETS.md) — fiches détaillées des projets.
-- [`SECURITE.md`](SECURITE.md) — confidentialité, contribution responsable et divulgation.
-- [`CHARTE_VISUELLE.md`](CHARTE_VISUELLE.md) — direction artistique et illustrations.
-- [`ROADMAP.md`](ROADMAP.md) — pistes d’évolution du portfolio.
+- [`SECURITE.md`](SECURITE.md) — confidentialité et divulgation responsable.
+- [`CHARTE_VISUELLE.md`](CHARTE_VISUELLE.md) — palette et usages des visuels.
+- [`ROADMAP.md`](ROADMAP.md) — pistes d’évolution.
 - [`../CONTRIBUTING.md`](../CONTRIBUTING.md) — guide de contribution.
 - [`../structure.md`](../structure.md) — arborescence du dépôt.
 
@@ -28,23 +31,23 @@ Ce dépôt présente un portfolio professionnel de sécurité informatique. La d
 
 ## Mettre à jour le portfolio
 
-- Garder le sommaire du README synchronisé avec les titres de section.
-- Pour chaque nouveau projet, préciser sa finalité, son statut et son périmètre autorisé.
-- Ajouter une référence ou une démonstration non sensible lorsque disponible.
-- Vérifier les liens et le rendu des diagrammes Mermaid avant publication.
+- Garder les ancres du README synchronisées avec les `id` de section de `index.html`.
+- Mettre à jour en même temps les statuts dans le site, le README et les fiches projets.
+- Vérifier tous les liens d’action du site : retirer les URL de remplacement et corriger les destinations invalides.
+- Vérifier le rendu mobile, clavier, les préférences de thème et de mouvement réduit.
 - Utiliser des exemples synthétiques ; ne pas embarquer de données réelles de client ou de cible.
-- Mettre à jour [`../structure.md`](../structure.md) lors de l’ajout d’un fichier ou dossier fonctionnel.
+- Mettre à jour [`../structure.md`](../structure.md) lors de l’ajout d’un fichier ou dossier.
 
 ## Contribuer
 
-Les corrections de forme et les améliorations documentaires peuvent être proposées par pull request. Pour signaler une vulnérabilité dans un projet réel ou partager des informations confidentielles, ne pas utiliser une issue ou une pull request publique : contacter d’abord l’organisation concernée par son canal officiel.
+Les corrections de forme, d’accessibilité et de documentation peuvent être proposées par pull request. Pour signaler une vulnérabilité dans un projet réel ou partager des informations confidentielles, ne pas utiliser une issue ou une pull request publique : contacter d’abord l’organisation concernée par son canal officiel.
 
 ## Vérification avant publication
 
 - [ ] Aucun secret, jeton, mot de passe ou donnée personnelle n’est présent.
 - [ ] Les affirmations et références sont exactes et autorisées à la publication.
-- [ ] Le statut des projets et les liens sont à jour.
-- [ ] Le périmètre et les limites sont décrits sans divulguer de détails sensibles.
-- [ ] Le Markdown et les blocs Mermaid sont correctement formés.
+- [ ] Le statut du site, du README et des fiches projets est cohérent.
+- [ ] Les liens, ancres et boutons du site ont des destinations réelles.
+- [ ] Le site reste lisible sur mobile et utilisable au clavier.
+- [ ] Le Markdown, le HTML et les blocs Mermaid sont correctement formés.
 - [ ] Les informations sensibles ont été expurgées conformément à [`SECURITE.md`](SECURITE.md).
-- [ ] Les illustrations suivent la [charte visuelle](CHARTE_VISUELLE.md) et disposent d’un texte alternatif si nécessaire.

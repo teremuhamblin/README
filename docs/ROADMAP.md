@@ -1,28 +1,29 @@
 # Feuille de route
 
-> Cette feuille de route exprime des pistes de travail, pas des engagements de livraison. Les priorités évolueront avec les contenus réellement disponibles.
+> Pistes d’évolution du portfolio, et non engagements de livraison. `index.html` est la page web principale ; les autres fichiers assurent sa documentation, son identité visuelle et son résumé accessible.
 
-## Maintenant — présentation claire
+## Priorités — cohérence et fiabilité
 
-- [x] Structurer le portfolio et sa documentation.
-- [x] Décrire les projets avec leur statut et leurs limites.
-- [x] Ajouter une charte visuelle et des illustrations SVG originales.
-- [ ] Remplacer les descriptions génériques par des liens publics vérifiables lorsque disponibles.
-- [ ] Ajouter des résultats concrets uniquement avec autorisation de publication.
+- [x] Page statique `index.html` à la racine.
+- [x] Navigation responsive, thème clair/sombre et animations respectant la préférence de mouvement réduit.
+- [x] Documentation d’architecture et de déploiement.
+- [ ] Vérifier et corriger les URL de remplacement ou mal formées dans les appels à l’action du site.
+- [ ] Harmoniser les statuts du site, de `README.md` et des fiches projets.
+- [ ] Étayer les affirmations de réalisations externes avec des références publiques autorisées.
 
-## Ensuite — preuves et qualité
+## Qualité et accessibilité
 
-- [ ] Ajouter des études de cas expurgées : contexte, contribution, résultat et remédiation.
-- [ ] Vérifier la lisibilité mobile et les contrastes sur les pages publiées.
-- [ ] Ajouter des textes alternatifs cohérents à tous les visuels informatifs.
-- [ ] Contrôler périodiquement les liens et le statut des projets.
+- [ ] Tester navigation clavier, lecteur d’écran, contrastes et zoom.
+- [ ] Contrôler le fonctionnement avec JavaScript ou stockage local indisponible.
+- [ ] Vérifier les ancres et liens sur mobile et ordinateur.
+- [ ] Ajouter des études de cas expurgées uniquement si leur publication est autorisée.
 
-## Plus tard — enrichissement maîtrisé
+## Améliorations futures
 
-- [ ] Créer un index de réalisations si plusieurs références publiques le justifient.
-- [ ] Ajouter des traductions si le contenu anglais peut être maintenu.
-- [ ] Ajouter des automatisations de vérification documentaire après définition de critères simples.
+- [ ] Envisager l’extraction CSS/JavaScript seulement si cela simplifie réellement la maintenance.
+- [ ] Ajouter des automatisations de vérification documentaire après définition de critères stables.
+- [ ] Ajouter une traduction uniquement si elle peut être tenue à jour.
 
 ## Règle de priorité
 
-La vérifiabilité, la sécurité et l’accessibilité passent avant les effets visuels ou les affirmations marketing. Ne pas publier de détails confidentiels pour remplir une section.
+La sécurité, l’accessibilité, la cohérence et la vérifiabilité passent avant les effets visuels. Ne jamais inventer des preuves ou publier des détails confidentiels pour remplir une section.

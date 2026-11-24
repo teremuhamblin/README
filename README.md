@@ -5,46 +5,44 @@
 
 **Comprendre les systèmes. Réduire les risques. Rendre chaque résultat vérifiable.**
 
+[![Site web](https://img.shields.io/badge/SITE%20WEB-en%20ligne-9D00FF?style=for-the-badge)](https://teremuhamblin.github.io/README/)
 [![Périmètre](https://img.shields.io/badge/PÉRIMÈTRE-autorisé-7C3AED?style=for-the-badge)](#-principes-opérationnels)
-[![Approche](https://img.shields.io/badge/APPROCHE-validate--first-06B6D4?style=for-the-badge)](#-méthode--du-mandat-à-la-remédiation)
-[![Documentation](https://img.shields.io/badge/DOCUMENTATION-v1.0-111827?style=for-the-badge)](docs/README.md)
-[![Langue](https://img.shields.io/badge/LANGUE-FR--FR-334155?style=for-the-badge)](#-navigation)
+[![Approche](https://img.shields.io/badge/APPROCHE-validate--first-06B6D4?style=for-the-badge)](#-méthode)
+[![Docs](https://img.shields.io/badge/DOCUMENTATION-v1.3-111827?style=for-the-badge)](docs/README.md)
 
-*Un portfolio est une interface : il doit rendre les compétences lisibles, les limites explicites et les preuves faciles à vérifier.*
-
-[Explorer les domaines](#-domaines) · [Voir la méthode](#-méthode--du-mandat-à-la-remédiation) · [Parcourir les projets](#-registre-des-projets) · [Lire la documentation](docs/README.md)
+[🚀 Visiter le portfolio](https://teremuhamblin.github.io/README/) · [Voir l’architecture](docs/ARCHITECTURE.md) · [Guide de déploiement](docs/DEPLOIEMENT.md) · [Projets](docs/PROJETS.md)
 
 </div>
+
+![Bannière abstraite du portfolio TheMadDoG.tmdg](assets/brand/banner.svg)
+
+> **À propos de ce dépôt :** `index.html` est l’interface web principale, autonome, responsive et construite avec HTML, CSS et JavaScript intégrés. Ce README sert de porte d’entrée, de résumé textuel accessible et d’index vers les ressources du projet.
 
 ---
 
 ## ◈ Navigation
 
-| ID | Section | Repère |
+| ID | Section du site | Ancre |
 |:--:|:--|:--|
-| `00` | [Manifeste](#-manifeste) | Positionnement et intention |
-| `01` | [Principes opérationnels](#-principes-opérationnels) | Autorisation, limites et protection des données |
-| `02` | [Méthode](#-méthode--du-mandat-à-la-remédiation) | Cycle de travail contrôlé |
-| `03` | [Domaines](#-domaines) | Axes de pratique et environnements |
-| `04` | [Boîte à outils](#-boîte-à-outils) | Outils classés par usage |
-| `05` | [Registre des projets](#-registre-des-projets) | Projets et statut indicatif |
-| `06` | [Preuves & références](#-preuves--références) | Comment évaluer le travail |
-| `07` | [Collaboration](#-collaboration) | Demandes, périmètre et divulgation |
-| `08` | [Documentation](#-documentation-du-dépôt) | Organisation du dépôt |
+| `00` | Synthèse | [`#synthese`](https://teremuhamblin.github.io/README/#synthese) |
+| `01` | Identité | [`#identite`](https://teremuhamblin.github.io/README/#identite) |
+| `02` | Cycle de travail | [`#cycle`](https://teremuhamblin.github.io/README/#cycle) |
+| `03` | Arsenal | [`#arsenal`](https://teremuhamblin.github.io/README/#arsenal) |
+| `04` | Registre des projets | [`#operations`](https://teremuhamblin.github.io/README/#operations) |
+| `05` | Validation | [`#validation`](https://teremuhamblin.github.io/README/#validation) |
+| `06` | Collaboration | [`#communications`](https://teremuhamblin.github.io/README/#communications) |
 
-> **Légende — lecture rapide :** `◈` identifie une section de référence ; les statuts sont indicatifs et doivent être corroborés par les dépôts, démonstrations ou publications liés. Aucun badge ne constitue une accréditation officielle.
+> **Légende :** les ancres suivent les identifiants de section du site. Les statuts et exemples restent déclaratifs tant qu’ils ne sont pas corroborés par des preuves publiques autorisées. Les badges décoratifs ne constituent ni habilitation ni certification.
 
 ---
 
 ## ◈ Manifeste
 
-J’explore la sécurité des systèmes avec une approche qui relie **recherche**, **émulation d’adversaire** et **amélioration défensive**. L’objectif n’est pas l’intrusion pour elle-même : c’est de transformer une question de sécurité en constat reproductible, compréhensible et utile à la remédiation.
+Ce portfolio rassemble des axes de pratique en sécurité des systèmes, recherche, émulation d’adversaire et amélioration défensive. L’approche privilégie un mandat explicite, un périmètre borné, une validation proportionnée et une restitution utile.
 
-> **Principe directeur :** travailler uniquement avec une autorisation explicite, sur un périmètre défini, et produire des résultats proportionnés et vérifiables.
+> **Principe directeur :** travailler uniquement avec autorisation et transformer les constats en recommandations vérifiables.
 
-Ce portfolio présente des axes de travail et des projets. Les affirmations de résultats, de classement ou de reconnaissance externe doivent être accompagnées d’une référence publique consultable avant d’être considérées comme vérifiées.
-
----
+Le site propose un thème sombre et clair, une navigation adaptée aux petits écrans, des repères visuels et des animations discrètes. Les préférences et comportements du navigateur peuvent influer sur l’affichage.
 
 ## ◈ Principes opérationnels
 
@@ -52,137 +50,70 @@ Ce portfolio présente des axes de travail et des projets. Les affirmations de r
 |:--|:--|
 | **Autorisation d’abord** | Accord explicite et règles d’engagement définis avant toute activité. |
 | **Périmètre borné** | Cibles, comptes, environnements, calendrier et exclusions consignés. |
-| **Impact minimal** | Approche non destructive ; arrêt immédiat en cas d’effet inattendu ou de risque pour un tiers. |
-| **Données protégées** | Collecte minimale, stockage contrôlé, absence de secrets et de données personnelles dans les livrables publics. |
-| **Divulgation responsable** | Coordination avec les responsables concernés et publication seulement lorsque cela est approprié. |
-| **Résultats vérifiables** | Constats documentés, limites indiquées et recommandations exploitables. |
+| **Impact minimal** | Approche non destructive et arrêt en cas d’effet inattendu. |
+| **Données protégées** | Aucune donnée sensible dans les contenus publics ; collecte minimale. |
+| **Divulgation responsable** | Coordination avec les responsables concernés avant publication. |
+| **Résultats vérifiables** | Constats, limites et recommandations clairement documentés. |
 
-> **Légende — garde-fou :** la présence d’un outil ou d’une technique dans ce portfolio n’autorise pas son utilisation contre un système tiers. Les travaux se limitent aux environnements détenus, aux laboratoires ou aux périmètres explicitement autorisés.
+> **Garde-fou :** la présentation d’un outil ou d’une technique n’autorise pas son utilisation sur un système tiers. Voir la [politique de sécurité](docs/SECURITE.md).
 
----
+## ◈ Méthode
 
-## ◈ Méthode — du mandat à la remédiation
-
-Le schéma ci-dessous décrit un processus de validation contrôlée. Le point de décision est volontairement placé avant toute vérification active : sans autorisation et périmètre validés, le travail s’arrête.
+Le site illustre un cycle allant du cadrage à la restitution. Une activité s’arrête si l’autorisation, le périmètre ou les règles ne sont pas suffisamment clairs. Le schéma n’est pas une procédure technique d’intrusion.
 
 ```mermaid
 flowchart LR
-    A[Demande et objectif] --> B{Autorisation écrite<br/>et périmètre clair ?}
+    A[Demande] --> B{Mandat et périmètre validés ?}
     B -- Non --> X[Stop · clarifier ou refuser]
-    B -- Oui --> C[Cadrage<br/>règles et exclusions]
+    B -- Oui --> C[Cadrage et exclusions]
     C --> D[Observation proportionnée]
-    D --> E{Validation permise<br/>dans le périmètre ?}
+    D --> E{Vérification autorisée ?}
     E -- Non --> X
-    E -- Oui --> F[Vérification contrôlée<br/>en environnement autorisé]
-    F --> G[Analyse et preuves minimales]
-    G --> H[Rapport privé<br/>constats · limites · remédiations]
-    H --> I[Restitution et suivi]
-    I --> J[Clôture<br/>suppression des données temporaires]
-
-    classDef gate fill:#7C3AED,stroke:#C4B5FD,color:#fff,stroke-width:2px
-    classDef stop fill:#3F1D2E,stroke:#FB7185,color:#fff
-    classDef work fill:#111827,stroke:#475569,color:#F8FAFC
-    class B,E gate
-    class X stop
-    class A,C,D,F,G,H,I,J work
+    E -- Oui --> F[Validation contrôlée]
+    F --> G[Preuves minimales]
+    G --> H[Rapport et remédiation]
+    H --> I[Suivi et clôture]
 ```
 
-> **Légende — cycle :** les losanges sont des contrôles d’autorisation ; le chemin `Stop` signifie qu’aucun test ne doit continuer tant que le mandat, le périmètre ou les règles ne sont pas clairs. Les livrables privilégient la remédiation et ne publient pas de données sensibles.
+> **Légende :** les losanges représentent les contrôles d’autorisation. Le chemin `Stop` signifie qu’aucun test ne continue sans clarification.
 
----
+## ◈ Domaines et outils
 
-## ◈ Domaines
+Axes décrits par le portfolio : sécurité applicative, recherche en laboratoire, rétro-ingénierie, émulation d’adversaire, architecture défensive, renseignement sur les menaces, cloud, mobile et systèmes embarqués.
 
-| Domaine | Sujets explorés |
-|:--|:--|
-| **Émulation d’adversaire** | Scénarios de validation défensive, cartographie des comportements et exercices cadrés. |
-| **Recherche de vulnérabilités** | Analyse de surface, revue de code, tests en laboratoire et documentation responsable. |
-| **Rétro-ingénierie** | Analyse de binaires, compréhension de formats et étude de comportements suspects. |
-| **Sécurité applicative** | Web, API, mobile et vérification de contrôles dans des environnements autorisés. |
-| **Architecture & défense** | Durcissement, segmentation, journalisation, détection et recommandations de réduction du risque. |
-| **Systèmes spécialisés** | IoT, embarqué, cloud et environnements industriels — uniquement dans un cadre explicitement autorisé et adapté. |
-| **Renseignement sur les menaces** | Analyse de sources, contextualisation et synthèse orientée décision. |
-
-> **Légende — niveau de preuve :** cette liste décrit des axes d’intérêt, pas une certification ni une déclaration de maîtrise universelle. Les exemples concrets et leur périmètre sont à documenter dans chaque projet.
-
-### Environnements
-
-`Windows` · `Linux` · `macOS` · `Android` · `Cloud` · `Conteneurs` · `Virtualisation` · `IoT / embarqué`
-
----
-
-## ◈ Boîte à outils
-
-Les outils sont présentés par famille, sans supposer qu’un outil particulier convient à chaque mandat. Le choix dépend du périmètre, du risque et de la méthode de validation.
-
-| Famille | Exemples |
-|:--|:--|
-| **Analyse réseau & inventaire autorisé** | Nmap, Amass |
-| **Tests applicatifs** | Burp Suite |
-| **Analyse binaire & rétro-ingénierie** | Ghidra, IDA Pro, Binary Ninja |
-| **Télémétrie & détection** | ELK, Splunk, Suricata |
-| **Environnements de formation** | Laboratoires isolés, CTF et applications volontairement vulnérables |
-| **Automatisation** | Scripts ciblés, pipelines de validation et outillage documentaire |
-
-> **Légende — usage :** les noms d’outils indiquent un écosystème de travail, pas une procédure d’exploitation. Toute utilisation active nécessite un mandat adapté et un environnement autorisé.
-
----
+Les outils listés sur le site sont regroupés par usage : analyse réseau et inventaire autorisé, tests applicatifs, analyse binaire, télémétrie/détection et environnements de formation. Leur présence ne décrit pas une procédure d’exploitation.
 
 ## ◈ Registre des projets
 
-| Projet | Catégorie | Objectif | Statut indicatif |
-|:--|:--|:--|:--|
-| **ShadowStrike** | Framework de laboratoire | Étudier l’organisation et la validation de scénarios Red Team dans un environnement isolé. | 🟣 En développement — laboratoire uniquement |
-| **ZeroDay-Lab** | Recherche | Documenter des exercices de recherche de vulnérabilités sur des cibles prévues à cet effet. | 🧪 Recherche / expérimentation |
-| **CTF-Mastermind** | Formation | Concevoir des défis et supports d’apprentissage en environnement de compétition. | 🔄 En cours |
-| **ReconX** | Automatisation | Organiser des contrôles d’inventaire explicitement autorisés et leur restitution. | 🟡 Prototype |
-| **SmartContract-Sentinel** | Audit | Structurer des vérifications et des recommandations pour des contrats intelligents. | 🔵 En évolution |
+| Projet | Orientation | Statut présenté sur le site |
+|:--|:--|:--|
+| ShadowStrike | Framework de laboratoire | Actif — à confirmer par des livrables liés |
+| ZeroDay-Lab | Recherche en environnement dédié | Research |
+| CTF-Mastermind | Formation et défis de compétition | En cours |
+| ReconX | Automatisation d’inventaire autorisé | Bêta |
+| SmartContract-Sentinel | Revue de contrats intelligents | Stable |
 
-> **Légende — statut :** les libellés sont des états de projet déclaratifs, pas une validation indépendante. Ajoutez un lien vers le dépôt, une démonstration sûre ou une documentation avant de présenter un projet comme livré. N’incluez jamais de secrets, de données de cible ou de détails qui faciliteraient un abus.
+> **Légende — statut :** ces états proviennent du contenu du site et ne sont pas une validation indépendante. Pour les fiches et les limites, consulter [l’index des projets](docs/PROJETS.md).
 
----
+## ◈ Accessibilité et expérience
 
-## ◈ Preuves & références
+Le site inclut des éléments d’accessibilité tels qu’un lien d’accès direct au contenu, une navigation balisée, des états de focus visibles et la prise en compte de la préférence de réduction des animations. Ces éléments doivent être vérifiés au fil des changements, notamment au clavier et sur mobile.
 
-La crédibilité se construit à partir de références vérifiables, pas de badges auto-attribués. Pour chaque réalisation publiée, préciser :
+## ◈ Documentation
 
-- **Contexte autorisé** et périmètre de l’exercice, sans divulguer d’informations sensibles.
-- **Contribution personnelle** et limites de ce qui a été fait.
-- **Résultat vérifiable** : dépôt, article, rapport expurgé, conférence ou page de programme public.
-- **Impact défensif** et statut de divulgation, si applicable.
-
-**Références publiques :** ajouter ici des liens confirmés vers des publications, contributions, programmes ou réalisations. Ne pas publier de noms de clients, de CVE, de prix ou d’interventions sans référence vérifiable et autorisation de divulgation.
-
----
-
-## ◈ Collaboration
-
-Pour proposer une collaboration, un audit ou un exercice Red Team, merci de préciser le besoin et le cadre d’autorisation. Une pull request peut servir à corriger ce dépôt ou à proposer une amélioration documentaire ; elle ne remplace pas un canal privé sécurisé pour échanger des éléments sensibles.
-
-### Liste de cadrage
-
-- [ ] Organisation et responsable autorisant l’activité identifiés.
-- [ ] Cibles, comptes et environnements inclus explicitement listés.
-- [ ] Exclusions, limites de test et règles d’arrêt définies.
-- [ ] Fenêtre de travail et contact d’urgence convenus.
-- [ ] Gestion, conservation et suppression des données documentées.
-- [ ] Modalités de restitution et de divulgation convenues.
-
-> **Sécurité :** ne transmettez pas de clés, mots de passe, données personnelles, journaux non expurgés ou détails de cible dans une issue ou une pull request publique. Aucun canal chiffré n’est fourni par ce dépôt : utilisez un moyen convenu séparément avec votre organisation.
-
----
-
-## ◈ Documentation du dépôt
-
-- [Guide de documentation](docs/README.md) — conventions, sécurité et contribution.
-- [Structure initiale v1.0](structure.md) — arborescence et évolution prévue.
-
----
+- [Architecture du site](docs/ARCHITECTURE.md) — structure et fonctionnalités de `index.html`.
+- [Guide de déploiement](docs/DEPLOIEMENT.md) — publication sur GitHub Pages.
+- [Fiches projets](docs/PROJETS.md) — description, périmètres et limites.
+- [Charte visuelle](docs/CHARTE_VISUELLE.md) — palette et règles de présentation.
+- [Politique de sécurité](docs/SECURITE.md) — confidentialité et divulgation.
+- [Feuille de route](docs/ROADMAP.md) — améliorations prévues.
+- [Contribution](CONTRIBUTING.md) — règles de modification.
+- [Structure du dépôt](structure.md) — arborescence et historique.
 
 <div align="center">
 
 **Penser comme un adversaire. Travailler avec autorisation. Livrer pour mieux défendre.**
 
-`THEMADDOG.TMDG` · `PORTFOLIO / SÉCURITÉ RESPONSABLE` · `v1.0`
+[Ouvrir le portfolio web](https://teremuhamblin.github.io/README/)
 
 </div>

@@ -1,59 +1,64 @@
-# Structure du dépôt — v1.2
+# Structure du dépôt — v1.3
 
-> **État :** portfolio et documentation enrichis.  
-> **Date :** 2026-11-24.
+> **État :** page web statique et documentation alignée.  
+> **Dernière mise à jour :** 2026-11-24.
 
 ## Arborescence
 
 ```text
 .
-├── README.md
-├── CONTRIBUTING.md
-├── structure.md
+├── index.html                 # Site portfolio autonome (HTML, CSS et JavaScript intégrés)
+├── README.md                  # Présentation textuelle et navigation vers le site
+├── CONTRIBUTING.md            # Règles de contribution
+├── structure.md               # Arborescence et historique
 ├── assets/
 │   └── brand/
-│       ├── README.md
-│       ├── banner.svg
-│       └── mark.svg
+│       ├── README.md          # Index des illustrations
+│       ├── banner.svg         # Bannière originale
+│       └── mark.svg           # Marque compacte
 └── docs/
-    ├── README.md
-    ├── CHARTE_VISUELLE.md
-    ├── PROJETS.md
-    ├── ROADMAP.md
-    └── SECURITE.md
+    ├── README.md              # Guide documentaire
+    ├── ARCHITECTURE.md        # Architecture de index.html
+    ├── CHARTE_VISUELLE.md     # Palette, typographie et usage des visuels
+    ├── DEPLOIEMENT.md         # Publication GitHub Pages
+    ├── PROJETS.md             # Fiches projets
+    ├── ROADMAP.md             # Pistes d’évolution
+    └── SECURITE.md            # Confidentialité et divulgation responsable
 ```
 
 ## Rôle des fichiers
 
 | Chemin | Responsabilité |
 |:--|:--|
-| `README.md` | Page d’accueil et présentation du portfolio. |
-| `CONTRIBUTING.md` | Règles de contribution documentaire et vérifications pré-publication. |
-| `structure.md` | Arborescence et historique des versions documentaires. |
-| `assets/brand/` | Illustrations vectorielles décoratives originales. |
-| `docs/README.md` | Guide de documentation et de publication. |
-| `docs/CHARTE_VISUELLE.md` | Direction artistique, palette et usages des visuels. |
-| `docs/PROJETS.md` | Fiches descriptives des projets déclarés. |
-| `docs/ROADMAP.md` | Pistes d’évolution du portfolio, sans engagement de livraison. |
-| `docs/SECURITE.md` | Confidentialité, publication responsable et signalement. |
+| `index.html` | Interface web principale, autonome et statique. |
+| `README.md` | Résumé textuel du site et liens vers les ressources. |
+| `CONTRIBUTING.md` | Règles de contribution et vérifications. |
+| `structure.md` | Arborescence et historique de version. |
+| `assets/brand/` | Illustrations vectorielles du portfolio. |
+| `docs/README.md` | Guide de documentation et publication. |
+| `docs/ARCHITECTURE.md` | Fonctionnement et sections du site. |
+| `docs/CHARTE_VISUELLE.md` | Palette du site et des illustrations, principes d’accessibilité. |
+| `docs/DEPLOIEMENT.md` | Guide de publication sur GitHub Pages. |
+| `docs/PROJETS.md` | Descriptions et limites des projets présentés. |
+| `docs/ROADMAP.md` | Pistes d’amélioration. |
+| `docs/SECURITE.md` | Politique de confidentialité et de divulgation. |
 
-## Conventions
+## Navigation
 
-- Rédiger en français avec des titres explicites et un vocabulaire technique cohérent.
-- Préférer des références vérifiables aux affirmations non étayées.
-- Décrire le périmètre autorisé et les limites des projets.
-- Utiliser des exemples synthétiques ; exclure les données sensibles et secrets.
-- Garder les visuels accessibles, légers, autonomes et autorisés à la publication.
-- Mettre à jour cette structure lorsque l’arborescence évolue.
-
-## Navigation documentaire
-
-- [Guide de documentation](docs/README.md)
-- [Charte visuelle](docs/CHARTE_VISUELLE.md)
-- [Fiches projets](docs/PROJETS.md)
-- [Feuille de route](docs/ROADMAP.md)
-- [Politique de sécurité](docs/SECURITE.md)
+- [Portfolio web](https://teremuhamblin.github.io/README/)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Déploiement](docs/DEPLOIEMENT.md)
+- [Documentation](docs/README.md)
 - [Contribution](CONTRIBUTING.md)
+
+## Conventions de maintenance
+
+- La page racine `index.html` est la source visuelle principale ; conserver le README comme résumé fidèle et accessible.
+- Synchroniser les identifiants des sections, les statuts des projets et les liens entre site et documentation.
+- Vérifier les liens de navigation et d’action après chaque changement.
+- Respecter l’accessibilité, les préférences de thème et la réduction des animations.
+- Ne pas committer de secrets, de données personnelles ou de contenus confidentiels.
+- Distinguer les statuts déclaratifs des preuves publiques vérifiables.
 
 ## Historique
 
@@ -61,4 +66,5 @@
 |:--|:--|
 | `1.0` | Portfolio principal, guide documentaire et structure initiale. |
 | `1.1` | Ajout des fiches projets et de la politique de sécurité. |
-| `1.2` | Ajout de la contribution, de la charte visuelle, de la feuille de route et des illustrations de marque. |
+| `1.2` | Ajout des illustrations de marque, charte visuelle, contribution et feuille de route. |
+| `1.3` | Documentation alignée avec `index.html`, ajout de l’architecture et du déploiement, README refondu comme page d’entrée du site. |
