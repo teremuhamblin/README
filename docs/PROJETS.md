@@ -1,141 +1,135 @@
-# Projet : ShadowStrike
+# Fiches des projets
+
+> **Version :** 1.3  
+> **Périmètre :** laboratoires, environnements dédiés ou systèmes explicitement autorisés  
+> **Portée :** statuts déclaratifs, à confirmer uniquement avec des livrables publics autorisés
+
+## ShadowStrike
 
 > **Catégorie :** Framework de laboratoire Red Team  
-> **Statut :** 🟣 En développement  
+> **Statut site :** Actif — à confirmer par des livrables liés  
 > **Périmètre :** environnement isolé et explicitement autorisé
 
-## Objectif
+### Objectif
 
 Étudier l’organisation de scénarios Red Team défensifs : chronologie, preuves, contrôles de sécurité, journalisation et restitution.
 
-## Livrables envisagés
+### Livrables envisagés
 
-- [ ] Modèles de cadrage documentaire.
-- [ ] Jeux de données synthétiques.
-- [ ] Guides de validation dans un laboratoire isolé.
-- [ ] Procédures de nettoyage et de conservation des preuves.
-- [ ] Exemple de rapport expurgé orienté remédiation.
+- Modèles de cadrage documentaire.
+- Jeux de données synthétiques.
+- Guides de validation dans un laboratoire isolé.
+- Procédures de nettoyage et de conservation minimale des preuves.
+- Exemple de rapport expurgé orienté remédiation.
 
-## Limites
+### Limites
 
-Aucune procédure, configuration ou artefact publiés ici ne doit être utilisé hors d’un mandat écrit. Le projet ne constitue pas une autorisation d’accès à un système tiers.
+Aucune procédure, configuration ou artefact publié ne doit être utilisé hors d’un mandat écrit. Ce projet ne constitue pas une autorisation d’accès à un système tiers.
 
----
-
-# Projet : ZeroDay-Lab
+## ZeroDay-Lab
 
 > **Catégorie :** Recherche en laboratoire  
-> **Statut :** 🧪 Recherche / expérimentation  
+> **Statut site :** Research  
 > **Périmètre :** applications, logiciels et matériels prévus à cet effet
 
-## Objectif
+### Objectif
 
 Documenter des exercices de découverte et de validation de vulnérabilités sur des cibles dédiées à l’apprentissage.
 
-## Axes
+### Axes
 
 - Revue statique et dynamique.
-- Compréhension des conditions nécessaires à un constat reproductible.
+- Conditions nécessaires à un constat reproductible.
 - Réduction des effets pendant les essais.
 - Description des impacts et mesures correctives.
-- Rédaction de rapports factuels sans données sensibles.
+- Rapports factuels sans données sensibles.
 
-## Exclusions
+### Exclusions
 
-Ce dépôt ne publie pas de payload opérant, de méthode d’exploitation applicable à une cible réelle ni de données permettant d’identifier une victime.
+Aucun payload opérant, aucune méthode d’exploitation applicable à une cible réelle et aucune donnée permettant d’identifier une victime ne sont publiés dans le cadre de ce projet.
 
----
-
-# Projet : CTF-Mastermind
+## CTF-Mastermind
 
 > **Catégorie :** Formation offensive défensive  
-> **Statut :** 🔄 En cours  
+> **Statut site :** En cours  
 > **Périmètre :** environnements de compétition ou machines locales
 
-## Objectif
+### Objectif
 
-Concevoir des défis pédagogiques, une progression par niveaux et des corrigés axés sur les principes de sécurité.
+Concevoir des défis pédagogiques, une progression par niveaux et des corrigés orientés compréhension et remédiation.
 
-## Livrables envisagés
+### Livrables envisagés
 
 - Énoncés anonymisés.
 - Architectures de machines isolées.
 - Indications graduelles.
-- Solutions explicatives orientées compréhension et remédiation.
+- Solutions explicatives.
 - Tests de reproductibilité.
 
-## Critères de qualité
+### Critères de qualité
 
 - Aucun accès à un réseau tiers requis.
 - Aucun secret réel embarqué.
 - Objectifs pédagogiques clairement identifiés.
 - Correction vérifiable en environnement local.
 
----
+## ReconX
 
-# Projet : ReconX
-
-> **Catégorie :** Automatisation  
-> **Statut :** 🟡 Prototype  
+> **Catégorie :** Automatisation d’inventaire autorisé  
+> **Statut site :** Bêta  
 > **Périmètre :** actifs explicitement autorisés
 
-## Objectif
+### Objectif
 
 Centraliser des contrôles d’inventaire sûrs, des validations documentées et une restitution lisible pour les équipes concernées.
 
-## Principes
+### Principes
 
 - Prévenir toute collecte excessive.
 - Exiger une liste d’actifs autorisés.
-- Conserver les journaux minimaux nécessaires.
+- Conserver uniquement les journaux nécessaires.
 - Séparer les données brutes des synthèses publiées.
-- Fournir une traçabilité des décisions et paramètres.
+- Fournir une traçabilité minimale des décisions et paramètres.
 
-## Résultats attendus
+### Résultats attendus
 
 - Inventaire vérifié.
 - Liste des contrôles exécutés.
 - Erreurs et limites documentées.
 - Synthèse destinée à la remédiation.
 
----
-
-# Projet : SmartContract-Sentinel
+## SmartContract-Sentinel
 
 > **Catégorie :** Audit blockchain  
-> **Statut :** 🔵 En évolution  
+> **Statut site :** Stable  
 > **Périmètre :** code source, contrats de laboratoire ou audits mandatés
 
-## Objectif
+### Objectif
 
 Organiser une revue méthodique des contrats intelligents et produire des recommandations vérifiables.
 
-## Axes possibles
+### Axes
 
 - Contrôles d’accès.
 - Gestion des erreurs et des états.
 - Opérations arithmétiques.
 - Séparation des responsabilités.
 - Compatibilité des appels externes.
-- Vérifications de tests et de déploiement.
+- Tests et conditions de déploiement.
 
-## Forme de restitution
+### Forme de restitution
 
-Chaque constat doit distinguer : gravité estimée, contexte, reproduction contrôlée, risque, mesure correcte et validation de la correction.
+Chaque constat doit distinguer gravité estimée, contexte, reproduction contrôlée, risque, mesure corrective et validation de la correction.
 
-> Aucun contrat réel ne doit être publié avec des clés, fonds, données privées ou mécanismes exploitables hors d’un mandat adapté.
+Aucun contrat réel ne doit être publié avec des clés, fonds, données privées ou mécanismes exploitables hors d’un mandat adapté.
 
----
-
-# Fiche commune de projet
-
-Utiliser cette structure pour ajouter un projet :
+## Fiche commune
 
 ```markdown
 # Nom du projet
 
-> **Catégorie :** ...
-> **Statut :** ...
+> **Catégorie :** ...  
+> **Statut :** ...  
 > **Périmètre :** ...
 
 ## Objectif
@@ -149,4 +143,3 @@ Utiliser cette structure pour ajouter un projet :
 ## Références publiques
 
 ## Statut de divulgation
-```
