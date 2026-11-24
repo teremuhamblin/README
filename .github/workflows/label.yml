@@ -1,0 +1,31 @@
+- name: "bug"
+  color: "d73a4a"
+  description: "Comportement incorrect ou défaillance du portfolio"
+
+- name: "documentation"
+  color: "0075ca"
+  description: "README, fiches projets ou guides"
+
+- name: "enhancement"
+  color: "a2eeef"
+  description: "Amélioration proposée"
+
+- name: "security"
+  color: "b60205"
+  description: "Question de sécurité nécessitant une coordination"
+
+- name: "accessibility"
+  color: "7057ff"
+  description: "Accessibilité ou utilisation clavier"
+
+- name: "mobile"
+  color: "fbca04"
+  description: "Responsive design ou interface mobile"
+
+- name: "dependencies"
+  color: "0366d6"
+  description: "Dépendances ou outils automatisés"
+
+- name: "maintenance"
+  color: "c5def5"
+  description: "Maintenance technique"
