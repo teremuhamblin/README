@@ -1,0 +1,40 @@
+name: "Proposition d'amélioration"
+description: "Proposer une amélioration au portfolio ou à sa documentation"
+title: "[Feature] "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Besoin
+      description: Quel besoin public ou pédagogique cette proposition adresse-t-elle ?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Solution proposée
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Périmètre et limites
+      description: Expliquez clairement les exclusions et contraintes.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: guidelines
+    attributes:
+      label: Principes du projet
+      options:
+        - label: La proposition respecte les principes d'autorisation préalable.
+          required: true
+        - label: Les données sensibles sont exclues.
+          required: true
+        - label: L'accessibilité, le responsive design et la réduction de mouvement sont pris en compte.
+          required: true
