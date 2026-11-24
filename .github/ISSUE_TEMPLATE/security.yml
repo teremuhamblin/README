@@ -1,0 +1,44 @@
+name: "Signalement de sécurité"
+description: "Signaler une vulnérabilité sans publier de preuve active"
+title: "[Sécurité] "
+labels:
+  - security
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Ne publiez pas ici de preuve active, secret, payload ou donnée sensible.**
+        Consultez [docs/SECURITE.md](../../docs/SECURITE.md) avant toute transmission.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Résumé
+      description: Décrivez brièvement le problème sans détails exploitables.
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact probable
+    validations:
+      required: true
+
+  - type: textarea
+    id: contact
+    attributes:
+      label: Canal de suivi souhaité
+      description: Indiquez uniquement un moyen de contact autorisé et adapté à une coordination privée.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: responsible
+    attributes:
+      label: Engagement
+      options:
+        - label: Je n'inclus aucune preuve active, donnée brute ou secret.
+          required: true
+        - label: Je respecterai les règles de divulgation responsable.
+          required: true
