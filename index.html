@@ -1,1962 +1,1265 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta
-        name="description"
-        content="TheMadDoG.tmdg - Sécurité offensive, Red Team, Threat Intelligence et architecture défensive."
-    >
-    <meta name="theme-color" content="#050505">
-
-    <title>TheMadDoG.tmdg // Offensive Security</title>
-
-    <style>
-        /* =========================================================
-           0x00 - VARIABLES
-        ========================================================= */
-
-        :root {
-            color-scheme: dark;
-
-            --bg: #050505;
-            --bg-grid: rgba(157, 0, 255, 0.055);
-            --surface: #0b0b0d;
-            --surface-alt: #111114;
-            --surface-hover: #17131c;
-
-            --text: #f5f5f5;
-            --text-soft: #c9c9c9;
-            --text-muted: #8d8992;
-
-            --accent: #9d00ff;
-            --accent-light: #d1a3ff;
-            --accent-dark: #3a0a57;
-            --accent-rgb: 157, 0, 255;
-
-            --success: #62ffb0;
-            --warning: #ffd166;
-            --info: #58c7ff;
-
-            --border: #29252e;
-            --border-strong: #4c2266;
-
-            --shadow:
-                0 0 0 1px rgba(var(--accent-rgb), 0.08),
-                0 20px 60px rgba(0, 0, 0, 0.42);
-
-            --radius: 10px;
-            --radius-small: 6px;
-            --content-width: 1180px;
-            --header-height: 76px;
-        }
-
-        html[data-theme="light"] {
-            color-scheme: light;
-
-            --bg: #f4f1f7;
-            --bg-grid: rgba(92, 0, 150, 0.05);
-            --surface: #ffffff;
-            --surface-alt: #f8f5fa;
-            --surface-hover: #f2eafa;
-
-            --text: #17131a;
-            --text-soft: #413b47;
-            --text-muted: #716b77;
-
-            --accent: #7900c7;
-            --accent-light: #5c008f;
-            --accent-dark: #dfc4ef;
-            --accent-rgb: 121, 0, 199;
-
-            --border: #d9d0de;
-            --border-strong: #a86aca;
-
-            --shadow:
-                0 0 0 1px rgba(var(--accent-rgb), 0.05),
-                0 20px 50px rgba(42, 20, 56, 0.12);
-        }
-
-        /* =========================================================
-           0x01 - RESET ET BASE
-        ========================================================= */
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: calc(var(--header-height) + 24px);
-        }
-
-        body {
-            margin: 0;
-            min-width: 320px;
-            overflow-x: hidden;
-            font-family:
-                "Fira Code",
-                "JetBrains Mono",
-                "Cascadia Code",
-                Consolas,
-                monospace;
-            color: var(--text);
-            background-color: var(--bg);
-            background-image:
-                linear-gradient(var(--bg-grid) 1px, transparent 1px),
-                linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
-            background-size: 42px 42px;
-            transition:
-                color 0.25s ease,
-                background-color 0.25s ease;
-        }
-
-        body::before {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            pointer-events: none;
-            content: "";
-            background:
-                radial-gradient(
-                    circle at 15% 10%,
-                    rgba(var(--accent-rgb), 0.13),
-                    transparent 31%
-                ),
-                radial-gradient(
-                    circle at 85% 42%,
-                    rgba(var(--accent-rgb), 0.08),
-                    transparent 28%
-                );
-        }
-
-        ::selection {
-            color: #050505;
-            background: var(--accent-light);
-        }
-
-        a {
-            color: inherit;
-        }
-
-        button,
-        a {
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        button {
-            font: inherit;
-        }
-
-        img,
-        svg {
-            display: block;
-            max-width: 100%;
-        }
-
-        code {
-            color: var(--accent-light);
-            font-family: inherit;
-        }
-
-        :focus-visible {
-            outline: 2px solid var(--accent-light);
-            outline-offset: 4px;
-        }
-
-        .skip-link {
-            position: fixed;
-            top: 12px;
-            left: 12px;
-            z-index: 3000;
-            padding: 10px 14px;
-            color: #050505;
-            background: var(--accent-light);
-            border-radius: var(--radius-small);
-            transform: translateY(-150%);
-            transition: transform 0.2s ease;
-        }
-
-        .skip-link:focus {
-            transform: translateY(0);
-        }
-
-        .container {
-            width: min(calc(100% - 36px), var(--content-width));
-            margin-inline: auto;
-        }
-
-        /* =========================================================
-           0x02 - EN-TETE ET NAVIGATION
-        ========================================================= */
-
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            min-height: var(--header-height);
-            background: rgba(5, 5, 5, 0.86);
-            border-bottom: 1px solid var(--border-strong);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.28);
-            backdrop-filter: blur(16px);
-        }
-
-        html[data-theme="light"] .site-header {
-            background: rgba(244, 241, 247, 0.88);
-        }
-
-        .header-inner {
-            min-height: var(--header-height);
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .brand {
-            flex: 0 0 auto;
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.98rem;
-            font-weight: 800;
-            letter-spacing: 0.04em;
-        }
-
-        .brand-mark {
-            margin-right: 7px;
-            color: var(--accent);
-            text-shadow: 0 0 14px rgba(var(--accent-rgb), 0.8);
-        }
-
-        .navigation {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-left: auto;
-        }
-
-        .navigation a {
-            padding: 9px 10px;
-            color: var(--text-soft);
-            border-radius: var(--radius-small);
-            text-decoration: none;
-            font-size: 0.77rem;
-            transition:
-                color 0.2s ease,
-                background 0.2s ease;
-        }
-
-        .navigation a:hover,
-        .navigation a[aria-current="true"] {
-            color: var(--accent-light);
-            background: rgba(var(--accent-rgb), 0.1);
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .icon-button,
-        .menu-button {
-            width: 42px;
-            height: 42px;
-            display: inline-grid;
-            place-items: center;
-            color: var(--text);
-            background: var(--surface-alt);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-small);
-            cursor: pointer;
-            transition:
-                color 0.2s ease,
-                border-color 0.2s ease,
-                transform 0.2s ease;
-        }
-
-        .icon-button:hover,
-        .menu-button:hover {
-            color: var(--accent-light);
-            border-color: var(--accent);
-            transform: translateY(-1px);
-        }
-
-        .menu-button {
-            display: none;
-        }
-
-        /* =========================================================
-           0x03 - HERO
-        ========================================================= */
-
-        .hero {
-            min-height: calc(100vh - var(--header-height));
-            min-height: calc(100svh - var(--header-height));
-            display: grid;
-            place-items: center;
-            padding: 72px 0;
-            position: relative;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
-            align-items: center;
-            gap: 56px;
-        }
-
-        .eyebrow {
-            margin: 0 0 18px;
-            color: var(--accent-light);
-            font-size: 0.82rem;
-            font-weight: 700;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-        }
-
-        .hero h1 {
-            max-width: 900px;
-            margin: 0;
-            font-size: clamp(2.7rem, 7vw, 6.6rem);
-            line-height: 0.94;
-            letter-spacing: -0.065em;
-        }
-
-        .hero h1 span {
-            display: block;
-            color: var(--accent);
-            text-shadow:
-                0 0 12px rgba(var(--accent-rgb), 0.55),
-                0 0 40px rgba(var(--accent-rgb), 0.22);
-        }
-
-        .hero-role {
-            margin: 28px 0 0;
-            color: var(--text-soft);
-            font-size: clamp(1rem, 2vw, 1.24rem);
-            line-height: 1.75;
-        }
-
-        .hero-role strong {
-            color: var(--text);
-        }
-
-        .hero-description {
-            max-width: 780px;
-            margin: 20px 0 0;
-            color: var(--text-muted);
-            line-height: 1.8;
-        }
-
-        .badge-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
-            margin: 30px 0 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .badge {
-            padding: 8px 11px;
-            color: var(--text-soft);
-            background: var(--surface-alt);
-            border: 1px solid var(--border);
-            border-radius: 999px;
-            font-size: 0.72rem;
-            letter-spacing: 0.04em;
-        }
-
-        .badge.accent {
-            color: var(--accent-light);
-            border-color: var(--border-strong);
-            background: rgba(var(--accent-rgb), 0.1);
-        }
-
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 30px;
-        }
-
-        .button {
-            min-height: 44px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-            padding: 11px 17px;
-            color: var(--text);
-            background: var(--surface-alt);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-small);
-            text-decoration: none;
-            font-size: 0.82rem;
-            font-weight: 700;
-            transition:
-                transform 0.2s ease,
-                border-color 0.2s ease,
-                background 0.2s ease;
-        }
-
-        .button:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        .button-primary {
-            color: #050505;
-            background: var(--accent);
-            border-color: var(--accent);
-            box-shadow: 0 0 28px rgba(var(--accent-rgb), 0.3);
-        }
-
-        html[data-theme="light"] .button-primary {
-            color: #fff;
-        }
-
-        .clearance-card {
-            position: relative;
-            overflow: hidden;
-            padding: 28px;
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(var(--accent-rgb), 0.12),
-                    transparent 48%
-                ),
-                var(--surface);
-            border: 1px solid var(--border-strong);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-
-        .clearance-card::after {
-            position: absolute;
-            right: -45px;
-            bottom: -62px;
-            width: 170px;
-            height: 170px;
-            content: "";
-            border: 1px solid var(--accent);
-            border-radius: 50%;
-            opacity: 0.14;
-            box-shadow:
-                0 0 0 22px rgba(var(--accent-rgb), 0.05),
-                0 0 0 46px rgba(var(--accent-rgb), 0.03);
-        }
-
-        .card-label {
-            margin: 0 0 24px;
-            color: var(--text-muted);
-            font-size: 0.72rem;
-            letter-spacing: 0.17em;
-            text-transform: uppercase;
-        }
-
-        .clearance-level {
-            margin: 0;
-            color: var(--accent-light);
-            font-size: clamp(2rem, 5vw, 4.2rem);
-            line-height: 1;
-            text-shadow: 0 0 22px rgba(var(--accent-rgb), 0.44);
-        }
-
-        .status-list {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            gap: 15px;
-            margin: 26px 0 0;
-        }
-
-        .status-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-            padding-bottom: 12px;
-            color: var(--text-muted);
-            border-bottom: 1px dashed var(--border);
-            font-size: 0.78rem;
-        }
-
-        .status-row strong {
-            color: var(--text);
-        }
-
-        .live {
-            color: var(--success) !important;
-        }
-
-        .live::before {
-            display: inline-block;
-            width: 7px;
-            height: 7px;
-            margin-right: 7px;
-            content: "";
-            background: currentColor;
-            border-radius: 50%;
-            box-shadow: 0 0 10px currentColor;
-            animation: pulse 1.5s infinite;
-        }
-
-        /* =========================================================
-           0x04 - MODULES GENERIQUES
-        ========================================================= */
-
-        main > section:not(.hero) {
-            padding: 96px 0;
-        }
-
-        main > section:nth-of-type(even):not(.hero) {
-            background: rgba(var(--accent-rgb), 0.018);
-            border-block: 1px solid rgba(var(--accent-rgb), 0.07);
-        }
-
-        .section-heading {
-            max-width: 860px;
-            margin-bottom: 38px;
-        }
-
-        .module-number {
-            display: inline-block;
-            margin-bottom: 12px;
-            color: var(--accent);
-            font-size: 0.8rem;
-            font-weight: 800;
-            letter-spacing: 0.16em;
-        }
-
-        .section-heading h2 {
-            margin: 0;
-            font-size: clamp(1.8rem, 4vw, 3.25rem);
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-        }
-
-        .section-heading p {
-            max-width: 780px;
-            margin: 18px 0 0;
-            color: var(--text-muted);
-            line-height: 1.75;
-        }
-
-        .section-heading p strong {
-            color: var(--text-soft);
-        }
-
-        .panel {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-
-        .terminal-bar {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            padding: 11px 14px;
-            background: var(--surface-alt);
-            border-bottom: 1px solid var(--border);
-            border-radius: var(--radius) var(--radius) 0 0;
-        }
-
-        .terminal-dot {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: var(--border-strong);
-        }
-
-        .terminal-dot:nth-child(1) {
-            background: #ff5f57;
-        }
-
-        .terminal-dot:nth-child(2) {
-            background: #febc2e;
-        }
-
-        .terminal-dot:nth-child(3) {
-            background: #28c840;
-        }
-
-        .terminal-title {
-            margin-left: 6px;
-            color: var(--text-muted);
-            font-size: 0.7rem;
-        }
-
-        /* =========================================================
-           0x05 - SYNTHESE ET IDENTITE
-        ========================================================= */
-
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(5, minmax(0, 1fr));
-            gap: 14px;
-        }
-
-        .domain-card {
-            min-height: 210px;
-            padding: 22px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            transition:
-                transform 0.2s ease,
-                border-color 0.2s ease,
-                background 0.2s ease;
-        }
-
-        .domain-card:hover {
-            background: var(--surface-hover);
-            border-color: var(--accent);
-            transform: translateY(-4px);
-        }
-
-        .domain-icon {
-            color: var(--accent);
-            font-size: 1.5rem;
-        }
-
-        .domain-card h3 {
-            margin: 28px 0 10px;
-            font-size: 0.93rem;
-        }
-
-        .domain-card p {
-            margin: 0;
-            color: var(--text-muted);
-            font-size: 0.78rem;
-            line-height: 1.7;
-        }
-
-        .identity-grid {
-            display: grid;
-            grid-template-columns: 0.85fr 1.15fr;
-            gap: 24px;
-        }
-
-        .terminal-content {
-            padding: 24px;
-            color: var(--text-soft);
-            font-size: 0.86rem;
-            line-height: 2;
-        }
-
-        .terminal-content p {
-            margin: 0;
-        }
-
-        .terminal-prompt {
-            color: var(--accent);
-        }
-
-        .terminal-value {
-            color: var(--text);
-            font-weight: 700;
-        }
-
-        .platform-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            align-content: center;
-            gap: 12px;
-            min-height: 100%;
-            padding: 26px;
-        }
-
-        .platform-cloud span {
-            padding: 9px 13px;
-            color: var(--text-soft);
-            background: var(--surface-alt);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-small);
-            font-size: 0.76rem;
-        }
-
-        .platform-cloud span:nth-child(3n + 1) {
-            color: var(--accent-light);
-            border-color: var(--border-strong);
-        }
-
-        /* =========================================================
-           0x06 - CYCLE D'ATTAQUE
-        ========================================================= */
-
-        .attack-cycle {
-            display: grid;
-            grid-template-columns:
-                minmax(130px, 1fr) auto
-                minmax(130px, 1fr) auto
-                minmax(130px, 1fr) auto
-                minmax(130px, 1fr) auto
-                minmax(130px, 1fr);
-            align-items: center;
-            gap: 12px;
-            overflow-x: auto;
-            padding: 34px;
-        }
-
-        .cycle-node {
-            min-width: 130px;
-            min-height: 116px;
-            display: grid;
-            place-items: center;
-            padding: 18px;
-            color: var(--text);
-            background: var(--bg);
-            border: 2px solid var(--accent);
-            border-radius: var(--radius);
-            text-align: center;
-        }
-
-        .cycle-node strong {
-            display: block;
-            font-size: 0.76rem;
-            line-height: 1.5;
-        }
-
-        .cycle-node small {
-            display: block;
-            margin-top: 8px;
-            color: var(--text-muted);
-            font-size: 0.65rem;
-        }
-
-        .cycle-node.gate {
-            color: #050505;
-            background: var(--accent);
-            border-color: var(--accent-light);
-            transform: rotate(2deg);
-        }
-
-        .cycle-node.gate small {
-            color: #1a1a1b;
-        }
-
-        .cycle-node.final {
-            border-color: var(--accent-light);
-            box-shadow: 0 0 28px rgba(var(--accent-rgb), 0.16);
-        }
-
-        .cycle-arrow {
-            color: var(--accent-light);
-            font-size: 1.5rem;
-            text-align: center;
-        }
-
-        /* =========================================================
-           0x07 - ARSENAL
-        ========================================================= */
-
-        .arsenal-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 18px;
-        }
-
-        .arsenal-column {
-            overflow: hidden;
-        }
-
-        .arsenal-column h3 {
-            margin: 0;
-            padding: 18px 20px;
-            color: var(--accent-light);
-            background: rgba(var(--accent-rgb), 0.08);
-            border-bottom: 1px solid var(--border);
-            font-size: 0.92rem;
-        }
-
-        .arsenal-column ul {
-            display: grid;
-            gap: 0;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .arsenal-column li {
-            padding: 15px 20px;
-            color: var(--text-soft);
-            border-bottom: 1px solid var(--border);
-            font-size: 0.78rem;
-            line-height: 1.55;
-        }
-
-        .arsenal-column li:last-child {
-            border-bottom: 0;
-        }
-
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            margin-top: 22px;
-            padding: 0;
-            list-style: none;
-        }
-
-        .skills li {
-            position: relative;
-            padding: 16px 18px 16px 42px;
-            color: var(--text-soft);
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-small);
-            font-size: 0.78rem;
-            line-height: 1.55;
-        }
-
-        .skills li::before {
-            position: absolute;
-            top: 17px;
-            left: 18px;
-            color: var(--accent);
-            content: ">";
-            font-weight: 900;
-        }
-
-        /* =========================================================
-           0x08 - OPERATIONS
-        ========================================================= */
-
-        .table-wrapper {
-            overflow-x: auto;
-        }
-
-        .operations-table {
-            width: 100%;
-            min-width: 760px;
-            border-collapse: collapse;
-        }
-
-        .operations-table th,
-        .operations-table td {
-            padding: 17px 18px;
-            border-bottom: 1px solid var(--border);
-            text-align: left;
-            vertical-align: middle;
-        }
-
-        .operations-table th {
-            color: var(--accent-light);
-            background: var(--surface-alt);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .operations-table td {
-            color: var(--text-soft);
-            font-size: 0.78rem;
-        }
-
-        .operations-table tbody tr {
-            transition: background 0.2s ease;
-        }
-
-        .operations-table tbody tr:hover {
-            background: rgba(var(--accent-rgb), 0.06);
-        }
-
-        .operations-table tbody tr:last-child td {
-            border-bottom: 0;
-        }
-
-        .operations-table strong {
-            color: var(--text);
-        }
-
-        .classification {
-            color: var(--accent-light);
-        }
-
-        .status-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            padding: 6px 9px;
-            border: 1px solid var(--border);
-            border-radius: 999px;
-            white-space: nowrap;
-        }
-
-        .status-pill::before {
-            width: 7px;
-            height: 7px;
-            content: "";
-            background: var(--accent);
-            border-radius: 50%;
-            box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.7);
-        }
-
-        .status-pill.research::before {
-            background: var(--warning);
-        }
-
-        .status-pill.progress::before {
-            background: var(--info);
-        }
-
-        .status-pill.stable::before {
-            background: var(--success);
-        }
-
-        /* =========================================================
-           0x09 - VALIDATION
-        ========================================================= */
-
-        .validation-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
-
-        .timeline {
-            position: relative;
-            margin: 0;
-            padding: 28px;
-            list-style: none;
-        }
-
-        .timeline::before {
-            position: absolute;
-            top: 32px;
-            bottom: 32px;
-            left: 42px;
-            width: 1px;
-            content: "";
-            background: var(--border-strong);
-        }
-
-        .timeline li {
-            position: relative;
-            padding: 0 0 25px 48px;
-        }
-
-        .timeline li:last-child {
-            padding-bottom: 0;
-        }
-
-        .timeline li::before {
-            position: absolute;
-            top: 3px;
-            left: 10px;
-            z-index: 1;
-            width: 10px;
-            height: 10px;
-            content: "";
-            background: var(--accent);
-            border: 4px solid var(--surface);
-            border-radius: 50%;
-            box-shadow: 0 0 0 1px var(--accent);
-        }
-
-        .timeline strong {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--text);
-            font-size: 0.82rem;
-        }
-
-        .timeline span {
-            color: var(--text-muted);
-            font-size: 0.75rem;
-            line-height: 1.6;
-        }
-
-        .achievement-list {
-            display: grid;
-            gap: 12px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .achievement-list li {
-            padding: 17px;
-            color: var(--text-soft);
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-left: 3px solid var(--accent);
-            border-radius: 0 var(--radius-small) var(--radius-small) 0;
-            font-size: 0.78rem;
-            line-height: 1.6;
-        }
-
-        .achievement-list strong {
-            color: var(--text);
-        }
-
-        /* =========================================================
-           0x0A - COMMUNICATIONS
-        ========================================================= */
-
-        .communications-grid {
-            display: grid;
-            grid-template-columns: 0.8fr 1.2fr;
-            gap: 24px;
-        }
-
-        .handshake {
-            padding: 26px;
-        }
-
-        .handshake p {
-            margin: 0 0 12px;
-            color: var(--text-soft);
-            font-size: 0.8rem;
-            line-height: 1.7;
-        }
-
-        .ok {
-            color: var(--success);
-        }
-
-        .pull-request {
-            padding: 26px;
-        }
-
-        .pull-request h3 {
-            margin: 0 0 16px;
-            color: var(--accent-light);
-            font-size: 0.92rem;
-        }
-
-        .checklist {
-            display: grid;
-            gap: 11px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .checklist li {
-            color: var(--text-soft);
-            font-size: 0.77rem;
-            line-height: 1.5;
-        }
-
-        .checklist li::before {
-            margin-right: 10px;
-            color: var(--success);
-            content: "[x]";
-        }
-
-        /* =========================================================
-           0x0B - PIED DE PAGE
-        ========================================================= */
-
-        .site-footer {
-            padding: 60px 0 34px;
-            text-align: center;
-            border-top: 1px solid var(--border-strong);
-        }
-
-        .footer-signature {
-            margin: 0;
-            color: var(--text);
-            font-size: clamp(1.1rem, 3vw, 1.8rem);
-            font-weight: 800;
-        }
-
-        .footer-system {
-            margin: 18px 0 0;
-            color: var(--accent-light);
-            font-size: 0.72rem;
-            letter-spacing: 0.12em;
-        }
-
-        .footer-mark {
-            margin: 22px 0 0;
-            color: var(--accent);
-            text-shadow: 0 0 14px rgba(var(--accent-rgb), 0.8);
-        }
-
-        .back-to-top {
-            display: inline-block;
-            margin-top: 28px;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.72rem;
-        }
-
-        .back-to-top:hover {
-            color: var(--accent-light);
-        }
-
-        /* =========================================================
-           0x0C - ANIMATIONS
-        ========================================================= */
-
-        @keyframes pulse {
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.35;
-            }
-        }
-
-        @keyframes caret {
-            0%,
-            49% {
-                opacity: 1;
-            }
-
-            50%,
-            100% {
-                opacity: 0;
-            }
-        }
-
-        .caret::after {
-            margin-left: 5px;
-            color: var(--accent);
-            content: "_";
-            animation: caret 1s steps(1) infinite;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition:
-                opacity 0.65s ease,
-                transform 0.65s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* =========================================================
-           0x0D - RESPONSIVE
-        ========================================================= */
-
-        @media (max-width: 1080px) {
-            .navigation {
-                position: fixed;
-                top: var(--header-height);
-                right: 18px;
-                left: 18px;
-                display: none;
-                padding: 12px;
-                background: var(--surface);
-                border: 1px solid var(--border-strong);
-                border-radius: var(--radius);
-                box-shadow: var(--shadow);
-            }
-
-            .navigation.open {
-                display: grid;
-            }
-
-            .navigation a {
-                padding: 12px;
-            }
-
-            .menu-button {
-                display: inline-grid;
-            }
-
-            .summary-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 880px) {
-            .hero-grid,
-            .identity-grid,
-            .validation-grid,
-            .communications-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                min-height: auto;
-            }
-
-            .clearance-card {
-                max-width: 560px;
-            }
-
-            .attack-cycle {
-                grid-template-columns: 1fr;
-            }
-
-            .cycle-arrow {
-                transform: rotate(90deg);
-            }
-
-            .arsenal-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 680px) {
-            :root {
-                --header-height: 66px;
-            }
-
-            .container {
-                width: min(calc(100% - 24px), var(--content-width));
-            }
-
-            .brand {
-                font-size: 0.82rem;
-            }
-
-            .hero {
-                padding: 56px 0;
-            }
-
-            .hero-grid {
-                gap: 36px;
-            }
-
-            .hero h1 {
-                font-size: clamp(2.5rem, 15vw, 4.5rem);
-            }
-
-            main > section:not(.hero) {
-                padding: 70px 0;
-            }
-
-            .summary-grid,
-            .skills {
-                grid-template-columns: 1fr;
-            }
-
-            .domain-card {
-                min-height: auto;
-            }
-
-            .domain-card h3 {
-                margin-top: 18px;
-            }
-
-            .attack-cycle {
-                padding: 20px;
-            }
-
-            .header-actions {
-                margin-left: auto;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
-            .reveal {
-                opacity: 1;
-                transform: none;
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TheMadDoG.tmdg : sécurité des systèmes, recherche en laboratoire, Red Team autorisée et amélioration défensive.">
+  <meta name="theme-color" content="#090b10">
+  <title>TheMadDoG.tmdg — Sécurité, recherche & défense>
+
+  <script>
+    (() => {
+      try {
+        const savedTheme = localStorage.getItem("tmdg-theme");
+        const preferredTheme = matchMedia("(prefers-color-scheme: light)").matches
+          ? "light"
+          : "dark";
+
+        document.documentElement.dataset.theme =
+          savedTheme === "light" || savedTheme === "dark"
+            ? savedTheme
+            : preferredTheme;
+      } catch {
+        document.documentElement.dataset.theme = "dark";
+      }
+    })();
+  </script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090b10;
+      --surface: #10141c;
+      --surface-alt: #171d28;
+      --text: #f4f6fa;
+      --muted: #a6afbd;
+      --accent: #b38cff;
+      --line: #2b3445;
+      --warning: #ffd479;
+      --width: 1160px;
+      --header-height: 70px;
+      --radius: 16px;
+      --shadow: 0 18px 55px rgb(0 0 0 / 24%);
+    }
+
+    html[data-theme="light"] {
+      color-scheme: light;
+      --bg: #f5f6fa;
+      --surface: #ffffff;
+      --surface-alt: #edf0f6;
+      --text: #171923;
+      --muted: #545d6c;
+      --accent: #612ec1;
+      --line: #d7dce6;
+      --warning: #805500;
+      --shadow: 0 16px 44px rgb(29 35 50 / 9%);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-height) + 18px);
+    }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      color: var(--text);
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(
+          ellipse at 12% 0%,
+          color-mix(in srgb, var(--accent) 12%, transparent),
+          transparent 34rem
+        );
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-underline-offset: 0.2em;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    ::selection {
+      color: var(--bg);
+      background: var(--accent);
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--width));
+      margin-inline: auto;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 20;
+      top: 8px;
+      left: 8px;
+      padding: 10px 14px;
+      color: var(--bg);
+      background: var(--accent);
+      border-radius: 8px;
+      transform: translateY(-160%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .site-header {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .header-inner {
+      min-height: var(--header-height);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand {
+      color: var(--text);
+      font-weight: 850;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      margin-right: 8px;
+      color: var(--accent);
+      font-size: 1.3rem;
+    }
+
+    .navigation {
+      display: flex;
+      gap: 4px;
+      margin-left: auto;
+    }
+
+    .navigation a {
+      padding: 9px 10px;
+      color: var(--muted);
+      border-radius: 9px;
+      font-size: 0.84rem;
+      text-decoration: none;
+    }
+
+    .navigation a:hover,
+    .navigation a[aria-current="location"] {
+      color: var(--text);
+      background: var(--surface-alt);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .icon-button,
+    .menu-button {
+      min-width: 42px;
+      min-height: 42px;
+      display: inline-grid;
+      place-items: center;
+      padding: 8px 11px;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .icon-button:hover,
+    .menu-button:hover {
+      border-color: var(--accent);
+    }
+
+    .menu-button {
+      display: none;
+    }
+
+    .hero {
+      padding: clamp(72px, 12vw, 144px) 0 90px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.7fr);
+      align-items: center;
+      gap: clamp(32px, 7vw, 88px);
+    }
+
+    .eyebrow,
+    .section-kicker {
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3rem, 8.5vw, 7rem);
+      line-height: 0.96;
+      letter-spacing: -0.075em;
+    }
+
+    h1 span {
+      display: block;
+      color: var(--accent);
+    }
+
+    .hero-lead {
+      max-width: 700px;
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+    }
+
+    .hero-lead strong {
+      color: var(--text);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tag {
+      padding: 6px 10px;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 0.78rem;
+    }
+
+    .tag-accent {
+      color: var(--accent);
+      border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition:
+        transform 0.18s ease,
+        border-color 0.18s ease;
+    }
+
+    .button:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: #110b1b;
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    html[data-theme="light"] .button-primary {
+      color: #ffffff;
+    }
+
+    .profile-card {
+      padding: 26px;
+      background:
+        linear-gradient(
+          145deg,
+          color-mix(in srgb, var(--accent) 13%, var(--surface)),
+          var(--surface) 70%
+        );
+      border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--line));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .profile-card h2 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .profile-card > p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .profile-meta {
+      display: grid;
+      gap: 12px;
+      margin: 22px 0 0;
+    }
+
+    .profile-meta div {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.82rem;
+    }
+
+    .profile-meta dt {
+      color: var(--muted);
+    }
+
+    .profile-meta dd {
+      margin: 0;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    main > section:not(.hero) {
+      padding: clamp(64px, 9vw, 104px) 0;
+      content-visibility: auto;
+      contain-intrinsic-size: auto 700px;
+    }
+
+    main > section:nth-of-type(even):not(.hero) {
+      background: color-mix(in srgb, var(--surface) 35%, transparent);
+      border-block: 1px solid var(--line);
+    }
+
+    .section-heading {
+      max-width: 780px;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
+      line-height: 1.12;
+      letter-spacing: -0.055em;
+    }
+
+    .section-heading p {
+      margin: 16px 0 0;
+      color: var(--muted);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      padding: 22px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .card h3 {
+      margin: 10px 0 8px;
+      font-size: 1rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .card-symbol {
+      color: var(--accent);
+      font-size: 1.25rem;
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      counter-reset: method-step;
+    }
+
+    .method-step {
+      min-height: 145px;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      counter-increment: method-step;
+    }
+
+    .method-step::before {
+      color: var(--accent);
+      content: "0" counter(method-step);
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .method-step h3 {
+      margin: 13px 0 7px;
+    }
+
+    .method-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .notice {
+      margin-top: 18px;
+      padding: 15px 18px;
+      color: var(--muted);
+      background: color-mix(in srgb, var(--warning) 8%, var(--surface));
+      border-left: 3px solid var(--warning);
+      border-radius: 0 10px 10px 0;
+      font-size: 0.88rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field label {
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field select {
+      min-width: min(280px, 80vw);
+      min-height: 44px;
+      padding: 9px 12px;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 9px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      padding: 22px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .project-card[hidden] {
+      display: none;
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .project-card h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .project-status {
+      padding: 4px 9px;
+      color: var(--accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+      border-radius: 999px;
+      font-size: 0.72rem;
+      white-space: nowrap;
+    }
+
+    .project-type {
+      margin-top: auto;
+      color: var(--muted);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .tool-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tool-list li {
+      padding: 9px 12px;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      font-size: 0.84rem;
+    }
+
+    .proof-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .proof-list li {
+      padding: 18px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .proof-list strong,
+    .proof-list span {
+      display: block;
+    }
+
+    .proof-list span {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .contact-panel {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .contact-panel p {
+      max-width: 680px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .site-footer {
+      padding: 36px 0;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 0.85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 1000px) {
+      :root {
+        --header-height: 66px;
+      }
+
+      .menu-button {
+        display: inline-grid;
+      }
+
+      .navigation {
+        position: absolute;
+        top: calc(var(--header-height) - 1px);
+        right: 20px;
+        left: 20px;
+        display: none;
+        padding: 10px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+      }
+
+      .navigation.open {
+        display: grid;
+      }
+
+      .navigation a {
+        padding: 12px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card {
+        max-width: 580px;
+      }
+
+      .method-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        width: min(calc(100% - 28px), var(--width));
+      }
+
+      .hero {
+        padding-top: 70px;
+      }
+
+      .card-grid,
+      .project-grid,
+      .proof-list {
+        grid-template-columns: 1fr;
+      }
+
+      .method-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .method-step {
+        min-height: 0;
+      }
+
+      .field,
+      .field input,
+      .field select {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+
+    @media print {
+      :root {
+        --bg: #ffffff;
+        --surface: #ffffff;
+        --text: #111111;
+        --muted: #444444;
+        --line: #bbbbbb;
+      }
+
+      body {
+        background: #ffffff;
+        font-size: 11pt;
+      }
+
+      .site-header,
+      .hero-actions,
+      .filters,
+      .back-to-top {
+        display: none !important;
+      }
+
+      main > section:not(.hero) {
+        padding: 24px 0;
+        content-visibility: visible;
+      }
+
+      .card,
+      .project-card,
+      .method-step,
+      .contact-panel {
+        break-inside: avoid;
+        box-shadow: none;
+      }
+    }
+  </style>
 </head>
 
 <body id="top">
-    <a class="skip-link" href="#main-content">Aller au contenu</a>
+  <a class="skip-link" href="#main-content">Aller au contenu</a>
 
-    <header class="site-header">
-        <div class="container header-inner">
-            <a class="brand" href="#top" aria-label="Retour à l'accueil">
-                <span class="brand-mark">⟢</span>TheMadDoG.tmdg
-            </a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Accueil TheMadDoG.tmdg">
+        <span class="brand-mark" aria-hidden="true">⟢</span>TheMadDoG.tmdg
+      </a>
 
-            <nav class="navigation" id="main-navigation" aria-label="Navigation principale">
-                <a href="#synthese">0x00 Synthèse</a>
-                <a href="#identite">0x01 Identité</a>
-                <a href="#cycle">0x02 Cycle</a>
-                <a href="#arsenal">0x03 Arsenal</a>
-                <a href="#operations">0x04 Opérations</a>
-                <a href="#validation">0x05 Validation</a>
-                <a href="#communications">0x06 Contact</a>
-            </nav>
+      <nav class="navigation" id="main-navigation" aria-label="Navigation principale">
+        <a href="#apropos">À propos</a>
+        <a href="#methode">Méthode</a>
+        <a href="#domaines">Domaines</a>
+        <a href="#projets">Projets</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-            <div class="header-actions">
-                <button
-                    class="icon-button"
-                    id="theme-toggle"
-                    type="button"
-                    aria-label="Activer le thème clair"
-                    title="Changer de thème"
-                >
-                    <span aria-hidden="true">◐</span>
-                </button>
+      <div class="header-actions">
+        <button
+          class="icon-button"
+          id="theme-toggle"
+          type="button"
+          aria-label="Activer le thème clair"
+          title="Changer de thème"
+        >
+          <span aria-hidden="true">◐</span>
+        </button>
+        <button
+          class="menu-button"
+          id="menu-toggle"
+          type="button"
+          aria-controls="main-navigation"
+          aria-expanded="false"
+          aria-label="Ouvrir le menu"
+        >
+          <span aria-hidden="true">☰</span>
+        </button>
+      </div>
+    </div>
+  </header>
 
-                <button
-                    class="menu-button"
-                    id="menu-toggle"
-                    type="button"
-                    aria-controls="main-navigation"
-                    aria-expanded="false"
-                    aria-label="Ouvrir le menu"
-                >
-                    <span aria-hidden="true">☰</span>
-                </button>
-            </div>
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Portfolio · Sécurité des systèmes · Recherche</p>
+          <h1 id="hero-title">TheMadDoG<span>.tmdg</span></h1>
+          <p class="hero-lead">
+            <strong>Comprendre les systèmes. Réduire les risques.</strong><br>
+            Un portfolio dédié à la sécurité, à l’expérimentation en laboratoire et aux pratiques défensives vérifiables.
+          </p>
+          <ul class="tag-list" aria-label="Principes et domaines">
+            <li class="tag tag-accent">Autorisation d’abord</li>
+            <li class="tag">Recherche en laboratoire</li>
+            <li class="tag">Red Team encadrée</li>
+            <li class="tag">Défense & remédiation</li>
+          </ul>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projets">Explorer les projets</a>
+            <a class="button" href="#methode">Voir la méthode</a>
+          </div>
         </div>
-    </header>
 
-    <main id="main-content">
-        <section class="hero" aria-labelledby="hero-title">
-            <div class="container hero-grid">
-                <div>
-                    <p class="eyebrow">Présentation // Sécurité offensive & défense avancée</p>
+        <aside class="profile-card" aria-label="Résumé du portfolio">
+          <h2>Approche opérationnelle</h2>
+          <p>
+            Chaque activité commence par un mandat explicite et se termine par des constats documentés,
+            des limites et des pistes de remédiation.
+          </p>
+          <dl class="profile-meta">
+            <div><dt>Périmètre</dt><dd>Défini & autorisé</dd></div>
+            <div><dt>Environnement</dt><dd>Laboratoire / mandat</dd></div>
+            <div><dt>Priorité</dt><dd>Impact minimal</dd></div>
+            <div><dt>Livrable</dt><dd>Preuves & recommandations</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
 
-                    <h1 id="hero-title">
-                        TheMadDoG
-                        <span>.tmdg</span>
-                    </h1>
-
-                    <p class="hero-role">
-                        <strong>Opérateur offensif</strong> · Red Team · Threat Intelligence
-                    </p>
-
-                    <p class="hero-description">
-                        Architecte d'entropie numérique spécialisé dans les paysages de
-                        menaces avancées, l'émulation d'adversaires, la recherche de
-                        vulnérabilités et les architectures défensives.
-                    </p>
-
-                    <ul class="badge-list" aria-label="Statuts opérationnels">
-                        <li class="badge accent">IDENTITÉ · VÉRIFIÉE</li>
-                        <li class="badge accent">STATUT · OPÉRATIONNEL</li>
-                        <li class="badge">CLEARANCE · L7 ADVERSAIRE</li>
-                        <li class="badge">THREAT FEED · LIVE</li>
-                    </ul>
-
-                    <div class="hero-actions">
-                        <a class="button button-primary" href="#operations">
-                            Voir les opérations
-                        </a>
-                        <a class="button" href="#communications">
-                            Initier un handshake
-                        </a>
-                    </div>
-                </div>
-
-                <aside class="clearance-card" aria-label="Habilitation opérationnelle">
-                    <p class="card-label">Cyber-physical clearance</p>
-                    <p class="clearance-level">L7</p>
-
-                    <div class="status-list">
-                        <div class="status-row">
-                            <span>DOMAINE</span>
-                            <strong>ADVERSARY</strong>
-                        </div>
-
-                        <div class="status-row">
-                            <span>STATUS</span>
-                            <strong class="live">OPERATIONAL</strong>
-                        </div>
-
-                        <div class="status-row">
-                            <span>THREAT FEED</span>
-                            <strong class="live">LIVE</strong>
-                        </div>
-
-                        <div class="status-row">
-                            <span>MODE</span>
-                            <strong>FULL HACKER THEME</strong>
-                        </div>
-                    </div>
-                </aside>
-            </div>
-        </section>
-
-        <section id="synthese">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <span class="module-number">0x00</span>
-                    <h2>Synthèse opérationnelle</h2>
-                    <p>
-                        Chaque module documente une capacité vérifiable, de la
-                        reconnaissance initiale jusqu'à la restitution d'un rapport de
-                        renseignement. <strong>Discipline centrale :</strong> traduire une
-                        vulnérabilité complexe en avantage stratégique.
-                    </p>
-                </div>
-
-                <div class="summary-grid">
-                    <article class="domain-card reveal">
-                        <span class="domain-icon" aria-hidden="true">🜏</span>
-                        <h3>Adversary Emulation</h3>
-                        <p>Scénarios Red Team structurés et alignés sur MITRE ATT&CK.</p>
-                    </article>
-
-                    <article class="domain-card reveal">
-                        <span class="domain-icon" aria-hidden="true">🧬</span>
-                        <h3>Exploit Dev & Reverse</h3>
-                        <p>Analyse binaire, fuzzing et développement d'exploits.</p>
-                    </article>
-
-                    <article class="domain-card reveal">
-                        <span class="domain-icon" aria-hidden="true">🛡️</span>
-                        <h3>Architecture défensive</h3>
-                        <p>Durcissement, segmentation et modèles zero trust.</p>
-                    </article>
-
-                    <article class="domain-card reveal">
-                        <span class="domain-icon" aria-hidden="true">🕸️</span>
-                        <h3>Vulnerability Research</h3>
-                        <p>Recherche de vulnérabilités et analyse de malware.</p>
-                    </article>
-
-                    <article class="domain-card reveal">
-                        <span class="domain-icon" aria-hidden="true">⚙️</span>
-                        <h3>Systèmes critiques</h3>
-                        <p>Embarqué, IoT, ICS/SCADA et environnements durcis.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="identite">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <span class="module-number">0x01</span>
-                    <h2>Identité & habilitations</h2>
-                    <p>
-                        Les indicateurs agrègent le statut d'habilitation, le niveau
-                        d'accréditation et le domaine opérationnel.
-                    </p>
-                </div>
-
-                <div class="identity-grid">
-                    <div class="panel reveal">
-                        <div class="terminal-bar">
-                            <span class="terminal-dot"></span>
-                            <span class="terminal-dot"></span>
-                            <span class="terminal-dot"></span>
-                            <span class="terminal-title">clearance-status.sh</span>
-                        </div>
-
-                        <div class="terminal-content">
-                            <p>
-                                <span class="terminal-prompt">◈ CLEARANCE :</span>
-                                <span class="terminal-value">L7 · ADVERSARY</span>
-                            </p>
-                            <p>
-                                <span class="terminal-prompt">◈ STATUS :</span>
-                                <span class="terminal-value">OPERATIONAL</span>
-                            </p>
-                            <p>
-                                <span class="terminal-prompt">◈ THREAT :</span>
-                                <span class="terminal-value caret">FEED LIVE</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="panel platform-cloud reveal" aria-label="Plateformes">
-                        <span>Windows</span>
-                        <span>Linux</span>
-                        <span>macOS</span>
-                        <span>Android</span>
-                        <span>Xiaomi</span>
-                        <span>Cloud</span>
-                        <span>IoT</span>
-                        <span>Virtualisation</span>
-                        <span>Conteneurs</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="cycle">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <span class="module-number">0x02</span>
-                    <h2>Cycle d'attaque</h2>
-                    <p>
-                        Chaque phase produit une preuve exploitable : la reconnaissance
-                        alimente l'exploitation, la persistance sécurise l'accès et les
-                        résultats nourrissent le rapport final.
-                    </p>
-                </div>
-
-                <div class="panel attack-cycle reveal" aria-label="Cycle d'attaque">
-                    <div class="cycle-node">
-                        <div>
-                            <strong>RECONNAISSANCE</strong>
-                            <small>Amass · Nmap</small>
-                        </div>
-                    </div>
-
-                    <div class="cycle-arrow" aria-hidden="true">→</div>
-
-                    <div class="cycle-node">
-                        <div>
-                            <strong>EXPLOITATION</strong>
-                            <small>Cobalt Strike</small>
-                        </div>
-                    </div>
-
-                    <div class="cycle-arrow" aria-hidden="true">→</div>
-
-                    <div class="cycle-node gate">
-                        <div>
-                            <strong>PERSISTENCE</strong>
-                            <small>Kernels custom</small>
-                        </div>
-                    </div>
-
-                    <div class="cycle-arrow" aria-hidden="true">→</div>
-
-                    <div class="cycle-node">
-                        <div>
-                            <strong>EXFILTRATION</strong>
-                            <small>ELK · Splunk</small>
-                        </div>
-                    </div>
-
-                    <div class="cycle-arrow" aria-hidden="true">→</div>
-
-                    <div class="cycle-node final">
-                        <div>
-                            <strong>RAPPORT INTEL</strong>
-                            <small>Preuves · Remédiation</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="arsenal">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <span class="module-number">0x03</span>
-                    <h2>Arsenal technique</h2>
-                    <p>
-                        Cartographie des plateformes, outils et domaines d'intervention
-                        mobilisés au cours des engagements.
-                    </p>
-                </div>
-
-                <div class="arsenal-grid">
-                    <article class="panel arsenal-column reveal">
-                        <h3>Plateformes</h3>
-                        <ul>
-                            <li>Windows · Linux · macOS</li>
-                            <li>Android · Xiaomi · IoT</li>
-                            <li>Cloud · Virtualisation · Conteneurs</li>
-                            <li>Systèmes embarqués</li>
-                        </ul>
-                    </article>
-
-                    <article class="panel arsenal-column reveal">
-                        <h3>Outils</h3>
-                        <ul>
-                            <li>Cobalt Strike · Metasploit · Empire</li>
-                            <li>Burp Suite · IDA Pro · Ghidra</li>
-                            <li>Binary Ninja · Nmap · Amass · Masscan</li>
-                            <li>ELK · Splunk · Suricata · Scripts custom</li>
-                        </ul>
-                    </article>
-
-                    <article class="panel arsenal-column reveal">
-                        <h3>Domaines</h3>
-                        <ul>
-                            <li>Web · Réseau · Sans-fil</li>
-                            <li>Cloud · Mobile · IoT</li>
-                            <li>ICS/SCADA · Embarqué</li>
-                            <li>Blockchain · Smart Contracts · IA/ML</li>
-                        </ul>
-                    </article>
-                </div>
-
-                <ul class="skills">
-                    <li class="reveal">
-                        Tests d'intrusion Web, réseau, cloud, mobile, IoT et ICS/SCADA
-                    </li>
-                    <li class="reveal">
-                        Opérations Red Team et campagnes d'émulation d'adversaires
-                    </li>
-                    <li class="reveal">
-                        Reverse engineering, développement d'exploits et fuzzing
-                    </li>
-                    <li class="reveal">
-                        Threat hunting, réponse aux incidents et forensic numérique
-                    </li>
-                    <li class="reveal">
-                        Cyber Threat Intelligence et architecture défensive
-                    </li>
-                    <li class="reveal">
-                        Automatisation, DevSecOps, CI/CD et pipelines SOAR
-                    </li>
-                    <li class="reveal">
-                        Sécurité Blockchain et audit de Smart Contracts
-                    </li>
-                    <li class="reveal">
-                        Sécurité des systèmes embarqués et des environnements IA/ML
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="operations">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <span class="module-number">0x04</span>
-                    <h2>Registre des opérations</h2>
-                    <p>
-                        Le statut indique la phase de vie de chaque projet. La
-                        classification précise la nature du livrable.
-                    </p>
-                </div>
-
-                <div class="panel table-wrapper reveal">
-                    <table class="operations-table">
-                        <thead>
-                            <tr>
-                                <th>Identifiant</th>
-                                <th>Classification</th>
-                                <th>Objectif de mission</th>
-                                <th>Statut</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td><strong>ShadowStrike</strong></td>
-                                <td><code class="classification">FRAMEWORK</code></td>
-                                <td>Framework d'opérations Red Team</td>
-                                <td><span class="status-pill">Actif</span></td>
-                            </tr>
-
-                            <tr>
-                                <td><strong>ZeroDay-Lab</strong></td>
-                                <td><code class="classification">RESEARCH</code></td>
-                                <td>Recherche et exploitation de vulnérabilités</td>
-                                <td>
-                                    <span class="status-pill research">Research</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><strong>CTF-Mastermind</strong></td>
-                                <td><code class="classification">TRAINING</code></td>
-                                <td>Défis CTF personnalisés</td>
-                                <td>
-                                    <span class="status-pill progress">En cours</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><strong>ReconX</strong></td>
-                                <td><code class="classification">AUTOMATION</code></td>
-                                <td>Plateforme de reconnaissance automatisée</td>
-                                <td>
-                                    <span class="status-pill research">Bêta</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><strong>SmartContract-Sentinel</strong></td>
-                                <td><code class="classification">AUDIT</code></td>
-                                <td>Sécurité Blockchain et Smart Contracts</td>
-                                <td>
-                                    <span class="status-pill stable">Stable</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <section id="validation">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <span class="module-number">0x05</span>
-                    <h2>Validation & logs</h2>
-                    <p>
-                        Chronologie d'un engagement contrôlé et registre des validations
-                        externes associées aux activités de recherche.
-                    </p>
-                </div>
-
-                <div class="validation-grid">
-                    <ol class="panel timeline reveal">
-                        <li>
-                            <strong>01 // Cadrage</strong>
-                            <span>Règles d'engagement et périmètre validés.</span>
-                        </li>
-                        <li>
-                            <strong>02 // Reconnaissance passive</strong>
-                            <span>Cartographie de la surface d'attaque.</span>
-                        </li>
-                        <li>
-                            <strong>03 // Exploitation contrôlée</strong>
-                            <span>Validation technique des scénarios retenus.</span>
-                        </li>
-                        <li>
-                            <strong>04 // Preuves & journaux</strong>
-                            <span>Collecte des éléments de preuve reproductibles.</span>
-                        </li>
-                        <li>
-                            <strong>05 // Restitution</strong>
-                            <span>Rapport de renseignement et plan de remédiation.</span>
-                        </li>
-                    </ol>
-
-                    <ul class="achievement-list">
-                        <li class="reveal">
-                            <strong>Black Hat / DEFCON</strong><br>
-                            Intervenant et chercheur en sécurité.
-                        </li>
-                        <li class="reveal">
-                            <strong>Zero-day archive</strong><br>
-                            Publication d'exploits et de CVE.
-                        </li>
-                        <li class="reveal">
-                            <strong>Hall of Fame</strong><br>
-                            Apple · Google · Microsoft · Meta.
-                        </li>
-                        <li class="reveal">
-                            <strong>CTF</strong><br>
-                            Compétitions et défis offensifs personnalisés.
-                        </li>
-                        <li class="reveal">
-                            <strong>Tooling</strong><br>
-                            Conception d'outils de sécurité avancés.
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="communications">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <span class="module-number">0x06</span>
-                    <h2>Communications sécurisées</h2>
-                    <p>
-                        Toute demande opérationnelle passe par un canal tracé, un
-                        périmètre explicite et des règles d'engagement validées.
-                    </p>
-                </div>
-
-                <div class="communications-grid">
-                    <div class="panel reveal">
-                        <div class="terminal-bar">
-                            <span class="terminal-dot"></span>
-                            <span class="terminal-dot"></span>
-                            <span class="terminal-dot"></span>
-                            <span class="terminal-title">secure-handshake</span>
-                        </div>
-
-                        <div class="handshake">
-                            <p>
-                                <span class="terminal-prompt">❯</span>
-                                tmdg --initiate-handshake
-                            </p>
-                            <p>
-                                <span class="ok">[ OK ]</span>
-                                clé publique échangée
-                            </p>
-                            <p>
-                                <span class="ok">[ OK ]</span>
-                                canal chiffré établi
-                            </p>
-                            <p>
-                                <span class="terminal-prompt">❯ objectif:</span>
-                                collaboration / audit / red team
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="panel pull-request reveal">
-                        <h3>Pull request // Règles d'engagement</h3>
-
-                        <ul class="checklist">
-                            <li>Cible ou dépôt concerné identifié</li>
-                            <li>Règles d'engagement définies</li>
-                            <li>Fenêtre temporelle validée</li>
-                            <li>Aucune donnée sensible exposée</li>
-                            <li>Divulgation responsable respectée</li>
-                        </ul>
-
-                        <div class="hero-actions">
-                            <!-- Remplacer cette URL par celle du dépôt GitHub. -->
-                            <a
-                                class="button button-primary"
-                                href="[github.com](https://github.com/)"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                Ouvrir le dépôt
-                            </a>
-
-                            <a class="button" href="#operations">
-                                Consulter le registre
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p class="footer-signature">Opérationnel dans les ombres numériques.</p>
-            <p class="footer-system">
-                SYSTEM_MESSAGE :: HACK THE PLANET // 2026
-            </p>
-            <p class="footer-mark" aria-hidden="true">⟢ ⚡ ⟢</p>
-            <a class="back-to-top" href="#top">↑ Retour au sommet</a>
+    <section id="apropos" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">01 / Présentation</span>
+          <h2 id="about-title">La sécurité, de l’analyse à l’amélioration</h2>
+          <p>
+            Ce portfolio présente des axes de pratique et des projets. Les statuts affichés sont déclaratifs :
+            ils ne constituent pas une validation indépendante ni une preuve de certification ou d’habilitation.
+          </p>
         </div>
-    </footer>
+        <div class="card-grid">
+          <article class="card">
+            <span class="card-symbol" aria-hidden="true">⌕</span>
+            <h3>Évaluer avec méthode</h3>
+            <p>Examiner des systèmes dans un cadre défini, proportionné et approuvé au préalable.</p>
+          </article>
+          <article class="card">
+            <span class="card-symbol" aria-hidden="true">⌘</span>
+            <h3>Apprendre en laboratoire</h3>
+            <p>Documenter des expérimentations isolées, des limites techniques et des résultats reproductibles.</p>
+          </article>
+          <article class="card">
+            <span class="card-symbol" aria-hidden="true">◇</span>
+            <h3>Renforcer la défense</h3>
+            <p>Transformer les constats en recommandations priorisées, utiles aux équipes responsables.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        (() => {
-            "use strict";
+    <section id="methode" aria-labelledby="method-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">02 / Garde-fous</span>
+          <h2 id="method-title">Un cycle validate-first</h2>
+          <p>
+            Aucune vérification active ne commence sans autorisation explicite, périmètre documenté
+            et règles d’engagement comprises.
+          </p>
+        </div>
+        <div class="method-grid">
+          <article class="method-step">
+            <h3>Cadrer</h3>
+            <p>Confirmer mandat, cibles, exclusions, calendrier et contacts d’escalade.</p>
+          </article>
+          <article class="method-step">
+            <h3>Observer</h3>
+            <p>Choisir des actions proportionnées au besoin et à l’environnement autorisé.</p>
+          </article>
+          <article class="method-step">
+            <h3>Valider</h3>
+            <p>Effectuer uniquement les vérifications prévues, avec arrêt en cas d’impact inattendu.</p>
+          </article>
+          <article class="method-step">
+            <h3>Restituer</h3>
+            <p>Fournir preuves minimales, limites, risques et recommandations de remédiation.</p>
+          </article>
+        </div>
+        <p class="notice">
+          <strong>Règle d’arrêt :</strong> si l’autorisation, le périmètre ou les règles ne sont pas clairs,
+          l’activité est suspendue jusqu’à clarification. Aucun contenu de ce site n’autorise l’intervention
+          sur un système tiers.
+        </p>
+      </div>
+    </section>
 
-            const root = document.documentElement;
-            const themeToggle = document.getElementById("theme-toggle");
-            const menuToggle = document.getElementById("menu-toggle");
-            const navigation = document.getElementById("main-navigation");
-            const navLinks = [...navigation.querySelectorAll("a")];
+    <section id="domaines" aria-labelledby="domains-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">03 / Domaines</span>
+          <h2 id="domains-title">Axes de pratique & environnements</h2>
+          <p>
+            Ces catégories décrivent les thèmes du portfolio ; elles ne constituent ni une autorisation
+            d’intervention ni une preuve d’expérience certifiée.
+          </p>
+        </div>
+        <ul class="tool-list">
+          <li>Sécurité applicative</li>
+          <li>Réseaux & systèmes</li>
+          <li>Analyse binaire</li>
+          <li>Cloud & conteneurs</li>
+          <li>Mobile & IoT</li>
+          <li>Détection & télémétrie</li>
+          <li>Threat Intelligence</li>
+          <li>Architecture défensive</li>
+          <li>Environnements de formation</li>
+          <li>Automatisation de contrôles</li>
+        </ul>
+      </div>
+    </section>
 
-            const storedTheme = localStorage.getItem("tmdg-theme");
-            const preferredTheme = window.matchMedia("(prefers-color-scheme: light)")
-                .matches
-                ? "light"
-                : "dark";
+    <section id="projets" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">04 / Registre</span>
+          <h2 id="projects-title">Projets</h2>
+          <p>
+            Recherche, formation et outillage présentés selon leur orientation. Les statuts sont déclaratifs
+            et restent à confirmer par des livrables publics liés.
+          </p>
+        </div>
 
-            function applyTheme(theme) {
-                root.dataset.theme = theme;
-                localStorage.setItem("tmdg-theme", theme);
+        <div class="filters" role="search">
+          <div class="field">
+            <label for="project-search">Rechercher un projet</label>
+            <input
+              id="project-search"
+              type="search"
+              placeholder="Nom ou orientation…"
+              autocomplete="off"
+            >
+          </div>
+          <div class="field">
+            <label for="project-status">Filtrer par statut</label>
+            <select id="project-status">
+              <option value="all">Tous les statuts</option>
+              <option value="active">Actif</option>
+              <option value="research">Research</option>
+              <option value="progress">En cours</option>
+              <option value="beta">Bêta</option>
+              <option value="stable">Stable</option>
+            </select>
+          </div>
+          <button class="button" id="clear-filters" type="button">Réinitialiser</button>
+        </div>
 
-                const nextTheme = theme === "dark" ? "clair" : "sombre";
-                themeToggle.setAttribute(
-                    "aria-label",
-                    `Activer le thème ${nextTheme}`
-                );
-            }
+        <p class="sr-only" id="project-count" aria-live="polite"></p>
 
-            applyTheme(storedTheme || preferredTheme);
+        <div class="project-grid">
+          <article
+            class="project-card"
+            data-status="active"
+            data-search="shadowstrike framework laboratoire red team"
+          >
+            <div class="project-top">
+              <h3>ShadowStrike</h3>
+              <span class="project-status">Actif*</span>
+            </div>
+            <p>Framework de laboratoire orienté vers l’émulation contrôlée et la documentation des scénarios.</p>
+            <span class="project-type">Laboratoire</span>
+          </article>
 
-            themeToggle.addEventListener("click", () => {
-                const nextTheme =
-                    root.dataset.theme === "dark" ? "light" : "dark";
+          <article
+            class="project-card"
+            data-status="research"
+            data-search="zeroday lab recherche vulnérabilités environnement dédié"
+          >
+            <div class="project-top">
+              <h3>ZeroDay-Lab</h3>
+              <span class="project-status">Research*</span>
+            </div>
+            <p>Recherche en environnement dédié, avec priorité à l’analyse, à la validation contrôlée et à la divulgation responsable.</p>
+            <span class="project-type">Recherche</span>
+          </article>
 
-                applyTheme(nextTheme);
-            });
+          <article
+            class="project-card"
+            data-status="progress"
+            data-search="ctf mastermind formation défis compétition"
+          >
+            <div class="project-top">
+              <h3>CTF-Mastermind</h3>
+              <span class="project-status">En cours*</span>
+            </div>
+            <p>Ressources de formation et défis destinés à des environnements de compétition autorisés.</p>
+            <span class="project-type">Formation</span>
+          </article>
 
-            menuToggle.addEventListener("click", () => {
-                const isOpen = navigation.classList.toggle("open");
+          <article
+            class="project-card"
+            data-status="beta"
+            data-search="reconx inventaire automatisation autorisé"
+          >
+            <div class="project-top">
+              <h3>ReconX</h3>
+              <span class="project-status">Bêta*</span>
+            </div>
+            <p>Concept d’automatisation d’inventaire à utiliser uniquement sur des actifs explicitement autorisés.</p>
+            <span class="project-type">Automatisation</span>
+          </article>
 
-                menuToggle.setAttribute("aria-expanded", String(isOpen));
-                menuToggle.setAttribute(
-                    "aria-label",
-                    isOpen ? "Fermer le menu" : "Ouvrir le menu"
-                );
-            });
+          <article
+            class="project-card"
+            data-status="stable"
+            data-search="smartcontract sentinel audit blockchain contrats intelligents"
+          >
+            <div class="project-top">
+              <h3>SmartContract-Sentinel</h3>
+              <span class="project-status">Stable*</span>
+            </div>
+            <p>Revue de sécurité de contrats intelligents et documentation des résultats et limites.</p>
+            <span class="project-type">Audit</span>
+          </article>
+        </div>
 
-            navLinks.forEach((link) => {
-                link.addEventListener("click", () => {
-                    navigation.classList.remove("open");
-                    menuToggle.setAttribute("aria-expanded", "false");
-                    menuToggle.setAttribute("aria-label", "Ouvrir le menu");
-                });
-            });
+        <p class="notice">
+          * Statuts déclaratifs repris du portfolio ; consulter les dépôts et livrables liés pour vérifier l’état actuel.
+        </p>
+      </div>
+    </section>
 
-            document.addEventListener("click", (event) => {
-                const clickedInsideNavigation = navigation.contains(event.target);
-                const clickedMenuButton = menuToggle.contains(event.target);
+    <section id="preuves" aria-labelledby="proof-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">05 / Qualité</span>
+          <h2 id="proof-title">Des résultats vérifiables</h2>
+          <p>Un livrable utile précise ce qui a été fait, ce qui ne l’a pas été et ce qui doit être corrigé.</p>
+        </div>
+        <ul class="proof-list">
+          <li>
+            <strong>Contexte & autorisation</strong>
+            <span>Mandat, périmètre et exclusions consignés.</span>
+          </li>
+          <li>
+            <strong>Éléments minimaux</strong>
+            <span>Preuves nécessaires, sans collecte excessive de données.</span>
+          </li>
+          <li>
+            <strong>Remédiation & suivi</strong>
+            <span>Priorités, limites et validation de correction.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-                if (!clickedInsideNavigation && !clickedMenuButton) {
-                    navigation.classList.remove("open");
-                    menuToggle.setAttribute("aria-expanded", "false");
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">06 / Collaboration</span>
+          <h2 id="contact-title">Parlons d’un cadre clair</h2>
+          <p>
+            Pour une collaboration, préciser l’objectif, le périmètre autorisé, la fenêtre de travail
+            et les règles de divulgation. Ne transmettez pas de secrets ni de données sensibles via un canal public.
+          </p>
+        </div>
+        <div class="contact-panel">
+          <p>
+            Les échanges et validations doivent précéder toute activité technique.
+            Le dépôt GitHub permet de consulter les informations publiques du projet.
+          </p>
+          <a
+            class="button button-primary"
+            href="https://github.com/teremuhamblin/TheMadDoG.tmdg"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Voir le dépôt GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="current-year">2026</span> TheMadDoG.tmdg · Portfolio de sécurité</span>
+      <a class="back-to-top" href="#top">Retour en haut ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const root = document.documentElement;
+      const themeButton = document.getElementById("theme-toggle");
+      const menuButton = document.getElementById("menu-toggle");
+      const navigation = document.getElementById("main-navigation");
+      const navLinks = [...navigation.querySelectorAll("a")];
+      const searchInput = document.getElementById("project-search");
+      const statusFilter = document.getElementById("project-status");
+      const projectCards = [...document.querySelectorAll(".project-card")];
+      const projectCount = document.getElementById("project-count");
+
+      const normalize = (value) =>
+        value
+          .toLocaleLowerCase("fr")
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+
+      const setTheme = (theme) => {
+        root.dataset.theme = theme;
+        themeButton.setAttribute(
+          "aria-label",
+          `Activer le thème ${theme === "dark" ? "clair" : "sombre"}`
+        );
+
+        document.querySelector('meta[name="theme-color"]').content =
+          theme === "dark" ? "#090b10" : "#f5f6fa";
+
+        try {
+          localStorage.setItem("tmdg-theme", theme);
+        } catch {
+          // Le thème reste actif pour la session si le stockage est indisponible.
+        }
+      };
+
+      themeButton.addEventListener("click", () => {
+        setTheme(root.dataset.theme === "dark" ? "light" : "dark");
+      });
+
+      const closeMenu = () => {
+        navigation.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Ouvrir le menu");
+      };
+
+      menuButton.addEventListener("click", () => {
+        const isOpen = menuButton.getAttribute("aria-expanded") !== "true";
+
+        navigation.classList.toggle("open", isOpen);
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.setAttribute(
+          "aria-label",
+          isOpen ? "Fermer le menu" : "Ouvrir le menu"
+        );
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+      document.addEventListener("click", (event) => {
+        if (
+          !navigation.contains(event.target) &&
+          !menuButton.contains(event.target)
+        ) {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeMenu();
+        }
+
+        if (
+          (event.ctrlKey || event.metaKey) &&
+          event.key.toLowerCase() === "k"
+        ) {
+          event.preventDefault();
+          document.getElementById("projets").scrollIntoView({
+            behavior: "smooth"
+          });
+          searchInput.focus({ preventScroll: true });
+        }
+      });
+
+      const filterProjects = () => {
+        const query = normalize(searchInput.value.trim());
+        const selectedStatus = statusFilter.value;
+        let visibleCount = 0;
+
+        projectCards.forEach((card) => {
+          const searchableText = normalize(
+            `${card.dataset.search} ${card.textContent}`
+          );
+          const matchesQuery = searchableText.includes(query);
+          const matchesStatus =
+            selectedStatus === "all" ||
+            card.dataset.status === selectedStatus;
+          const isVisible = matchesQuery && matchesStatus;
+
+          card.hidden = !isVisible;
+
+          if (isVisible) {
+            visibleCount += 1;
+          }
+        });
+
+        projectCount.textContent =
+          `${visibleCount} projet${visibleCount === 1 ? "" : "s"} affiché${visibleCount === 1 ? "" : "s"}.`;
+      };
+
+      searchInput.addEventListener("input", filterProjects);
+      statusFilter.addEventListener("change", filterProjects);
+
+      document.getElementById("clear-filters").addEventListener("click", () => {
+        searchInput.value = "";
+        statusFilter.value = "all";
+        filterProjects();
+        searchInput.focus();
+      });
+
+      filterProjects();
+
+      document.getElementById("current-year").textContent =
+        String(new Date().getFullYear());
+
+      if ("IntersectionObserver" in window) {
+        const sectionObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              navLinks.forEach((link) => {
+                if (link.hash === `#${entry.target.id}`) {
+                  link.setAttribute("aria-current", "location");
+                } else {
+                  link.removeAttribute("aria-current");
                 }
+              });
             });
+          },
+          { rootMargin: "-30% 0px -60% 0px" }
+        );
 
-            const reducedMotion = window.matchMedia(
-                "(prefers-reduced-motion: reduce)"
-            ).matches;
-
-            const revealElements = document.querySelectorAll(".reveal");
-
-            if (reducedMotion || !("IntersectionObserver" in window)) {
-                revealElements.forEach((element) => {
-                    element.classList.add("visible");
-                });
-            } else {
-                const revealObserver = new IntersectionObserver(
-                    (entries, observer) => {
-                        entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add("visible");
-                                observer.unobserve(entry.target);
-                            }
-                        });
-                    },
-                    {
-                        rootMargin: "0px 0px -8% 0px",
-                        threshold: 0.08
-                    }
-                );
-
-                revealElements.forEach((element) => {
-                    revealObserver.observe(element);
-                });
-            }
-
-            const observedSections = document.querySelectorAll(
-                "main section[id]"
-            );
-
-            const sectionObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (!entry.isIntersecting) {
-                            return;
-                        }
-
-                        navLinks.forEach((link) => {
-                            const isCurrent =
-                                link.getAttribute("href") === `#${entry.target.id}`;
-
-                            if (isCurrent) {
-                                link.setAttribute("aria-current", "true");
-                            } else {
-                                link.removeAttribute("aria-current");
-                            }
-                        });
-                    });
-                },
-                {
-                    rootMargin: "-35% 0px -55% 0px",
-                    threshold: 0
-                }
-            );
-
-            observedSections.forEach((section) => {
-                sectionObserver.observe(section);
-            });
-        })();
-    </script>
+        document
+          .querySelectorAll("main section[id]")
+          .forEach((section) => sectionObserver.observe(section));
+      }
+    })();
+  </script>
 </body>
 </html>
